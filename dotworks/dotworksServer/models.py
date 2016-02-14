@@ -19,7 +19,7 @@ class Student(models.Model):
 		on_delete= models.CASCADE,
 		primary_key=True,
 	)
-	decription = models.CharField(max_length=500)
+	description = models.CharField(max_length=500)
 	github = models.CharField(max_length=100)
 	linkdin = models.CharField(max_length=100)
 	facebook = models.CharField(max_length=100)

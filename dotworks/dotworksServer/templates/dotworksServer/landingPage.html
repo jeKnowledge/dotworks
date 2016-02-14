@@ -1,22 +1,11 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-
-
 <head>
-	
+
 <title>Log in</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-
-
-
-
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
 <style>
 body{
 	background-color:#4db6ac;
@@ -32,6 +21,7 @@ body{
 </head>
 <body class="valign-wrapper">
 
+	<!-- <a href="{% url 'user_register' %}"><h2> Regista-te!! </h2></a> -->
 
 	<form action="login/" method="post" class="center-align valign loginForm">
 		{% csrf_token %}

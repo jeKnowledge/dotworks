@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Log in</title>
+</head>
+<body>
+	<form action="register/" method="post" class="center-align valign registerForm">
+		{% csrf_token %}
+		<h2> .works Register! </h2>
+		{{RegisterForm}}
+		<input type="submit" value="Register" />
+	</form>
+</body>
+</html>
