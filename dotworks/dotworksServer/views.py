@@ -29,11 +29,15 @@ def user_login(request):
     }
 	
 
+
 	if request.POST:
-		email = request.POST.get('email')
+		email = request.POST.get('username')
 		password = request.POST.get('password')
 
-		user = authenticate(username = email, password = password)
+		print(email)
+		print(password)
+
+		user = authenticate(username=email, password=password)
 
 		if user is not None: #login succesfull
 			login(request, user)
