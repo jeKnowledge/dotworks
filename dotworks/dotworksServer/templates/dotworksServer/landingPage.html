@@ -36,11 +36,7 @@ body{
 	<form action="login/" method="post" class="center-align valign loginForm">
 		{% csrf_token %}
 		<h2> .works </h2>
-		username: 
-		<input type="text" name="username" value="{{username}}" /><br />
-		password:
-		<input type="password" name="password" value="" /><br />
-
+		{{loginForm}}
 		<input type="submit" value="Log In" />
 	</form>
 
