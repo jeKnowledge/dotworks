@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.template import loader
+from django.core.urlresolvers import reverse
 
 from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login
@@ -44,8 +46,7 @@ def user_login(request):
 			template = loader.get_template('dotworksServer/home.html')
 			return HttpResponse(template.render(context, request))
 		else:
-			template = loader.get_template('dotworksServer/landingPage.html')
-			return HttpResponse(template.render(context, request))
+			return HttpResponseRedirect(reverse('index'))
 
 		
 
