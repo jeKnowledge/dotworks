@@ -26,30 +26,24 @@ def index(request):
 
 
 def user_login(request):
-	state = "Please log in below..."
-	email = ''
-	password = ''
-	context = {
-
-    }
-	
 
 
 	if request.POST:
 		form = LoginForm(request.POST)
 
-		print(email)
-		print(password)
 		if form.is_valid():
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
+
+			print(username)
+			print(password)
 
 			user = authenticate(username=username, password=password)
 
 			if user is not None: #login succesfull
 				login(request, user)
 				template = loader.get_template('dotworksServer/home.html')
-				return HttpResponse(template.render(context, request))
+				return HttpResponse(template.render({}, request))
 			else:
 				return HttpResponseRedirect(reverse('index'))
 		else:

@@ -31,3 +31,8 @@ class Student(models.Model):
 	degree = models.CharField(max_length=100)
 
 
+class internship (models.Model):
+	company = models.ForeignKey(Company, on_delete=models.CASCADE)
+	name = models.CharField(max_length=100)
+
+
