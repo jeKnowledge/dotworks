@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.models import User
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, StudentRegisterForm
 from .models import Company, Student
 
 
@@ -53,34 +53,45 @@ def user_login(request):
 	else:
 		return HttpResponseRedirect(reverse('index'))
 
-def user_register(request):
-	context = {
-
-	}
+def register_action(request):
+	context = {}
 	if request.POST:
-		form = RegisterForm(request.POST)
+		form = StudentRegisterForm(request.POST)
+		if form.is_valid():
 
-	if form.is_valid():
-		name = form.cleaned_data['name']
-		username = form.cleaned_data['username']
-		password = form.cleaned_data['password']
-		description = form.cleaned_data['description']
-		github = form.cleaned_data['github']
-		linkdin = form.cleaned_data['linkdin']
-		facebook = form.cleaned_data['facebook']
-		phone = form.cleaned_data['phone']
-		city = form.cleaned_data['city']
-		country = form.cleaned_data['country']
-		age = form.cleaned_data['age']
-		degree = form.cleaned_data['degree']
+			name = form.cleaned_data['name']
+			email = form.cleaned_data['email']
+			password = form.cleaned_data['password']
+			description = form.cleaned_data['description']
+			github = form.cleaned_data['github']
+			linkdin = form.cleaned_data['linkdin']
+			facebook = form.cleaned_data['facebook']
+			phone = form.cleaned_data['phone']
+			city = form.cleaned_data['city']
+			country = form.cleaned_data['country']
+			birth_date = form.cleaned_data['birth_date']
+			degree = form.cleaned_data['degree']
 
-	new_user = User(username = username, password = password)
-	new_user.save()
-	new_student = Student(user = new_user, name = name, description = description, github = github, linkdin = linkdin,
-		facebook = facebook, phone = phone, city = city, country = country, age = age, degree = degree)
-	new_student.save()
-	login(request, new_user)
-	template = loader.get_template('dotworksServer/home.html') 		
-	return HttpResponse(template.render(context, request))
+			#create new user and student with that user
+			user = User.objects.create_user(username = email, password=password)
+			student = Student(user=user, name = name, email=email, description=description, github=github,linkdin=linkdin, facebook=facebook,
+				phone_number=phone, city=city, country=country, birth_date=birth_date, degree=degree)
+			student.save()
+			user = authenticate(username = email, password = password)
+			if user is not None:
+				login(request, user)
+				template = loader.get_template('dotworksServer/home.html')
+				return HttpResponse(template.render(context, request))
+		else:
+			print(form.errors.as_data())
+			return HttpResponseRedirect(reverse('index'))
+	else:
+		return HttpResponseRedirect(reverse('index'))
 
-		
+def student_register(request):
+	template = loader.get_template('dotworksServer/studentRegister.html')
+	studentRegisterForm = StudentRegisterForm()
+	context = {
+		'studentRegisterForm':studentRegisterForm
+	}
+	return HttpResponse(template.render(context, request))		

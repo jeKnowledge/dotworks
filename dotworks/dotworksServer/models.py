@@ -1,33 +1,39 @@
-from __future__ import unicode_literals
-
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
+# Create your models here.
 class Company(models.Model):
-	user = models.OneToOneField(
-		User,
-		on_delete= models.CASCADE,
-		primary_key=True,
-	)
-	companyName = models.CharField(max_length=100)
-	website = models.CharField(max_length=100)
-
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	company = models.CharField(max_length=100)
 
 class Student(models.Model):
-	user = models.OneToOneField(
-		User,
-		on_delete= models.CASCADE,
-		primary_key=True,
+	user = models.OneToOneField(User, on_delete=models.CASCADE, unique = True)
+	email = models.EmailField(blank = False, unique = True)
+	description = models.TextField(max_length = 500, blank = False)
+	
+	github = models.URLField(max_length=100, blank = True)
+	linkdin = models.URLField(max_length=100, blank = True)
+	facebook = models.URLField(max_length=100, blank = True)
+	
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+	phone_number = models.CharField(validators=[phone_regex],max_length=15, blank=False) # validators should be a list
+	
+	name = models.CharField(max_length=100, blank = False)
+	
+	city = models.CharField(max_length=100, blank = False)
+	country = models.CharField(max_length=100, blank = False)
+	
+	birth_date = models.DateField(blank = False)
+	
+	#Capital because of convention in django docs
+	DEGREE_CHOICES = (
+		("SECUNDARIO", "Secundário"),
+		("LICENCIATURA", "Licenciatura"),
+		("MESTRADO", "Mestrado"),
+		("DOUTORAMENTO", "Doutoramento"),
 	)
-	description = models.CharField(max_length=500)
-	github = models.CharField(max_length=100)
-	linkdin = models.CharField(max_length=100)
-	facebook = models.CharField(max_length=100)
-	phone = models.CharField(max_length=100)
-	name = models.CharField(max_length=100)
-	city = models.CharField(max_length=100)
-	country = models.CharField(max_length=100)
-	age = models.CharField(max_length=100)
-	degree = models.CharField(max_length=100)
+	degree = models.CharField(max_length=100, choices = DEGREE_CHOICES, blank = True)
+	#NOT SUPPOSED TO BE BLANK=TRUE! BUG
 
 

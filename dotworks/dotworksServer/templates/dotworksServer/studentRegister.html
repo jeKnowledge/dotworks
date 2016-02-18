@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Registar</title>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  	<!-- Compiled and minified JavaScript -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body class="valign-wrapper">
+
+	<form action="{% url 'register_action' %}" method="post">
+		{% csrf_token %}
+		<h2> Registar .works </h2>
+		{{studentRegisterForm}}
+		<br><br>
+		<input type="submit" value="Registar" />
+	</form>
+</body>
+</html>
