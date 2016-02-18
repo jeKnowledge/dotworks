@@ -9,7 +9,7 @@ class Company(models.Model):
 
 class Student(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, unique = True)
-	email = models.EmailField(blank = False, unique = True)
+	e_mail = models.EmailField(blank = False, unique = True)
 	description = models.TextField(max_length = 500, blank = False)
 	
 	github = models.URLField(max_length=100, blank = True)
