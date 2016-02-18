@@ -27,7 +27,6 @@ def index(request):
 
 def user_login(request):
 
-
 	if request.POST:
 		form = LoginForm(request.POST)
 
@@ -43,11 +42,24 @@ def user_login(request):
 			if user is not None: #login succesfull
 				login(request, user)
 				template = loader.get_template('dotworksServer/home.html')
-				return HttpResponse(template.render({}, request))
+				return HttpResponseRedirect(reverse('show home'))
 			else:
 				return HttpResponseRedirect(reverse('index'))
 		else:
-			return HttpResponseRedirect(reverse('index'))	
+			return HttpResponseRedirect(reverse('index'))
+
+def user_logout(request):
+	logout(request)
+	return HttpResponseRedirect(reverse('index'))
+
+	
+
+def index(request):
+
+    template = loader.get_template('dotworksServer/home.html')
+    return HttpResponse(template.render({}, request))
+
+
 
 		
 

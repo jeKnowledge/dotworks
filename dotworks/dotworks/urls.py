@@ -20,5 +20,4 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^dotworks/', include('dotworksServer.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^.*', include('dotworksServer.urls')),
 ]
