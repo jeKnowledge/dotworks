@@ -37,3 +37,8 @@ class Student(models.Model):
 	#NOT SUPPOSED TO BE BLANK=TRUE! BUG
 
 
+class internship (models.Model):
+	company = models.ForeignKey(Company, on_delete=models.CASCADE)
+	name = models.CharField(max_length=100)
+
+

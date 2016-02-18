@@ -71,6 +71,10 @@ def index(request):
     return HttpResponse(template.render({}, request))
 
 
+
+		
+>>>>>>> 96919f44b719c83b36a4072f837705621acbc835
+
 def register_action(request):
 	context = {}
 	if request.POST:
