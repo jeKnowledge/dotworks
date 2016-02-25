@@ -18,4 +18,4 @@ class StudentRegisterForm(forms.Form):
 	city = forms.CharField(max_length=100, label="Cidade", required = True)
 	country = forms.CharField(max_length=100, label="Pais", required = True)
 	birth_date = forms.DateField(widget=forms.DateInput(),label="Data nascimento", required = True, initial=datetime.date.today)
-	degree = forms.ChoiceField(choices = Student.DEGREE_CHOICES, required = False)
+	degree = forms.ChoiceField(choices = Student.DEGREE_CHOICES, required = True)
