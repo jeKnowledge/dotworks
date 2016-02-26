@@ -6,7 +6,7 @@ from django.template import loader
 from django.core.urlresolvers import reverse
 
 from django.shortcuts import render_to_response, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User
 from .forms import LoginForm, StudentRegisterForm
@@ -19,13 +19,16 @@ from .models import Company, Student
 
 
 def index(request):
-
-    template = loader.get_template('dotworksServer/landingPage.html')
-    loginForm = LoginForm()
-    context = {
-        'loginForm':loginForm
-    }
-    return HttpResponse(template.render(context, request))
+	if request.user.is_authenticated():
+		template = loader.get_template('dotworksServer/home.html')
+		context = {}
+	else:
+		template = loader.get_template('dotworksServer/landingPage.html')
+		loginForm = LoginForm()
+		context = {
+			'loginForm':loginForm
+		}
+	return HttpResponse(template.render(context, request))
 
 
 
@@ -49,7 +52,7 @@ def user_login(request):
 			if user is not None: #login succesfull
 				login(request, user)
 				template = loader.get_template('dotworksServer/home.html')
-				return HttpResponseRedirect(reverse('show home'))
+				return HttpResponseRedirect(reverse('index'))
 			else:
 				return HttpResponseRedirect(reverse('index'))
 
@@ -62,14 +65,6 @@ def user_login(request):
 def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('index'))
-
-	
-
-def index(request):
-
-    template = loader.get_template('dotworksServer/home.html')
-    return HttpResponse(template.render({}, request))
-
 
 def register_action(request):
 	context = {}
