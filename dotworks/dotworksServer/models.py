@@ -4,9 +4,8 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 class Company(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	company = models.CharField(max_length=100,blank= False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, unique = True)
+	company = models.CharField(max_length=100,blank= False)
 	e_mail = models.EmailField(blank = False, unique = True)
 	description = models.TextField(max_length = 500, blank = False)
 	
