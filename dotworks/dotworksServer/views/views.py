@@ -9,8 +9,8 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User
-from .forms import LoginForm, StudentRegisterForm
-from .models import Company, Student
+from ..forms import LoginForm, StudentRegisterForm
+from ..models import Company, Student
 
 
 
