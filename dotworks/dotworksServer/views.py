@@ -77,9 +77,14 @@ def register_action(request):
             degree = form.cleaned_data['degree']
 
             #create new user and student with that user
-            user = User.objects.create_user(username = email, password=password)
-            student = Student(user=user, name = name, e_mail=email, description=description, github=github,linkdin=linkdin, facebook=facebook,
-                              phone_number=phone, city=city, country=country, birth_date=birth_date, degree=degree)
+            user = User.objects.create_user(
+                username = email, password=password)
+            student = Student(
+                user=user, name = name, e_mail=email, 
+                description=description, github=github,linkdin=linkdin, 
+                facebook=facebook, 
+                phone_number=phone, city=city, country=country, 
+                birth_date=birth_date, degree=degree)
             student.save()
             user = authenticate(username = email, password = password)
             if user is not None:

@@ -12,8 +12,13 @@ class Company(models.Model):
     website = models.URLField(max_length=100, blank = True)
     facebook = models.URLField(max_length=100, blank = True)
     
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex],max_length=15, blank=False) # validators should be a list
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$', 
+        message="Phone number must be entered in the format: '+999999999'." 
+        + "Up to 15 digits allowed.")
+    phone_number = models.CharField(
+        validators=[phone_regex],max_length=15, blank=False) 
+        # validators should be a list
     
     city = models.CharField(max_length=100, blank = False)
     country = models.CharField(max_length=100, blank = False)
@@ -27,8 +32,12 @@ class Student(models.Model):
     linkdin = models.URLField(max_length=100, blank = True)
     facebook = models.URLField(max_length=100, blank = True)
     
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex],max_length=15, blank=False) # validators should be a list
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$', 
+        message="Phone number must be entered in the format: '+999999999'."+
+        "Up to 15 digits allowed.")
+    phone_number = models.CharField(validators=[phone_regex],max_length=15, 
+        blank=False) # validators should be a list
     
     name = models.CharField(max_length=100, blank = False)
     
@@ -44,9 +53,8 @@ class Student(models.Model):
         ("MESTRADO", "Mestrado"),
         ("DOUTORAMENTO", "Doutoramento"),
     )
-    degree = models.CharField(max_length=100, choices = DEGREE_CHOICES, blank = False)
-    #NOT SUPPOSED TO BE BLANK=TRUE! BUG
-
+    degree = models.CharField(
+        max_length=100, choices = DEGREE_CHOICES, blank = False)
 
 class internship (models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
