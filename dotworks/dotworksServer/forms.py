@@ -30,3 +30,20 @@ class StudentRegisterForm(forms.Form):
         required = True, initial=datetime.date.today)
     degree = forms.ChoiceField(
         choices = Student.DEGREE_CHOICES, required = True)
+
+class CompanyRegisterForm(forms.Form):
+    company = forms.CharField(
+        max_length = 100, label="Nome da Companhia", required = True)
+    email = forms.EmailField(required = True)
+    password = forms.CharField(
+        widget=forms.PasswordInput(), label="Password", required = True)
+    description = forms.CharField(
+        widget= forms.Textarea, max_length = 500, label="Descricao[500car]",
+        required = True)
+
+    site = forms.URLField(
+        max_length = 100, label="Site da empresa", required = True)
+    facebook = forms.URLField(max_length=100, label="Facebook", required=False)
+    phone = forms.RegexField(
+        regex=r'^\+?1?\d{9,15}$', max_length=15, min_length=9, 
+        label="Telemovel", required = True)

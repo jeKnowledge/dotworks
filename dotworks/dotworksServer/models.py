@@ -19,9 +19,6 @@ class Company(models.Model):
     phone_number = models.CharField(
         validators=[phone_regex],max_length=15, blank=False) 
         # validators should be a list
-    
-    city = models.CharField(max_length=100, blank = False)
-    country = models.CharField(max_length=100, blank = False)
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique = True)
@@ -56,7 +53,7 @@ class Student(models.Model):
     degree = models.CharField(
         max_length=100, choices = DEGREE_CHOICES, blank = False)
 
-class internship (models.Model):
+class Internship (models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
