@@ -11,14 +11,18 @@ body{
 </style>
 </head>
 <body>
-
-<h2>NIGGA YOU ARE IN</h2>
-
     <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
         {% csrf_token %}
 
         <input type="submit" value="Log Out" />
     </form>
+
+    <h1>Available Internships</h1> <br>
+    <ul>
+    {% for internship in internship_list %}
+        <li>{{internship.title}} by {{internship.company.name}} </li>
+    {% endfor %}
+    </ul>
 
 </body>
 </html>

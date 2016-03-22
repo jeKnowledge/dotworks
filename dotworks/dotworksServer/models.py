@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 # Create your models here.
 class Company(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique = True)
-    company = models.CharField(max_length=100,blank= False)
+    name = models.CharField(max_length=100,blank= False)
     e_mail = models.EmailField(blank = False, unique = True)
     description = models.TextField(max_length = 500, blank = False)
     
@@ -19,6 +19,8 @@ class Company(models.Model):
     phone_number = models.CharField(
         validators=[phone_regex],max_length=15, blank=False) 
         # validators should be a list
+    def __str__(self):
+        return self.name
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique = True)
@@ -52,9 +54,15 @@ class Student(models.Model):
     )
     degree = models.CharField(
         max_length=100, choices = DEGREE_CHOICES, blank = False)
+    def __str__(self):
+        return self.email
 
 class Internship (models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length = 200) 
+    application_deadline = models.DateTimeField('aplications deadline')
+    def __str__(self):
+        return self.company.name + self.name
 
 

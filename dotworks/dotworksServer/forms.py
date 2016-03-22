@@ -47,3 +47,9 @@ class CompanyRegisterForm(forms.Form):
     phone = forms.RegexField(
         regex=r'^\+?1?\d{9,15}$', max_length=15, min_length=9, 
         label="Telemovel", required = True)
+
+class InternshipCreationForm(forms.Form):
+    title = forms.CharField(max_length=100, label="Titulo do estágio")
+    description = forms.CharField(max_length = 200, label = "Descrição do estágio") 
+    application_deadline = forms.DateTimeField(widget = forms.SelectDateWidget,
+        label = "Data limite para submissão de candidaturas")

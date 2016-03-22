@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^register/$', views.student_register, name='register'),
     url(r'^register_action/$', views.register_action, name='register_action'),
     url(r'^logout/$', views.user_logout, name='user_logout'),
+    url(r'^create_internship$', views.internship_creation, name = 'internship_creation'),
+    url(r'^internship_creation_action$', views.internship_creation_action,
+        name = 'internship_creation_action'),
 ]

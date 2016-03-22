@@ -9,8 +9,8 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User
-from ..forms import LoginForm, StudentRegisterForm
-from ..models import Company, Student
+from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
+from ..models import Company, Student, Internship
 
 
 
@@ -20,8 +20,11 @@ from ..models import Company, Student
 
 def index(request):
     if request.user.is_authenticated():
+        internship_list = Internship.objects.order_by('-application_deadline')
         template = loader.get_template('dotworksServer/home.html')
-        context = {}
+        context = {
+            'internship_list': internship_list,
+        }
     else:
         template = loader.get_template('dotworksServer/landingPage.html')
         loginForm = LoginForm()
@@ -104,3 +107,26 @@ def student_register(request):
         'studentRegisterForm':studentRegisterForm
     }
     return HttpResponse(template.render(context, request))        
+
+def internship_creation(request):
+    template = loader.get_template('dotworksServer/internship_creation.html')
+    internshipCreationForm = InternshipCreationForm()
+    context = {
+        'internshipCreationForm': internshipCreationForm
+    }
+    return HttpResponse(template.render(context, request))
+
+def internship_creation_action(request):
+    context = {}
+    if request.POST:
+        form = InternshipCreationForm(request.POST)
+        if form.is_valid():
+            company = request.user.company
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            application_deadline = form.cleaned_data['application_deadline']
+            internship = Internship(title = title, company = company, 
+                description = description, 
+                application_deadline=application_deadline)
+            internship.save()
+    return HttpResponseRedirect(reverse('index'))
