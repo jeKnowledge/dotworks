@@ -130,3 +130,11 @@ def internship_creation_action(request):
                 application_deadline=application_deadline)
             internship.save()
     return HttpResponseRedirect(reverse('index'))
+
+def internship_details(request, internship_id):
+    internship = Internship.objects.get(pk = internship_id)
+    template = loader.get_template('dotworksServer/internship_details.html')
+    context = {
+        'internship': internship,
+    }
+    return HttpResponse(template.render(context, request))

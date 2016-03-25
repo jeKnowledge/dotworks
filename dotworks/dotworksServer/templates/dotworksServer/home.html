@@ -20,7 +20,9 @@ body{
     <h1>Available Internships</h1> <br>
     <ul>
     {% for internship in internship_list %}
-        <li>{{internship.title}} by {{internship.company.name}} </li>
+        <li><a href="{% url 'internship_details' internship.id %}"> 
+            {{internship.title}} by {{internship.company.name}} 
+        </a> </li>
     {% endfor %}
     </ul>
 
