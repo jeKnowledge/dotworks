@@ -14,4 +14,5 @@ urlpatterns = [
         name = 'internship_creation_action'),
     url(r'^internship/(?P<internship_id>[0-9]+)/$', views.internship_details, 
         name = 'internship_details'),
+    url(r'^company_area$', views.company_area, name = "company_area"),
 ]

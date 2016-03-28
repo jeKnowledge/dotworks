@@ -1,19 +1,30 @@
 from django.shortcuts import render
+from django.shortcuts import render_to_response, redirect
 
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+
 from django.template import loader
+
 from django.core.urlresolvers import reverse
 
-from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+
 from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
 from ..models import Company, Student, Internship
 
+#tests for the views
 
-
+#tests whether the user is a company
+def is_company(user):
+    if user.is_authenticated():
+        try:
+            return not not user.company
+        except:
+            pass
+    return False
 
 # Create your views here.
 
@@ -37,8 +48,6 @@ def index(request):
 
 def user_login(request):
     context = { }
-
-
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -56,9 +65,11 @@ def user_login(request):
     else:
         return HttpResponseRedirect(reverse('index'))
 
+@login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
 
 def register_action(request):
     context = {}
@@ -108,6 +119,7 @@ def student_register(request):
     }
     return HttpResponse(template.render(context, request))        
 
+@user_passes_test(is_company)
 def internship_creation(request):
     template = loader.get_template('dotworksServer/internship_creation.html')
     internshipCreationForm = InternshipCreationForm()
@@ -116,6 +128,7 @@ def internship_creation(request):
     }
     return HttpResponse(template.render(context, request))
 
+@user_passes_test(is_company)
 def internship_creation_action(request):
     context = {}
     if request.POST:
@@ -131,10 +144,20 @@ def internship_creation_action(request):
             internship.save()
     return HttpResponseRedirect(reverse('index'))
 
+@login_required
 def internship_details(request, internship_id):
     internship = Internship.objects.get(pk = internship_id)
     template = loader.get_template('dotworksServer/internship_details.html')
     context = {
         'internship': internship,
+    }
+    return HttpResponse(template.render(context, request))
+
+@user_passes_test(is_company)
+def company_area(request):
+    company_internships = Internship.objects.filter(company = request.user.company)
+    template = loader.get_template('dotworksServer/company_area.html')
+    context = {
+        'company_internships': company_internships,
     }
     return HttpResponse(template.render(context, request))
