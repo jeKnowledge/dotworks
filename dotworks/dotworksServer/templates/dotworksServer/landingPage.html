@@ -23,6 +23,10 @@ body{
 
     <a href="{% url 'register' %}"><h2> Regista-te!! </h2></a>
 
+    {% load static %}
+
+     <img src='{% static "backgroundimage.png" %}' alt="My image"/>
+
     <form action="login/" method="post" class="center-align valign loginForm">
         {% csrf_token %}
         <h2> .works </h2>
