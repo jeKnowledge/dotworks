@@ -11,6 +11,8 @@ body{
 </style>
 </head>
 <body>
+    {% load bootstrap3 %}
+    
     <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
         {% csrf_token %}
 
