@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student
+from .models import Student, Internship
 import datetime
 
 class LoginForm(forms.Form):
@@ -51,5 +51,13 @@ class CompanyRegisterForm(forms.Form):
 class InternshipCreationForm(forms.Form):
     title = forms.CharField(max_length=100, label="Titulo do estágio")
     description = forms.CharField(max_length = 200, label = "Descrição do estágio") 
-    application_deadline = forms.DateTimeField(widget = forms.SelectDateWidget,
+    application_deadline = forms.DateField(widget = forms.SelectDateWidget,
         label = "Data limite para submissão de candidaturas")
+    """
+    beggining_date = forms.DateField('Beggining date', required = False)
+    duration = forms.IntegerField(choices = Internship.MONTHS_CHOICES)
+    working_time = forms.CharField(max_length = 15, choices = Internship.WORK_TIME_CHOICES)
+    payment = forms.CharField(max_length = 30)
+    location = forms.CharField(max_length = 100)
+    n_positions = forms.SmallIntegerField()
+    """

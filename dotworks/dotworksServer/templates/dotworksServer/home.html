@@ -17,6 +17,9 @@ body{
         <input type="submit" value="Log Out" />
     </form>
 
+    {% if is_company %}
+        <a href="{% url 'company_area' %}"> Area da Companhia </a>
+    {% endif %}
     <h1>Available Internships</h1> <br>
     <ul>
     {% for internship in internship_list %}

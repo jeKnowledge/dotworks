@@ -32,9 +32,11 @@ def is_company(user):
 def index(request):
     if request.user.is_authenticated():
         internship_list = Internship.objects.order_by('-application_deadline')
+        company = is_company(request.user)
         template = loader.get_template('dotworksServer/home.html')
         context = {
             'internship_list': internship_list,
+            'is_company': company,
         }
     else:
         template = loader.get_template('dotworksServer/landingPage.html')
