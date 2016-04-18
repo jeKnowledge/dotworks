@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, Internship
+from .models import Student, Internship, Inscription
 import datetime
 
 class LoginForm(forms.Form):
@@ -61,3 +61,6 @@ class InternshipCreationForm(forms.Form):
     location = forms.CharField(max_length = 100)
     n_positions = forms.SmallIntegerField()
     """
+
+class InscriptionAddForm(forms.Form):
+    pass
