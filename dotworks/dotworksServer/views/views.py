@@ -42,9 +42,18 @@ def is_student(user):
 
 def index(request):
     if request.user.is_authenticated():
-        internship_list = Internship.objects.order_by('-application_deadline')
         company = is_company(request.user)
         template = loader.get_template('dotworksServer/home.html')
+        #FILTERS
+        filter = {
+            "category": request.GET.get('category', None),
+            "area": request.GET.get('area', None),
+        }
+        arguments = {}
+        for key, value in filter.items():
+            if value is not None:
+                arguments[key] = value
+        internship_list = Internship.objects.filter(**arguments)
         context = {
             'internship_list': internship_list,
             'is_company': company,
