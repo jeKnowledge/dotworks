@@ -58,7 +58,7 @@ class Student(models.Model):
     degree = models.CharField(
         max_length=100, choices = DEGREE_CHOICES, blank = False)
     def __str__(self):
-        return self.email
+        return self.e_mail
 
 class Internship (models.Model):
     MONTHS_CHOICES = [
@@ -69,9 +69,15 @@ class Internship (models.Model):
     WORK_TIME_CHOICES = [
         ("P_T", "Part time"), ("F_T", "Full time"),
     ]
+    TYPE_CHOICES = [
+        ("CUR", "Curricular"),
+        ("PRO", "Profissional"),
+        ("VER", "Verao"),
+    ]
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
+    category = models.CharField(max_length=20, choices = TYPE_CHOICES)
     description = models.CharField(max_length = 200)
     area = models.CharField(max_length = 50) #JSON list!!!
     beggining_date = models.DateField('Beggining date', blank = True)
