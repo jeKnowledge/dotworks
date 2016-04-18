@@ -13,7 +13,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
 from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
-from ..models import Company, Student, Internship
+from ..forms import InscriptionAddForm
+from ..models import Company, Student, Internship, Inscription
 
 #tests for the views
 
@@ -26,7 +27,17 @@ def is_company(user):
             pass
     return False
 
-# Create your views here.
+#tests whether a user is a student
+def is_student(user):
+    if user.is_authenticated():
+        try:
+            return not not user.student
+        except:
+            pass
+        return False
+
+
+# Create your views here
 
 
 def index(request):
@@ -163,3 +174,30 @@ def company_area(request):
         'company_internships': company_internships,
     }
     return HttpResponse(template.render(context, request))
+
+@user_passes_test(is_student)
+def inscription_addition(request, internship_id):
+    context = {
+        'internship': Internship.objects.get(pk = internship_id),
+    }
+    template = loader.get_template('dotworksServer/inscription_addition.html')
+    return HttpResponse(template.render(context, request))
+
+
+
+@user_passes_test(is_student)
+def inscription_add_action(request, internship_id):
+    context = {}
+    if request.POST:
+        form = InscriptionAddForm(request.POST)
+        if form.is_valid():
+            internship = Internship.objects.get(pk = internship_id)
+            student = Student.objects.get(pk = request.user.student.id)
+            inscription_exists = not not Inscription.objects.filter(
+                internship=internship, student=student)
+            if inscription_exists:
+                return internship_details(request, internship_id)
+            inscription = Inscription(internship = internship, student = student)
+            inscription.save()
+    return internship_details(request, internship_id)
+

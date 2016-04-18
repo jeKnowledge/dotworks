@@ -80,6 +80,12 @@ class Internship (models.Model):
     location = models.CharField(max_length = 100)
     n_positions = models.SmallIntegerField()
     def __str__(self):
-        return self.company.name + self.name
+        return self.company.name + self.title
 
+
+class Inscription (models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    internship = models.ForeignKey(Internship, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.student.name + " " + self.internship.company.name
 

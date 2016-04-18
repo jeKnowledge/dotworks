@@ -15,4 +15,8 @@ urlpatterns = [
     url(r'^internship/(?P<internship_id>[0-9]+)/$', views.internship_details, 
         name = 'internship_details'),
     url(r'^company_area$', views.company_area, name = "company_area"),
+    url(r'^internship_addition/(?P<internship_id>[0-9]+)/$', views.inscription_addition,
+        name = 'inscription_addition'),
+    url(r'^inscription_add_action/(?P<internship_id>[0-9]+)/$', views.inscription_add_action,
+        name = 'inscription_add_action'),
 ]
