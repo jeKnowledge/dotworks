@@ -1,7 +1,8 @@
-from django.conf.urls import url
+from django.conf.urls import url, handler404
 
 from .views import *
 
+handler404 = 'views.no_permission_error'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -19,4 +20,5 @@ urlpatterns = [
         name = 'inscription_addition'),
     url(r'^inscription_add_action/(?P<internship_id>[0-9]+)/$', views.inscription_add_action,
         name = 'inscription_add_action'),
+    url(r'^no_permission_error/$', views.no_permission_error, name='no_permission_error'),
 ]

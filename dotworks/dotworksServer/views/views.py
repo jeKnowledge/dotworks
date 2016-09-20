@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 
 from django.template import loader
 
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -87,7 +87,9 @@ def user_login(request):
     else:
         return HttpResponseRedirect(reverse('index'))
 
-@login_required
+
+@login_required(login_url=reverse_lazy('index')) #reverse_lazy must be used 
+#instead of reverse because reverse hasnt been loaded at this point
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
@@ -134,6 +136,7 @@ def register_action(request):
         return HttpResponseRedirect(reverse('index'))
 
 def student_register(request):
+    print(reverse('index'))
     template = loader.get_template('dotworksServer/studentRegister.html')
     studentRegisterForm = StudentRegisterForm()
     context = {
@@ -141,7 +144,7 @@ def student_register(request):
     }
     return HttpResponse(template.render(context, request))        
 
-@user_passes_test(is_company)
+@user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
 def internship_creation(request):
     template = loader.get_template('dotworksServer/internship_creation.html')
     internshipCreationForm = InternshipCreationForm()
@@ -150,8 +153,8 @@ def internship_creation(request):
     }
     return HttpResponse(template.render(context, request))
 
-@user_passes_test(is_company)
-def internship_creation_action(request):
+@user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
+def internship_creation_action(request, login_url=reverse_lazy('no_permission_error')):
     context = {}
     if request.POST:
         form = InternshipCreationForm(request.POST)
@@ -166,7 +169,7 @@ def internship_creation_action(request):
             internship.save()
     return HttpResponseRedirect(reverse('index'))
 
-@login_required
+@login_required(login_url=reverse_lazy('no_permission_error'))
 def internship_details(request, internship_id):
     internship = Internship.objects.get(pk = internship_id)
     template = loader.get_template('dotworksServer/internship_details.html')
@@ -175,7 +178,7 @@ def internship_details(request, internship_id):
     }
     return HttpResponse(template.render(context, request))
 
-@user_passes_test(is_company)
+@user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
 def company_area(request):
     company_internships = Internship.objects.filter(company = request.user.company)
     template = loader.get_template('dotworksServer/company_area.html')
@@ -184,7 +187,7 @@ def company_area(request):
     }
     return HttpResponse(template.render(context, request))
 
-@user_passes_test(is_student)
+@user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_addition(request, internship_id):
     context = {
         'internship': Internship.objects.get(pk = internship_id),
@@ -194,7 +197,7 @@ def inscription_addition(request, internship_id):
 
 
 
-@user_passes_test(is_student)
+@user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_add_action(request, internship_id):
     context = {}
     if request.POST:
@@ -209,4 +212,9 @@ def inscription_add_action(request, internship_id):
             inscription = Inscription(internship = internship, student = student)
             inscription.save()
     return internship_details(request, internship_id)
+
+def no_permission_error(request):
+    context = {}
+    template = loader.get_template('dotworksServer/no_permission.html')
+    return HttpResponse(template.render(context, request))
 
