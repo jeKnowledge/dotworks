@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('dotworksServer', '0002_auto_20160317_1633'),
+        ('dotworks_server', '0002_auto_20160317_1633'),
     ]
 
     operations = [

@@ -19,12 +19,12 @@ class Company(models.Model):
         message="Phone number must be entered in the format: '+999999999'."
         + "Up to 15 digits allowed.")
     phone_number = models.CharField(
-        validators=[phone_regex], 
+        validators=[phone_regex],
         max_length=15,
         blank=False
     )
 
-    # validators should be a list
+    # Validators should be a list
     def __str__(self):
         return self.name
 
@@ -35,7 +35,7 @@ class Student(models.Model):
     github = models.URLField(max_length=100, blank=True)
     linkdin = models.URLField(max_length=100, blank=True)
     facebook = models.URLField(max_length=100, blank=True)
-    
+
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
         message="Phone number must be entered in the format: '+999999999'." +
@@ -47,13 +47,13 @@ class Student(models.Model):
                                     blank=False
                                    )
 
-    # validators should be a list
+    # Validators should be a list
     name = models.CharField(max_length=100, blank=False)
     city = models.CharField(max_length=100, blank=False)
     country = models.CharField(max_length=100, blank=False)
     birth_date = models.DateField(blank=False)
 
-    #Capital because of convention in django docs
+    # Capital because of convention in django docs
     DEGREE_CHOICES = (
         ("SECUNDARIO", "Secundario"),
         ("LICENCIATURA", "Licenciatura"),
@@ -68,6 +68,7 @@ class Student(models.Model):
 
     def __str__(self):
         return self.e_mail
+
 
 class Internship(models.Model):
     MONTHS_CHOICES = [
@@ -88,8 +89,8 @@ class Internship(models.Model):
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=TYPE_CHOICES)
     description = models.CharField(max_length=200)
-    area = models.CharField(max_length=50) #JSON list!!!
-    beggining_date = models.DateField('Beggining date', blank=True)
+    area = models.CharField(max_length=50) # JSON list!!!
+    beginning_date = models.DateField('Beggining date', blank=True)
     duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES)
     working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES)
     application_deadline = models.DateField('aplications deadline')

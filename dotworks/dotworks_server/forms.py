@@ -1,16 +1,20 @@
 # coding=utf-8
-from django import forms
-from .models import Student, Internship, Inscription
 import datetime
+from django import forms
+from .models import Student
 
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='username', max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
 
+
 class StudentRegisterForm(forms.Form):
     name = forms.CharField(
-        max_length=100, label="Nome Completo", required=True)
+        max_length=100,
+        label="Nome Completo",
+        required=True
+    )
     email = forms.EmailField(required=True)
     password = forms.CharField(
         widget=forms.PasswordInput(),
@@ -24,7 +28,7 @@ class StudentRegisterForm(forms.Form):
         required=True
     )
     github = forms.URLField(max_length=100, label="Github", required=False)
-    linkdin = forms.URLField(max_length=100, label="Linkdin", required=False)
+    linkedin = forms.URLField(max_length=100, label="Linkdin", required=False)
     facebook = forms.URLField(
         max_length=100,
         label="Facebook",
@@ -50,11 +54,12 @@ class StudentRegisterForm(forms.Form):
         required=True
     )
 
+
 class CompanyRegisterForm(forms.Form):
     company = forms.CharField(
         max_length=100,
         label="Nome da Companhia",
-        required = True
+        required=True
     )
     email = forms.EmailField(required=True)
     password = forms.CharField(
@@ -83,12 +88,13 @@ class CompanyRegisterForm(forms.Form):
         required=True
     )
 
+
 class InternshipCreationForm(forms.Form):
     title = forms.CharField(max_length=100, label="Titulo do estágio")
     description = forms.CharField(max_length=200, label="Descrição do estágio")
     application_deadline = forms.DateField(
         widget=forms.SelectDateWidget,
-        label = "Data limite para submissão de candidaturas"
+        label="Data limite para submissão de candidaturas"
     )
     """
     beggining_date = forms.DateField('Beggining date', required = False)
@@ -98,6 +104,7 @@ class InternshipCreationForm(forms.Form):
     location = forms.CharField(max_length = 100)
     n_positions = forms.SmallIntegerField()
     """
+
 
 class InscriptionAddForm(forms.Form):
     pass

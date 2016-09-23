@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('dotworksServer', '0006_auto_20160329_2155'),
+        ('dotworks_server', '0006_auto_20160329_2155'),
     ]
 
     operations = [
@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             name='Inscription',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('internship', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dotworksServer.Internship')),
-                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dotworksServer.Student')),
+                ('internship', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dotworks_server.Internship')),
+                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dotworks_server.Student')),
             ],
         ),
     ]
