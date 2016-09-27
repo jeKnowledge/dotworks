@@ -1,7 +1,6 @@
-from django.conf.urls import url, handler404
+from django.conf.urls import url
 from . import views
 
-handler404 = 'views.no_permission_error'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -12,7 +11,7 @@ urlpatterns = [
     url(r'^create_internship$', views.internship_creation, name='internship_creation'),
     url(r'^internship_creation_action$', views.internship_creation_action,
         name='internship_creation_action'),
-    url(r'^internship/(?P<internship_id>[0-9]+)/$', views.internship_details, 
+    url(r'^internship/(?P<internship_id>[0-9]+)/$', views.internship_details,
         name='internship_details'),
     url(r'^company_area$', views.company_area, name="company_area"),
     url(r'^internship_addition/(?P<internship_id>[0-9]+)/$', views.inscription_addition,

@@ -1,6 +1,3 @@
-from django.shortcuts import render
-from django.shortcuts import render_to_response, redirect
-
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
@@ -14,7 +11,7 @@ from django.contrib.auth.models import User
 
 from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
 from ..forms import InscriptionAddForm
-from ..models import Company, Student, Internship, Inscription
+from ..models import Student, Internship, Inscription
 
 
 # Tests for the views
@@ -69,7 +66,6 @@ def index(request):
 
 
 def user_login(request):
-    context = {}
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -139,7 +135,6 @@ def register_action(request):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
-                template = loader.get_template('home.html')
                 return HttpResponse(template.render(context, request))
         else:
             print(form.errors.as_data())
@@ -170,7 +165,6 @@ def internship_creation(request):
 
 @user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
 def internship_creation_action(request, login_url=reverse_lazy('no_permission_error')):
-    context = {}
     if request.POST:
         form = InternshipCreationForm(request.POST)
         if form.is_valid():
@@ -219,7 +213,6 @@ def inscription_addition(request, internship_id):
 
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_add_action(request, internship_id):
-    context = {}
     if request.POST:
         form = InscriptionAddForm(request.POST)
         if form.is_valid():
