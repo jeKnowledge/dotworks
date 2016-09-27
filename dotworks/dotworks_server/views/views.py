@@ -88,9 +88,9 @@ def user_login(request):
         return HttpResponseRedirect(reverse('index'))
 
 
-@login_required(login_url=reverse_lazy('index'))
 # Reverse_lazy must be used
 # instead of reverse because reverse hasnt been loaded at this point
+@login_required(login_url=reverse_lazy('index'))
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
