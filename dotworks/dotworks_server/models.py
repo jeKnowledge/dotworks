@@ -28,12 +28,13 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     e_mail = models.EmailField(blank=False, unique=True)
     description = models.TextField(max_length=500, blank=False)
     github = models.URLField(max_length=100, blank=True)
-    linkdin = models.URLField(max_length=100, blank=True)
+    linkedin = models.URLField(max_length=100, blank=True)
     facebook = models.URLField(max_length=100, blank=True)
 
     phone_regex = RegexValidator(
@@ -89,7 +90,7 @@ class Internship(models.Model):
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=TYPE_CHOICES)
     description = models.CharField(max_length=200)
-    area = models.CharField(max_length=50) # JSON list!!!
+    area = models.CharField(max_length=50)  # JSON list!!!
     beginning_date = models.DateField('Beggining date', blank=True)
     duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES)
     working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES)

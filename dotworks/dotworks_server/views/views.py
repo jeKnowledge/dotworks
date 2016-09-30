@@ -74,7 +74,6 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:  # Login succesfull
                 login(request, user)
-                template = loader.get_template('home.html')
                 return HttpResponseRedirect(reverse('index'))
             else:
                 return HttpResponseRedirect(reverse('index'))
@@ -135,6 +134,7 @@ def register_action(request):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
+                template = loader.get_template('home.html')
                 return HttpResponse(template.render(context, request))
         else:
             print(form.errors.as_data())
@@ -164,7 +164,7 @@ def internship_creation(request):
 
 
 @user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
-def internship_creation_action(request, login_url=reverse_lazy('no_permission_error')):
+def internship_creation_action(request):
     if request.POST:
         form = InternshipCreationForm(request.POST)
         if form.is_valid():
