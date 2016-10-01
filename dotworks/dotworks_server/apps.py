@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DotworksserverConfig(AppConfig):
-    name = 'dotworksServer'
+    name = 'dotworks_server'
