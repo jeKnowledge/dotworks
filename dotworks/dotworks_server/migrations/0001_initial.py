@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('e_mail', models.EmailField(max_length=254, unique=True)),
                 ('description', models.TextField(max_length=500)),
                 ('github', models.URLField(blank=True, max_length=100)),
-                ('linkdin', models.URLField(blank=True, max_length=100)),
+                ('linkedin', models.URLField(blank=True, max_length=100)),
                 ('facebook', models.URLField(blank=True, max_length=100)),
                 ('phone_number', models.CharField(max_length=15, validators=[django.core.validators.RegexValidator(message="Phone number must be entered in the format: '+999999999'.Up to 15 digits allowed.", regex='^\\+?1?\\d{9,15}$')])),
                 ('name', models.CharField(max_length=100)),

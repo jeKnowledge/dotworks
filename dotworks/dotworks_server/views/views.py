@@ -103,7 +103,7 @@ def register_action(request):
             password = form.cleaned_data['password']
             description = form.cleaned_data['description']
             github = form.cleaned_data['github']
-            linkdin = form.cleaned_data['linkdin']
+            linkedin = form.cleaned_data['linkedin']
             facebook = form.cleaned_data['facebook']
             phone = form.cleaned_data['phone']
             city = form.cleaned_data['city']
@@ -122,7 +122,7 @@ def register_action(request):
                 e_mail=email,
                 description=description,
                 github=github,
-                linkdin=linkdin,
+                linkedin=linkedin,
                 facebook=facebook,
                 phone_number=phone,
                 city=city,
