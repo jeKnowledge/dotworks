@@ -34,7 +34,7 @@ def is_student(user):
         return True
     if user.is_authenticated():
         try:
-            return not not user.student or not not user.is_superuser
+            return not not user.student
         except:
             pass
         return False
