@@ -18,6 +18,8 @@ from ..models import Student, Internship, Inscription
 
 # Tests whether the user is a company
 def is_company(user):
+    if user.is_superuser:
+        return True
     if user.is_authenticated():
         try:
             return not not user.company
@@ -28,9 +30,11 @@ def is_company(user):
 
 # Tests whether a user is a student
 def is_student(user):
+    if user.is_superuser:
+        return True
     if user.is_authenticated():
         try:
-            return not not user.student
+            return not not user.student or not not user.is_superuser
         except:
             pass
         return False
