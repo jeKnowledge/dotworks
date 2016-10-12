@@ -43,7 +43,6 @@ def is_student(user):
 # Create your views here
 
 def index(request):
-    print(request.user.is_authenticated())
     if request.user.is_authenticated():
         company = is_company(request.user)
         template = loader.get_template('home.html')
