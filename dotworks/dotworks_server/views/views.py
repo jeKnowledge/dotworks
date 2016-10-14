@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
 from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
-from ..forms import InscriptionAddForm
+from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
 
@@ -148,7 +148,6 @@ def register_action(request):
 
 
 def student_register(request):
-    print(reverse('index'))
     template = loader.get_template('studentRegister.html')
     student_register_form = StudentRegisterForm()
     context = {
@@ -235,3 +234,34 @@ def no_permission_error(request):
     context = {}
     template = loader.get_template('no_permission.html')
     return HttpResponse(template.render(context, request))
+
+def change_password_page(request):
+    change_password_form = ChangePasswordForm()
+    context = {
+        'changePasswordForm': change_password_form
+    }
+    template = loader.get_template('change_password_page.html')
+    return HttpResponse(template.render(context, request))
+
+@login_required(login_url=reverse_lazy('index'))
+def change_password(request):
+    if request.POST:
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            old_password = form.cleaned_data['password']
+            new_password = form.cleaned_data['new_password']
+            confirm_new_password = form.cleaned_data['confirm_new_password']
+            if user.check_password(old_password):
+                if new_password == confirm_new_password:
+                    username = user.username #to login after the password is changed
+                    user.set_password(new_password)
+                    user.save()
+                    user = authenticate(username=username, password=new_password)
+                    login(request, user)
+
+                else:
+                    pass
+            else:
+                pass
+    return HttpResponseRedirect(reverse('index'))

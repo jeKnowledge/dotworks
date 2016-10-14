@@ -108,3 +108,20 @@ class InternshipCreationForm(forms.Form):
 
 class InscriptionAddForm(forms.Form):
     pass
+
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="Current Password",
+        required=True
+    )
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="New Password",
+        required=True
+    )
+    confirm_new_password = forms.CharField(
+        widget=forms.PasswordInput(),
+        label="Confirm new password",
+        required=True
+    )

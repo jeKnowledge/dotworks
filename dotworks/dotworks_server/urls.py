@@ -19,4 +19,6 @@ urlpatterns = [
     url(r'^inscription_add_action/(?P<internship_id>[0-9]+)/$', views.inscription_add_action,
         name='inscription_add_action'),
     url(r'^no_permission_error/$', views.no_permission_error, name='no_permission_error'),
+    url(r'^change_password_page/$', views.change_password_page, name= 'change_password_page'),
+    url(r'^change_password/$', views.change_password, name='change_password'),
 ]
