@@ -1,8 +1,8 @@
 # coding=utf-8
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from django.contrib.postgres.fields import ArrayField
 
 
 # Create your models here.
@@ -56,10 +56,10 @@ class Student(models.Model):
 
     # Capital because of convention in django docs
     DEGREE_CHOICES = (
-        ("SECUNDARIO", "Secundario"),
-        ("LICENCIATURA", "Licenciatura"),
-        ("MESTRADO", "Mestrado"),
-        ("DOUTORAMENTO", "Doutoramento"),
+        ('SECUNDARIO', 'Secundario'),
+        ('LICENCIATURA', 'Licenciatura'),
+        ('MESTRADO', 'Mestrado'),
+        ('DOUTORAMENTO', 'Doutoramento'),
     )
     degree = models.CharField(
         max_length=100,
@@ -73,17 +73,17 @@ class Student(models.Model):
 
 class Internship(models.Model):
     MONTHS_CHOICES = [
-        (1, "1 mês"), (2, "2 meses"), (3, "3 meses"), (4, "4 meses"),
-        (5, "5 meses"), (6, "6 meses"), (7, "7 meses"), (8, "8 meses"),
-        (9, "9 meses"), (10, "10 meses"), (11, "11 meses"), (12, "12 meses")
+        (1, '1 mês'), (2, '2 meses'), (3, '3 meses'), (4, '4 meses'),
+        (5, '5 meses'), (6, '6 meses'), (7, '7 meses'), (8, '8 meses'),
+        (9, '9 meses'), (10, '10 meses'), (11, '11 meses'), (12, '12 meses')
     ]
     WORK_TIME_CHOICES = [
-        ("P_T", "Part time"), ("F_T", "Full time"),
+        ('P_T', 'Part time'), ('F_T', 'Full time'),
     ]
     TYPE_CHOICES = [
-        ("CUR", "Curricular"),
-        ("PRO", "Profissional"),
-        ("VER", "Verao"),
+        ('CUR', 'Curricular'),
+        ('PRO', 'Profissional'),
+        ('VER', 'Verao'),
     ]
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -91,13 +91,20 @@ class Internship(models.Model):
     category = models.CharField(max_length=20, choices=TYPE_CHOICES)
     description = models.CharField(max_length=200)
     area = models.CharField(max_length=50)  # JSON list!!!
-    beginning_date = models.DateField('Beggining date', blank=True)
-    duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES)
-    working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES)
+    beginning_date = models.DateField('Beginning date')
+    duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES, blank=False)
+    working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES, blank=False)
     application_deadline = models.DateField('aplications deadline')
     payment = models.CharField(max_length=30)
     location = models.CharField(max_length=100)
-    n_positions = models.SmallIntegerField()
+    n_positions = models.IntegerField()
+    questions = ArrayField(
+        models.CharField(max_length=200),
+        default=[
+            'What do you do in your free time?',
+            'Why are you applying?'
+        ]
+    )
 
     def __str__(self):
         return self.company.name + self.title
