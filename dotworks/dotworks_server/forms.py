@@ -1,7 +1,7 @@
 # coding=utf-8
 import datetime
 from django import forms
-from .models import Student, Internship
+from .models import Student, Internship, Inscription
 
 
 class LoginForm(forms.Form):
@@ -124,7 +124,10 @@ class InternshipCreationForm(forms.Form):
 
 
 class InscriptionAddForm(forms.Form):
-    pass
+    first_question = Internship.objects.all()[0].questions[0]
+    second_question = Internship.objects.all()[0].questions[1]
+    first_answer = forms.CharField(max_length=500, label=first_question)
+    second_answer = forms.CharField(max_length=500, label=second_question)
 
 
 class ChangePasswordForm(forms.Form):

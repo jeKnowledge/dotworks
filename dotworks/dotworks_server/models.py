@@ -99,7 +99,7 @@ class Internship(models.Model):
     location = models.CharField(max_length=100)
     n_positions = models.IntegerField()
     questions = ArrayField(
-        models.CharField(max_length=200),
+        models.CharField(max_length=100),
         default=[
             'What do you do in your free time?',
             'Why are you applying?'
@@ -113,6 +113,11 @@ class Internship(models.Model):
 class Inscription(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     internship = models.ForeignKey(Internship, on_delete=models.CASCADE)
+    answers = ArrayField(
+        models.CharField(max_length=100),
+        size=2
+    )
+
 
     def __str__(self):
         return self.student.name + " " + self.internship.company.name
