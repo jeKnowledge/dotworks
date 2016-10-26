@@ -95,7 +95,11 @@ class CompanyRegisterForm(forms.Form):
         label='Site da empresa',
         required=True
     )
-    facebook = forms.URLField(max_length=100, label='Facebook', required=False)
+    facebook = forms.URLField(
+        max_length=100,
+        label='Facebook',
+        required=False
+    )
     phone = forms.RegexField(
         regex=r'^\+?1?\d{9,15}$',
         max_length=15,
@@ -133,16 +137,16 @@ class InscriptionAddForm(forms.Form):
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(),
-        label="Password antiga",
+        label='Password antiga',
         required=True
     )
     new_password = forms.CharField(
         widget=forms.PasswordInput(),
-        label="Nova password",
+        label='Nova password',
         required=True
     )
     confirm_new_password = forms.CharField(
         widget=forms.PasswordInput(),
-        label="Confirmar nova password",
+        label='Confirmar nova password',
         required=True
     )
