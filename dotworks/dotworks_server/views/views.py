@@ -44,13 +44,14 @@ def is_student(user):
 # Create your views here
 
 def index(request):
+    print(request.user.is_authenticated())
     if request.user.is_authenticated():
         company = is_company(request.user)
         template = loader.get_template('home.html')
         # FILTERS
         filter = {
-            "category": request.GET.get('category', None),
-            "area": request.GET.get('area', None),
+            'category': request.GET.get('category', None),
+            'area': request.GET.get('area', None),
         }
         arguments = {}
         for key, value in filter.items():
@@ -179,11 +180,24 @@ def internship_creation_action(request):
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             application_deadline = form.cleaned_data['application_deadline']
+            beginning_date = form.cleaned_data['beginning_date']
+            duration = form.cleaned_data['duration']
+            working_time = form.cleaned_data['working_time']
+            payment = form.cleaned_data['payment']
+            location = form.cleaned_data['location']
+            n_positions = form.cleaned_data['n_positions']
+
             internship = Internship(
                 title=title,
                 company=company,
                 description=description,
-                application_deadline=application_deadline
+                application_deadline=application_deadline,
+                beginning_date=beginning_date,
+                duration=duration,
+                working_time=working_time,
+                payment=payment,
+                location=location,
+                n_positions=n_positions,
             )
             internship.save()
     return HttpResponseRedirect(reverse('index'))
@@ -211,10 +225,12 @@ def company_area(request):
 
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_addition(request, internship_id):
+    template = loader.get_template('inscription_addition.html')
+    inscription_add_form = InscriptionAddForm() 
     context = {
         'internship': Internship.objects.get(pk=internship_id),
+        'InscriptionAddForm': inscription_add_form
     }
-    template = loader.get_template('inscription_addition.html')
     return HttpResponse(template.render(context, request))
 
 
@@ -225,11 +241,25 @@ def inscription_add_action(request, internship_id):
         if form.is_valid():
             internship = Internship.objects.get(pk=internship_id)
             student = Student.objects.get(pk=request.user.student.id)
+            answers = [
+                form.cleaned_data['first_answer'],
+                form.cleaned_data['second_answer']
+            ]
+
             inscription_exists = not not Inscription.objects.filter(
-                internship=internship, student=student)
+                internship=internship,
+                student=student,
+                answers=answers
+            )
+
             if inscription_exists:
                 return internship_details(request, internship_id)
-            inscription = Inscription(internship=internship, student=student)
+
+            inscription = Inscription(
+                internship=internship,
+                student=student,
+                answers=answers
+            )
             inscription.save()
     return internship_details(request, internship_id)
 
@@ -238,6 +268,7 @@ def no_permission_error(request):
     context = {}
     template = loader.get_template('no_permission.html')
     return HttpResponse(template.render(context, request))
+
 
 def change_password_page(request):
     change_password_form = ChangePasswordForm()
