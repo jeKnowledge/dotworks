@@ -137,16 +137,16 @@ class InscriptionAddForm(forms.Form):
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(),
-        label='Password antiga',
+        label='Current password',
         required=True
     )
     new_password = forms.CharField(
         widget=forms.PasswordInput(),
-        label='Nova password',
+        label='New password',
         required=True
     )
     confirm_new_password = forms.CharField(
         widget=forms.PasswordInput(),
-        label='Confirmar nova password',
+        label='Confirm new password',
         required=True
     )

@@ -52,7 +52,8 @@ coverage.xml
 ### Django ###
 *.log
 local_settings.py
-dotworks/settings.py
+dotworks/dotworks/settings.py
+dotworks/dotworks_server/migrations
 *.pot
 *.pyc
 __pycache__/

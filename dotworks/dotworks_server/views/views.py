@@ -13,6 +13,7 @@ from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
+from datetime import datetime
 
 # Tests for the views
 
@@ -56,7 +57,11 @@ def index(request):
         for key, value in filter.items():
             if value is not None:
                 arguments[key] = value
-        internship_list = Internship.objects.filter(**arguments)
+        today = datetime.now()
+        internship_list = Internship.objects.filter(
+            **arguments,
+            application_deadline__gte = today
+        )
         context = {
             'internship_list': internship_list,
             'is_company': company,
