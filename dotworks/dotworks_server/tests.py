@@ -4,14 +4,10 @@ from django.test import TestCase
 from dotworks_server.models import Student, Company, Internship
 
 
-class StudentTestCases(TestCase):
-    '''
-    Student creation tests
-    '''
-
+class StudentCreationMethods:
     def create_valid_student(self):
         '''
-        Create student that should pass tests
+        Create valid student
         '''
         name = 'Machado'
         email = 'machado@machado.com'
@@ -35,19 +31,11 @@ class StudentTestCases(TestCase):
             degree=degree
         )
 
-    def test_student(self):
-        student = self.create_valid_student()
-        self.assertTrue(isinstance(student, Student))
 
-
-class CompanyTestCases(TestCase):
-    '''
-    Company creation tests
-    '''
-
+class CompanyCreationMethods:
     def create_valid_company(self):
         '''
-        Create company that should pass tests
+        Create valid company
         '''
         name = 'Faber'
         email = 'faber@faber.com'
@@ -65,43 +53,15 @@ class CompanyTestCases(TestCase):
             phone_number=phone_number
         )
 
-    def test_company(self):
-        '''
-        Test company attributes
-        '''
-        company = self.create_valid_company()
-        self.assertTrue(isinstance(company, Company))
 
-
-class InternshipTestCases(TestCase):
-    '''
-    Internship creation tests
-    '''
-
-    def create_company(self):
-        name = 'Faber'
-        email = 'faber@faber.com'
-        password = 'this_is_faber_password'
-        user = User.objects.create_user(name, email, password)
-        description = 'Summer Internship'
-        website = 'faber.com'
-        phone_number = '987654321'
-        return Company.objects.create(
-            user=user,
-            name=name,
-            e_mail=email,
-            description=description,
-            website=website,
-            phone_number=phone_number
-        )
- 
-
+class InternshipCreationMethods:
     def create_valid_internship(self):
         '''
         Create valid internship
         '''
+        company_methods = CompanyCreationMethods()
         title = 'Amazing internship'
-        company = self.create_company()
+        company = company_methods.create_valid_company()
         category = 'CUR'
         description = 'This is an amazing internship'
         beginning_date = datetime.datetime.now().date()
@@ -124,10 +84,42 @@ class InternshipTestCases(TestCase):
             location=location,
             n_positions=n_positions
         )
+        
+
+
+class StudentTestCases(TestCase):
+    '''
+    Student creation tests
+    '''
+
+    def setUp(self):
+        student_methods = StudentCreationMethods()
+        self.student = student_methods.create_valid_student() 
+
+    def test_student(self):
+        self.assertTrue(isinstance(self.student, Student))
+
+
+class CompanyTestCases(TestCase):
+    '''
+    Company creation tests
+    '''
+    def setUp(self):
+        company_methods = CompanyCreationMethods()
+        self.company = company_methods.create_valid_company()
+        
+    def test_company(self):
+        self.assertTrue(isinstance(self.company, Company))
+
+
+class InternshipTestCases(TestCase):
+    '''
+    Internship creation tests
+    '''
+    def setUp(self):
+       internship_methods = InternshipCreationMethods() 
+       self.internship = internship_methods.create_valid_internship()
 
     def test_internship(self):
-        '''
-        Test internship attributes
-        '''
-        internship = self.create_valid_internship()
-        self.assertTrue(isinstance(internship, Internship))
+        self.assertTrue(isinstance(self.internship, Internship))
+
