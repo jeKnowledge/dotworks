@@ -1,7 +1,7 @@
 import datetime
 from django.contrib.auth.models import User
 from django.test import TestCase
-from dotworks_server.models import Student, Company, Internship
+from dotworks_server.models import Student, Company, Internship, Inscription
 
 
 class StudentCreationMethods:
@@ -19,6 +19,7 @@ class StudentCreationMethods:
         country = 'Portugal'
         birth_date = datetime.datetime.now().date()
         degree = 'SECUNDARIO'
+
         return Student.objects.create(
             user=test_student,
             name=name,
@@ -44,6 +45,7 @@ class CompanyCreationMethods:
         description = 'Summer Internship'
         website = 'faber.com'
         phone_number = '987654321'
+
         return Company.objects.create(
             user=user,
             name=name,
@@ -71,6 +73,7 @@ class InternshipCreationMethods:
         payment = '600'
         location = 'Coimbra'
         n_positions = 3
+
         return Internship.objects.create(
             title=title,
             company=company,
@@ -84,7 +87,21 @@ class InternshipCreationMethods:
             location=location,
             n_positions=n_positions
         )
+
+
+class InscriptionCreationMethods:
+    def create_valid_inscription(self):
+        student_methods = StudentCreationMethods()
+        internship_methods = InternshipCreationMethods()
+        student = StudentCreationMethods.create_valid_student()
+        internship = InternshipCreationMethods.create_valid_internship()
+        answers = ['Mostly coding', 'Stuff']
         
+        return Inscription.objects.create(
+            student=student,
+            internship=internship,
+            answers=answers
+        )
 
 
 class StudentTestCases(TestCase):
@@ -104,6 +121,7 @@ class CompanyTestCases(TestCase):
     '''
     Company creation tests
     '''
+
     def setUp(self):
         company_methods = CompanyCreationMethods()
         self.company = company_methods.create_valid_company()
@@ -116,10 +134,23 @@ class InternshipTestCases(TestCase):
     '''
     Internship creation tests
     '''
+
     def setUp(self):
-       internship_methods = InternshipCreationMethods() 
-       self.internship = internship_methods.create_valid_internship()
+        internship_methods = InternshipCreationMethods()
+        self.internship = internship_methods.create_valid_internship()
 
     def test_internship(self):
         self.assertTrue(isinstance(self.internship, Internship))
 
+
+class InscriptionTEstCases(object):
+    '''
+    Inscription creation tests
+    '''
+
+    def setUp(self):
+        inscription_methods = InscriptionCreationMethods()
+        self.inscription = inscription_methods.create_valid_inscription()
+
+    def test_inscription(self):
+        self.assertTrue(isinstance(self.inscription, Inscription))
