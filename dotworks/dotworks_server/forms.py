@@ -128,8 +128,8 @@ class InternshipCreationForm(forms.Form):
 
 
 class InscriptionAddForm(forms.Form):
-    first_question = Internship.objects.all()[0].questions[0]
-    second_question = Internship.objects.all()[0].questions[1]
+    first_question = 'What do you do in your free time?'
+    second_question = 'Why are you applying?'
     first_answer = forms.CharField(max_length=500, label=first_question)
     second_answer = forms.CharField(max_length=500, label=second_question)
 
