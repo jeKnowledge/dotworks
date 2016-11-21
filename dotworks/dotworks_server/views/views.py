@@ -15,6 +15,7 @@ from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
+from datetime import datetime
 
 # Tests for the views
 
