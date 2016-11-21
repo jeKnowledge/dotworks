@@ -143,7 +143,7 @@ class InternshipTestCases(TestCase):
         self.assertTrue(isinstance(self.internship, Internship))
 
 
-class InscriptionTEstCases(object):
+class InscriptionTestCases(object):
     '''
     Inscription creation tests
     '''
