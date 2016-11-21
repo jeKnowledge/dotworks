@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
@@ -60,7 +62,8 @@ def index(request):
         today = datetime.now()
         internship_list = Internship.objects.filter(
             **arguments,
-            application_deadline__gte = today)
+            application_deadline__gte=today
+        )
         context = {
             'internship_list': internship_list,
             'is_company': company,
@@ -226,7 +229,7 @@ def company_area(request):
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_addition(request, internship_id):
     template = loader.get_template('inscription_addition.html')
-    inscription_add_form = InscriptionAddForm() 
+    inscription_add_form = InscriptionAddForm()
     context = {
         'internship': Internship.objects.get(pk=internship_id),
         'InscriptionAddForm': inscription_add_form

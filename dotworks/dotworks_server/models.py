@@ -98,13 +98,6 @@ class Internship(models.Model):
     payment = models.CharField(max_length=30)
     location = models.CharField(max_length=100)
     n_positions = models.IntegerField()
-    questions = ArrayField(
-        models.CharField(max_length=100),
-        default=[
-            'What do you do in your free time?',
-            'Why are you applying?'
-        ]
-    )
 
     def __str__(self):
         return self.company.name + self.title

@@ -128,8 +128,8 @@ class InternshipCreationForm(forms.Form):
 
 
 class InscriptionAddForm(forms.Form):
-    first_question = Internship.objects.all()[0].questions[0]
-    second_question = Internship.objects.all()[0].questions[1]
+    first_question = 'What do you do in your free time?'
+    second_question = 'Why are you applying?'
     first_answer = forms.CharField(max_length=500, label=first_question)
     second_answer = forms.CharField(max_length=500, label=second_question)
 
@@ -137,16 +137,16 @@ class InscriptionAddForm(forms.Form):
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(),
-        label='Password antiga',
+        label='Current password',
         required=True
     )
     new_password = forms.CharField(
         widget=forms.PasswordInput(),
-        label='Nova password',
+        label='New password',
         required=True
     )
     confirm_new_password = forms.CharField(
         widget=forms.PasswordInput(),
-        label='Confirmar nova password',
+        label='Confirm new password',
         required=True
     )
