@@ -107,8 +107,7 @@ class InternshipCreationForm(forms.Form):
 
 
 class InscriptionAddForm(forms.Form):
-    pass
-    #curriculum = forms.FileField()
+    curriculum = forms.FileField()
 
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(

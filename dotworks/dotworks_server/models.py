@@ -106,7 +106,7 @@ class Internship(models.Model):
 class Inscription(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     internship = models.ForeignKey(Internship, on_delete=models.CASCADE)
-    #curriculum = models.FileField(upload_to='curriculums/')
+    curriculum = models.FileField(upload_to='curriculums/')
 
     def __str__(self):
         return self.student.name + " " + self.internship.company.name

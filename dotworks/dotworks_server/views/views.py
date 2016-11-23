@@ -232,8 +232,8 @@ def inscription_add_action(request, internship_id):
 
             inscription = Inscription(
                 internship=internship, 
-                student=student
-                #curriculum=request.FILES['curriculum']
+                student=student,
+                curriculum=request.FILES['curriculum']
             )
             inscription.save()
     return internship_details(request, internship_id)
