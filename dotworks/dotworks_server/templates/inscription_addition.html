@@ -8,10 +8,10 @@
 
 <body class="valign-wrapper">
 
-    <form action="{% url 'inscription_add_action' internship.id %}" method="post">
+    <form action="{% url 'inscription_add_action' internship.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h2>Inscreveres-te no estagio</h2>
-        {{InscriptionAddForm}}
+        {{inscriptionAddForm}}
         <br><br>
         <input type="submit" value="Inscrever" />
     </form>

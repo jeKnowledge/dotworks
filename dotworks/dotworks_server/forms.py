@@ -19,7 +19,7 @@ class StudentRegisterForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         label="Introduza a sua password",
-        required=True
+        required=True,
     )
     description = forms.CharField(
         widget=forms.Textarea,
@@ -108,6 +108,7 @@ class InternshipCreationForm(forms.Form):
 
 class InscriptionAddForm(forms.Form):
     pass
+    #curriculum = forms.FileField()
 
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(

@@ -207,8 +207,10 @@ def company_area(request):
 
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_addition(request, internship_id):
+    inscription_form = InscriptionAddForm()
     context = {
         'internship': Internship.objects.get(pk=internship_id),
+        'inscriptionAddForm': inscription_form,
     }
     template = loader.get_template('inscription_addition.html')
     return HttpResponse(template.render(context, request))
@@ -217,15 +219,22 @@ def inscription_addition(request, internship_id):
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_add_action(request, internship_id):
     if request.POST:
-        form = InscriptionAddForm(request.POST)
+        form = InscriptionAddForm(request.POST, request.FILES)
         if form.is_valid():
             internship = Internship.objects.get(pk=internship_id)
             student = Student.objects.get(pk=request.user.student.id)
             inscription_exists = not not Inscription.objects.filter(
-                internship=internship, student=student)
+                internship=internship, 
+                student=student
+            )
             if inscription_exists:
                 return internship_details(request, internship_id)
-            inscription = Inscription(internship=internship, student=student)
+
+            inscription = Inscription(
+                internship=internship, 
+                student=student
+                #curriculum=request.FILES['curriculum']
+            )
             inscription.save()
     return internship_details(request, internship_id)
 
