@@ -57,6 +57,7 @@ dotworks/settings.py
 *.pyc
 __pycache__/
 db.sqlite3
+/curriculums
 
 ### Flask ###
 instance/
