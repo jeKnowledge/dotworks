@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
-from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
+from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, InternshipEditForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
@@ -212,6 +212,42 @@ def internship_details(request, internship_id):
     template = loader.get_template('internship_details.html')
     context = {
         'internship': internship,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
+def edit_internship(request, internship_id):
+    internship = Internship.objects.get(pk=internship_id)
+    template = loader.get_template('edit_internship.html')
+    current_info = {
+        'title': internship.title,
+        'description': internship.description,
+        'beginning_date': internship.beginning_date,
+        'duration': internship.duration,
+        'working_time': internship.working_time,
+        'application_deadline': internship.application_deadline,
+        'payment': internship.payment,
+        'location': internship.location,
+        'n_positions': internship.n_positions
+    }
+    form = InternshipEditForm(request.POST, initial=current_info)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            internship.title = internship.POST['title']
+            internship.description = internship.POST['description']
+            internship.beginning_date = internship.POST['beginning_date']
+            internship.duration = internship.POST['duration']
+            internship.working_time = internship.POST['working_time']
+            internship.application_deadline = internship.POST['application_deadline']
+            internship.payment = internship.POST['payment']
+            internship.location = internship.POST['location']
+            internship.n_positions = internship.POST['n_positions']
+            internship.save()
+
+    context = {
+        "form": form
     }
     return HttpResponse(template.render(context, request))
 

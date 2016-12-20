@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dotworks',
         'USER': 'machado',
-        'PASSWORD': '',
+        'PASSWORD': 'safepasswordlol',
         'HOST': 'localhost',
         'PORT': '5432',
     }
