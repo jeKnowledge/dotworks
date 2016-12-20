@@ -2,7 +2,7 @@
 
 <h1>Edit Internship</h1>
 
-<form method="POST" action="{% url 'edit_internship' %}" class="" />
+<form method="POST" action="{% url 'edit_internship' internship.id %}" class="" />
     {{ form }}
     <button type="submit">Save</button>
 </form>
