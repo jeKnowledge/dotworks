@@ -231,7 +231,7 @@ def edit_internship(request, internship_id):
         'location': internship.location,
         'n_positions': internship.n_positions
     }
-    form = InternshipEditForm(request.POST, initial=current_info)
+    form = InternshipEditForm(request.POST, instance=internship)
 
     if request.method == 'POST':
         if form.is_valid():
@@ -247,7 +247,8 @@ def edit_internship(request, internship_id):
             internship.save()
 
     context = {
-        "form": form
+        "form": form,
+        "internship": internship
     }
     return HttpResponse(template.render(context, request))
 
