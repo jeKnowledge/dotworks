@@ -129,6 +129,7 @@ class InternshipCreationForm(forms.Form):
 
 
 class InternshipEditForm(forms.ModelForm):
+    '''
     title = forms.CharField(max_length=100, label='Titulo do estágio')
     description = forms.CharField(max_length=200, label='Descrição do estágio')
     application_deadline = forms.DateField(
@@ -144,6 +145,7 @@ class InternshipEditForm(forms.ModelForm):
     payment = forms.CharField(max_length=30)
     location = forms.CharField(max_length=100)
     n_positions = forms.IntegerField(label='Number of Positions')
+    '''
 
     class Meta:
         model = Internship

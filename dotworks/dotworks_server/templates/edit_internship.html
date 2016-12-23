@@ -1,10 +1,12 @@
 {% block content %}
 
-<h1>Edit Internship</h1>
 
-<form method="POST" action="{% url 'edit_internship' internship.id %}" class="" />
-    {{ form }}
-    <button type="submit">Save</button>
+<form action="{% url 'edit_internship' internship.id %}" method="post"/>
+  {% csrf_token %}
+  <h2>Edit Internship</h2>
+  {{ edit_internship_form }}
+  <br><br>
+  <input type="submit" value="Guardar" />
 </form>
 
 {% endblock %}
