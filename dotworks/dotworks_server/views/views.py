@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
-from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm
+from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, InternshipEditForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
@@ -212,6 +212,37 @@ def internship_details(request, internship_id):
     template = loader.get_template('internship_details.html')
     context = {
         'internship': internship,
+    }
+    return HttpResponse(template.render(context, request))
+
+@user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
+def edit_internship(request, internship_id):
+    internship = Internship.objects.get(pk=internship_id)
+
+    if request.method == 'POST':
+        form = InternshipEditForm(request.POST)
+        if form.is_valid():
+            internship.title = form.cleaned_data['title']
+            internship.description = form.cleaned_data['description']
+            internship.beginning_date = form.cleaned_data['beginning_date']
+            internship.duration = form.cleaned_data['duration']
+            internship.working_time = form.cleaned_data['working_time']
+            internship.application_deadline = form.cleaned_data['application_deadline']
+            internship.payment = form.cleaned_data['payment']
+            internship.location = form.cleaned_data['location']
+            internship.n_positions = form.cleaned_data['n_positions']
+            internship.save()
+    return HttpResponseRedirect(reverse('index'))
+
+
+@user_passes_test(is_company, login_url=reverse_lazy('no_permission_error'))
+def open_edit_internship_page(request, internship_id):
+    template = loader.get_template('edit_internship.html')
+    internship = Internship.objects.get(pk=internship_id)
+    edit_internship_form = InternshipEditForm(instance=internship)
+    context = {
+        'edit_internship_form': edit_internship_form,
+        'internship': internship
     }
     return HttpResponse(template.render(context, request))
 

@@ -3,8 +3,8 @@
 <h1>Available Internships in your company:</h1> <br>
 <ul>
 {% for internship in company_internships %}
-    <li><a href="{% url 'internship_details' internship.id %}"> 
-        {{internship.title}} by {{internship.company.name}} 
-    </a> </li>
+  <li><a href="{% url 'open_edit_internship_page' internship.id %}"> 
+    {{internship.title}} by {{internship.company.name}} 
+  </a> </li>
 {% endfor %}
 </ul>

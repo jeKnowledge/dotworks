@@ -1,6 +1,7 @@
 # coding=utf-8
 import datetime
 from django import forms
+from django.forms import ModelForm
 from .models import Student, Internship, Inscription
 
 
@@ -125,6 +126,22 @@ class InternshipCreationForm(forms.Form):
     payment = forms.CharField(max_length=30)
     location = forms.CharField(max_length=100)
     n_positions = forms.IntegerField(label='Number of Positions')
+
+
+class InternshipEditForm(forms.ModelForm):
+    class Meta:
+        model = Internship
+        fields = [
+            'title',
+            'description',
+            'beginning_date',
+            'duration',
+            'working_time',
+            'application_deadline',
+            'payment',
+            'location',
+            'n_positions'
+        ]
 
 
 class InscriptionAddForm(forms.Form):
