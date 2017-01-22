@@ -129,24 +129,6 @@ class InternshipCreationForm(forms.Form):
 
 
 class InternshipEditForm(forms.ModelForm):
-    '''
-    title = forms.CharField(max_length=100, label='Titulo do estágio')
-    description = forms.CharField(max_length=200, label='Descrição do estágio')
-    application_deadline = forms.DateField(
-        widget=forms.SelectDateWidget,
-        label='Data limite para submissão de candidaturas'
-    )
-    beginning_date = forms.DateField(
-        widget=forms.SelectDateWidget,
-        label='Beginning Date'
-    )
-    duration = forms.ChoiceField(choices=Internship.MONTHS_CHOICES, required=True)
-    working_time = forms.ChoiceField(choices=Internship.WORK_TIME_CHOICES, required=True)
-    payment = forms.CharField(max_length=30)
-    location = forms.CharField(max_length=100)
-    n_positions = forms.IntegerField(label='Number of Positions')
-    '''
-
     class Meta:
         model = Internship
         fields = [
