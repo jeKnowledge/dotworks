@@ -104,8 +104,6 @@ def user_logout(request):
 
 
 def register_action(request):
-    context = {}
-
     if request.POST:
         form = StudentRegisterForm(request.POST)
 
@@ -143,7 +141,27 @@ def register_action(request):
                 degree=degree
             )
             student.save()
+
             user = authenticate(username=email, password=password)
+            company = is_company(user)
+            arguments = {}
+            today = datetime.now()
+            filter = {
+                'category': request.GET.get('category', None),
+                'area': request.GET.get('area', None),
+            }
+
+            for key, value in filter.items():
+                if value is not None:
+                    arguments[key] = value
+            internship_list = Internship.objects.filter(
+                **arguments,
+                application_deadline__gte=today
+            )
+            context = {
+                'internship_list': internship_list,
+                'is_company': company,
+            }
             if user is not None:
                 login(request, user)
                 template = loader.get_template('home.html')
@@ -328,9 +346,4 @@ def change_password(request):
                     user.save()
                     user = authenticate(username=username, password=new_password)
                     login(request, user)
-
-                else:
-                    pass
-            else:
-                pass
     return HttpResponseRedirect(reverse('index'))
