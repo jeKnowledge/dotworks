@@ -17,9 +17,27 @@ from ..models import Student, Internship, Inscription
 
 from datetime import datetime
 
-# Tests for the views
 
-# Tests whether the user is a company
+# Util functions
+
+def get_internship_list(filter):
+    '''
+    Retrieve available internships
+    '''
+    arguments = {}
+    today = datetime.now()
+    for key, value in filter.items():
+        if value is not None:
+            arguments[key] = value
+    return Internship.objects.filter(
+        **arguments,
+        application_deadline__gte=today
+    )
+
+
+# Validations for the views
+
+# Validates whether the user is a company
 def is_company(user):
     if user.is_superuser:
         return True
@@ -31,7 +49,7 @@ def is_company(user):
     return False
 
 
-# Tests whether a user is a student
+# Validates whether the user is a student
 def is_student(user):
     if user.is_superuser:
         return True
@@ -43,8 +61,6 @@ def is_student(user):
         return False
 
 
-# Create your views here
-
 def index(request):
     print(request.user.is_authenticated())
     if request.user.is_authenticated():
@@ -55,15 +71,7 @@ def index(request):
             'category': request.GET.get('category', None),
             'area': request.GET.get('area', None),
         }
-        arguments = {}
-        for key, value in filter.items():
-            if value is not None:
-                arguments[key] = value
-        today = datetime.now()
-        internship_list = Internship.objects.filter(
-            **arguments,
-            application_deadline__gte=today
-        )
+        internship_list = get_internship_list(filter)
         context = {
             'internship_list': internship_list,
             'is_company': company,
@@ -104,8 +112,6 @@ def user_logout(request):
 
 
 def register_action(request):
-    context = {}
-
     if request.POST:
         form = StudentRegisterForm(request.POST)
 
@@ -143,7 +149,20 @@ def register_action(request):
                 degree=degree
             )
             student.save()
+
             user = authenticate(username=email, password=password)
+            company = is_company(user)
+            arguments = {}
+            filter = {
+                'category': request.GET.get('category', None),
+                'area': request.GET.get('area', None),
+            }
+
+            internship_list = get_internship_list(filter)
+            context = {
+                'internship_list': internship_list,
+                'is_company': company,
+            }
             if user is not None:
                 login(request, user)
                 template = loader.get_template('home.html')
@@ -328,9 +347,4 @@ def change_password(request):
                     user.save()
                     user = authenticate(username=username, password=new_password)
                     login(request, user)
-
-                else:
-                    pass
-            else:
-                pass
     return HttpResponseRedirect(reverse('index'))
