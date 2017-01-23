@@ -35,6 +35,19 @@ def get_internship_list(filter):
     )
 
 
+def filter_internship(category_):
+    '''
+    Filter internships by category
+    '''
+    if category_ == 'VER':
+        return Internship.objects.filter(category=category_)
+    elif category_ == 'CUR':
+        return Internship.objects.filter(category=category_)
+    elif category_ == 'PRO':
+        return Internship.objects.filter(category=category_)
+    return Internship.objects.all()
+
+
 # Validations for the views
 
 # Validates whether the user is a company
