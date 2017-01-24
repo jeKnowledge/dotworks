@@ -324,7 +324,7 @@ def inscription_add_action(request, internship_id):
             inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
 
             if student_is_already_enrolled_in_internship(student.id, inscriptions_in_internship):
-                print('Needs front end to deal with this')
+                return HttpResponseRedirect(reverse('index'))
 
             inscription = Inscription(
                 internship=internship,
