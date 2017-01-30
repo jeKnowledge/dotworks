@@ -20,6 +20,16 @@ from datetime import datetime
 
 # Util functions
 
+def student_is_already_enrolled_in_internship(student_id, inscriptions_in_internship):
+    '''
+    Checks if student is already inrolled in internship
+    '''
+    for inscription in inscriptions_in_internship:
+        if inscription.student.id == student_id:
+           return True
+    return False
+
+
 def get_internship_list(filter):
     '''
     Retrieve available internships
@@ -311,15 +321,10 @@ def inscription_add_action(request, internship_id):
                 form.cleaned_data['first_answer'],
                 form.cleaned_data['second_answer']
             ]
+            inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
 
-            inscription_exists = not not Inscription.objects.filter(
-                internship=internship,
-                student=student,
-                answers=answers
-            )
-
-            if inscription_exists:
-                return internship_details(request, internship_id)
+            if student_is_already_enrolled_in_internship(student.id, inscriptions_in_internship):
+                return HttpResponseRedirect(reverse('index'))
 
             inscription = Inscription(
                 internship=internship,
@@ -327,7 +332,7 @@ def inscription_add_action(request, internship_id):
                 answers=answers
             )
             inscription.save()
-    return internship_details(request, internship_id)
+    return HttpResponseRedirect(reverse('index'))
 
 
 def no_permission_error(request):
