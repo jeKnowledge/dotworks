@@ -11,6 +11,9 @@
     <form action="{% url 'register_action' %}" method="post">
         {% csrf_token %}
         <h2> Registar .works </h2>
+        {% if studentRegisterForm.errors %}
+          <h2> That email is already taken</h2>
+        {% endif %}
         {{studentRegisterForm}}
         <br><br>
         <input type="submit" value="Registar" />

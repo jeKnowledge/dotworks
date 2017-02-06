@@ -71,6 +71,13 @@ class StudentRegisterForm(forms.Form):
         required=True
     )
 
+    def clean_email(self):
+        cleaned_data = self.cleaned_data
+        email_ = cleaned_data.get('email')
+        if Student.objects.filter(e_mail=email_).exists():
+            raise forms.ValidationError('Email already exists')
+        return email_
+
 
 class CompanyRegisterForm(forms.Form):
     company = forms.CharField(
