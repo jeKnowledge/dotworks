@@ -75,7 +75,7 @@ class StudentRegisterForm(forms.Form):
         cleaned_data = self.cleaned_data
         email_ = cleaned_data.get('email')
         if Student.objects.filter(e_mail=email_).exists():
-            raise forms.ValidationError('The email already exists')
+            raise forms.ValidationError('This email already exists')
         return email_
 
 
