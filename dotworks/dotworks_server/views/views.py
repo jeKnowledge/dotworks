@@ -140,7 +140,7 @@ def register_action(request):
 
         if form.is_valid():
             name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
+            email = form.clean_email()
             password = form.cleaned_data['password']
             description = form.cleaned_data['description']
             github = form.cleaned_data['github']
@@ -191,8 +191,11 @@ def register_action(request):
                 template = loader.get_template('home.html')
                 return HttpResponse(template.render(context, request))
         else:
-            print(form.errors.as_data())
-            return HttpResponseRedirect(reverse('index'))
+            template = loader.get_template('studentRegister.html')
+            context = {
+                'studentRegisterForm': form
+            }
+            return HttpResponse(template.render(context, request))
     else:
         return HttpResponseRedirect(reverse('index'))
 

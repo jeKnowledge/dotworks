@@ -2,18 +2,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <title>Registar</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Registar</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
 
 <body class="valign-wrapper">
+  <form action="{% url 'register_action' %}" method="post">
+    {% csrf_token %}
+    <h2> Registar .works </h2>
+    {% if studentRegisterForm.errors %}
+      <div id="form-error">
+        <p>The operation could not be performed because one or more error(s) occurred.</p>
+        {% for field in studentRegisterForm %}
+          {% if field.errors %}
+            <p>{{ field.errors|striptags }}</p>
+          {% endif %}
+        {% endfor %}
+        <br />
+      </div>
+    {% endif %}
 
-    <form action="{% url 'register_action' %}" method="post">
-        {% csrf_token %}
-        <h2> Registar .works </h2>
-        {{studentRegisterForm}}
-        <br><br>
-        <input type="submit" value="Registar" />
-    </form>
+    {% for field in studentRegisterForm %}
+      {{ field.label }}{{ field }}
+    {% endfor %}
+    <br><br>
+    <input type="submit" value="Registar" />
+  </form>
 </body>
+
 </html>
