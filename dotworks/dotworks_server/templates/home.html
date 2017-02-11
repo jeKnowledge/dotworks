@@ -1,60 +1,107 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
   {% load static %}
   <title>.estágios</title>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
-    
 <body id="estagios">
   {% load bootstrap3 %}
-
+  <nav>
+    <ul>
+      <li style="background-color:black"><img src="{% static "logo.works.jpg" %}" class="logo"/></li>
+      <li class="hovernav"><a class="active" href="#estagios">.estágios</a></li>
+      <li class="hovernav"><a href="#perfil">.perfil</a></li>
+      <li class="dropdown" style="float:right">
+        <a href="javascript:void(0)" class="dropbtn"><img src="{% static "logo.works.jpg" %}" class="logo"/></a>
+        <div class="dropdown-content">
+          <a href="#" class="dropunit">Editar Perfil</a>
+          <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
+            {% csrf_token %}
+            <input type="submit" value="Sair" class="dropunit"/>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </nav>
   <header>
     <div class="topleft">
-      <img src="{% static "logo.works.jpg" %}" class="logo"/>
-      <h2 class="h2estagio"> .estágios</h2> 
+      <h2 class="h2estagio"> .estágios</h2>
     </div>
-    <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
-      {% csrf_token %}
-      <input type="submit" value="" id="exit"/>
-    </form>
   </header>
-
   <ul class="listaestagios">
     {% for internship in internship_list %}
-      <li class="estagioid"><a href="{% url 'internship_details' internship.id %}"></a>
-        <img src="{% static "logo1.png" %}" width=60px/>
-        <div class="dadosestagio">
-          <span class="nomeestagio"><span class="tituloestagio">{{internship.title}}</span> <br> by {{internship.company.name}}</span>
-          <ul class="detalhesestag">
-            <div class="estagiodetalhe">
-              <img src="{% static "Wlocation.png" %}" width=30px/>
-              <li>{{internship.location}}</li>
+      <li class="estagioid"><a href="{% url 'internship_details' internship.id %}">
+        <div class="estagioline">
+          <img src="{% static "logo1.png" %}" width=60px/>
+          <div class="dadosestagio">
+            <span class="nomeestagio"><span
+              class="tituloestagio">{{ internship.title }}</span> <br> by {{ internship.company.name }}</span>
+            <ul class="detalhesestag">
+              <div class="estagiodetalhe">
+                <img src="{% static "Wlocation.png" %}" width=20px/>
+                <li>{{ internship.location }}</li>
+              </div>
+              <div class="estagiodetalhe">
+                <img src="{% static "Wduration.png" %}" width=20px/>
+                <li>{{ internship.duration }} meses</li>
+              </div>
+              <div class="estagiodetalhe">
+                <img src="{% static "Wfullparttime.png" %}" width=20px/>
+                <li>{{ internship.working_time }}</li>
+              </div>
+              <div class="estagiodetalhe">
+                <img src="{% static "Wvagas.png" %}" width=20px/>
+                <li>{{ internship.n_positions }} vaga(s)</li>
+              </div>
+              <div class="estagiodetalhe">
+                <img src="{% static "Weuro.png" %}" width=20px/>
+                <li>{{ internship.payment }}</li>
+              </div>
+              <div class="estagiodetalhe">
+                <img src="{% static "Wplay.png" %}" width=20px/>
+                <li>26/12/2016</li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </a>
+        <div class="dropmore">
+          <button class="more">Mais</button>
+          <div class="descestag">
+            <p style="max-width: 50%;"> {{ internship.description }} </p>
+            <div class="inscrever">
+              <h2 class="h2estag quero"> .quero! </h2>
+              <a href="{% url 'inscription_addition' internship.id %}">
+                <img src="{% static "Wadd.png" %}" width=30px/>
+              </a>
             </div>
-            <div class="estagiodetalhe">
-              <img src="{% static "Wduration.png" %}" width=30px/>
-              <li>{{internship.duration}} meses</li>
-            </div>
-            <div class="estagiodetalhe">
-              <img src="{% static "Wfullparttime.png" %}" width=30px/>
-              <li>{{internship.working_time}}</li>
-            </div>
-            <div class="estagiodetalhe">
-              <img src="{% static "Wvagas.png" %}" width=30px/>
-              <li>{{internship.n_positions}} vaga(s)</li>
-            </div>
-          </ul>
+          </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+          <script>
+            $(document).ready(function () {
+              $('.more').click(function () {
+                $('.descestag').toggleClass('open');
+              });
+            });
+          </script>
         </div>
       </li>
     {% endfor %}
   </ul>
   <ul class="filtrocat">
-    <li><button id="fc1">Verão</button></li>
-    <li><button id="fc2">Curricular</button></li>
-    <li><button id="fc3">Profissional</button></li>
+    <li>
+      <button id="fc1">Verão</button>
+    </li>
+    <li>
+      <button id="fc2">Curricular</button>
+    </li>
+    <li>
+      <button id="fc3">Profissional</button>
+    </li>
   </ul>
 </body>
 </html>

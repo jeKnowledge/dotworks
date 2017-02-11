@@ -44,9 +44,9 @@ class Student(models.Model):
     )
 
     phone_number = models.CharField(validators=[phone_regex],
-                                    max_length=15,
-                                    blank=False
-                                   )
+        max_length=15,
+        blank=False
+    )
 
     # Validators should be a list
     name = models.CharField(max_length=100, blank=False)

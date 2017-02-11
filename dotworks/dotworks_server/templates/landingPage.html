@@ -2,28 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-{% load static %}
+  {% load static %}
   <title>.works</title>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
   <script src="{% static "extras.js" %}"></script>
 </head>
-    
-<body class="valign-wrapper">
 
+<body class="valign-wrapper">
   <div id="landingOne">
-    <div id="Dots">   
+    <div id="Dots">
       <div data-stellar-background-ratio="0.95">
         <ul id="scene">
-          <li class="layer" data-depth="1"> <img src="{% static "1.png" %}"/></li>
-          <li class="layer" data-depth="2"> <img src="{% static "2.png" %}"/></li>
-          <li class="layer" data-depth="0.5"> <img src="{% static "3.png" %}"/></li>
+          <li class="layer" data-depth="1"><img src="{% static "1.png" %}"/></li>
+          <li class="layer" data-depth="2"><img src="{% static "2.png" %}"/></li>
+          <li class="layer" data-depth="0.5"><img src="{% static "3.png" %}"/></li>
         </ul>
-      </div>  
+      </div>
       <script src="{% static "jquery-3.1.1.min.js" %}"></script>
       <script src="{% static "jquery.stellar.min.js" %}"></script>
       <script src="{% static "parallax.min.js" %}"></script>
@@ -31,25 +29,27 @@
         var scene = document.getElementById('scene');
         var parallax = new Parallax(scene);
       </script>
-      <script>
-          $(window).stellar();
-      </script>
+      <script>$(window).stellar();</script>
     </div>
     <div id="inform">
       <form action="login/" method="post" class="center-align valign loginForm">
         {% csrf_token %}
         <h1 id="title"> .works </h1>
         <div id="login">
-          {{loginForm}}
+          {{ loginForm }}
           <input type="submit" value="Entrar" class="button1"/>
           <a href="{% url 'register' %}"><h2 class="button1 button2"> Regista-te </h2></a>
         </div>
-        <img id="setascroll" onclick="smoothScroll(document.getElementById('descricao'))" src="{% static "seta.png" %}" alt="seta">
+        <img id="setascroll" onclick="smoothScroll(document.getElementById('descricao'))" src="{% static "seta.png" %}"
+             alt="seta">
       </form>
     </div>
   </div>
-  <div id="descricao"> O .works é o evento que junta estudantes do ensino superior e empresas portuguesas na vanguarda da inovação tecnológica, num ambiente informal e descontraído, onde os candidatos têm a oportunidade de, conquistar uma vaga num estágio curricular, profissional ou de verão, através de uma entrevista. 
-Esta é uma iniciativa criada e organizada pela jeKnowledge, a Júnior Empresa da Faculdade de Ciências e Tecnologia da UC.</div>
-
+  <div id="descricao"> O .works é o evento que junta estudantes do ensino superior e empresas portuguesas na vanguarda da
+    inovação tecnológica, num ambiente informal e descontraído, onde os candidatos têm a oportunidade de, conquistar uma
+    vaga num estágio curricular, profissional ou de verão, através de uma entrevista.
+    Esta é uma iniciativa criada e organizada pela jeKnowledge, a Júnior Empresa da Faculdade de Ciências e Tecnologia da
+    UC.
+  </div>
 </body>
 </html>
