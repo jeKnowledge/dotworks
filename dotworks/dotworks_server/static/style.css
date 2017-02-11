@@ -1,0 +1,537 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+body{    
+    font-size:12px;
+    background-color: #1B384C;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100vw;
+    color:whitesmoke;
+    overflow-x: hidden;
+}
+
+h1:hover, h2:hover{
+    cursor:default;
+}
+
+h2{
+    font-size: 1.3em;
+}
+
+button:hover{
+    cursor:pointer;
+}
+
+ul{
+    list-style:none;
+}
+
+/*------------------- LANDING PAGE -------------------------------*/
+#landingOne{
+    height: 100vh;
+}
+
+input, a, .button1, .listaestagios li, .filtrocat button{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#inform{
+    z-index: 1;
+    position:absolute;
+    width:100%;
+}
+
+.loginForm{
+    width: 26%;
+    margin:0 auto;
+    margin-top:20vh;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#title{
+    font-family: 'Montserrat', sans-serif;
+    font-size:7.7vw;
+    text-align: center; 
+}
+
+#login{
+    margin-top:3vh;
+    width: 100%;
+}
+
+#Dots img {
+    width: 100vw;
+}
+
+#Dots {
+    z-index: 0;
+    position: absolute;
+}
+
+.in, .button1{
+    margin:1vh 0;
+    border: none;
+    border-radius: 15vw;
+    padding: 0.5vw 1vh;
+}
+
+.in{
+    width:96.5%;
+    background-color: whitesmoke;
+}
+
+.buttonlogin:hover, #setascroll:hover{
+    cursor:pointer;
+}
+
+.button1{
+    background-color: whitesmoke;
+    color:black;
+    text-align:center;
+    width:30%;
+    font-size:1.2em;
+    display: inline-block;
+}
+
+.button2{
+    float: right;
+    padding: 0.5vw 1vh;
+}
+
+#setascroll{
+    width:15%;
+    margin-top:15%;
+    margin-left: 40%;
+}
+
+#descricao{
+    padding:2% 25% 6% 25%;
+    font-size:1.2em;
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+/*------------------- STUDENTREGISTER -------------------------------*/
+#registerform{
+    margin: 0 10vw;
+   /* -webkit-column-count: 5; 
+    column-count: 5;*/
+    display: flex;
+    justify-content: space-between;
+    font-size:1.1em;
+
+}
+
+header{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 8vh 10vw;
+}
+
+.topleft{
+   font-size:3em;
+   display:flex;
+   align-items: center;
+   flex-direction: row;
+}
+
+.logo{
+    width:74px;
+    border-radius: 7px;
+}
+
+.in2, .in3{
+    width:13vw;
+    display: flex;
+}
+
+.in3{
+    border-radius: 2vw;
+    height: 17.5px;
+}
+
+.row{
+    display: flex;
+    flex-direction:column;    
+}
+
+#registar{
+    margin-right:10vw;
+    float:right;
+    padding-left:40px;
+    padding-bottom: 22.75px;
+    background-image: url(check.png);
+    background-color: #1B384C;
+    background-size: contain;
+    border:none;
+}
+
+/*------------------- estagios -------------------------------*/
+#estagios{
+    /*background-image:url(../static/logoback.works.jpg);
+    background-size:cover;*/
+    background-color: whitesmoke;
+}
+
+#exit{
+    margin-left:55vw;
+    padding-left:40px;
+    padding-bottom: 22.75px;
+    background-image: url(exit.png);
+    background-color: whitesmoke;
+    background-size: contain;
+    border:none;
+}
+
+header h2{
+    margin-left:2vw;
+}
+
+.h2estagio{
+    color: black;
+}
+
+.listaestagios{
+    float:left;
+}
+
+.estagioid{
+    margin:5vh 10vw;
+    border-radius: 60px;
+    padding: 25px 30px;
+    width:78%;
+    font-size:1.2em;
+    
+    background-color: #53917e;
+}
+
+.estagioid a{
+    display: flex;
+    align-items: flex-start;
+    color:white;
+    width: 100%;
+    align-items: center;
+}
+
+.dadosestagio{
+    width:100%;
+    padding:0 1.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tituloestagio{
+    font-size:1.6em;
+}
+
+.detalhesestag{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#estagios .estagiodetalhe{
+    padding:0 15px;
+}
+
+.filtrocat{
+    height: 50vh;
+    position: fixed;
+    right:0;
+    margin-right:10vw; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.filtrocat button, .ft2 button{
+    width:95px;
+    height: 95px;  
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: whitesmoke;
+    color:white;
+}
+
+#fc1{
+    background-image: url(verao.png);
+}
+#fc2{
+    background-image: url(curricular.png);
+}
+#fc3{
+    background-image: url(profissional.png);
+}
+
+
+/*------------------- ESTAGIO! -------------------------------*/
+
+.estagio{
+    background-color: whitesmoke;
+    color:black;
+}
+.estagio header{
+    width:555px;
+}
+
+#conteudoestag{
+    width:458px;
+    margin-left: 10vw;
+    padding: 37px 46px;
+    margin-bottom: 8vh;
+    
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+#nomeestag{
+    float:left;
+    padding:0 1.5vw;
+}
+
+#headestag{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#caixanomeestag{
+    width:290px;
+    border-radius: 15vw;
+    padding: 5px 16px;
+    font-size:1.2em;   
+    background-color: #53917e;
+}
+
+#logotitulo{
+    display: flex;
+    align-items: flex-start;
+    color:white;
+    width: 100%;
+    align-items: center;
+}
+
+#descestag{
+    margin-top: 5vh;
+}
+
+.estagio .estagiodetalhe{
+    width:33.33%;
+    padding-top: 5vh;
+}
+
+.estagiodetalhe{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.estagiodetalhe img{
+    padding-bottom: 7px;
+}
+
+.quero{
+    font-size:2em;
+    padding-right: 10px;
+}
+
+.inscrever{
+    width:54%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 12.66%; 
+}
+
+/*_______________INSCREVER_______________*/
+
+.inscricao #registar{
+    float:left;
+    margin:5vh 37vw;
+}
+
+.inscricao #conteudoestag{
+    height:45vh;
+    border: none;
+    margin-bottom:0;
+    font-size:1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding:0;
+}
+
+.inscricao #conteudoestag input{
+    margin:1vh 0;
+    border: none;
+    border-radius: 30px;
+    padding: 5px 10px;
+    height:13vh;
+}
+
+/*_______________responsividade_______________*/
+@media (max-width:920px) {
+    #title{
+        font-size:10.7vw;
+    }
+    
+    .loginForm{
+        width: 36%;
+    }
+    
+    #Dots img {
+        width:auto;
+        height: 100vh;
+    }
+}
+
+@media (max-width:768px) {
+    #title{
+        font-size:13.7vw;
+    }
+    
+    .loginForm{
+        width: 46%;
+    }
+    
+    .loginForm .button1{
+        width:42%;
+    }
+    
+    .in2,.in3, .pink, .topright .button1{
+        width:15vw;
+    }
+    
+ 
+    
+    .estagioid{
+        width:60vw;
+    }
+    
+    .dadosestagio{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 1em;
+    }
+    
+    .nomeestagio{
+        padding-left: 15px;
+    }
+    
+    .detalhesestag{
+        margin-top:15px;
+        justify-content: space-between;
+    }
+    
+    
+    
+    #conteudoestag{
+        width:60vw;
+        padding: 4vh 3vw;
+    }
+    
+    .estagio header{
+        width:67vw;
+    }
+    
+    .estagio .h2estagio{
+        font-size: 1em;
+    }
+    
+    .ft2 button{
+    width:70px;
+    height: 70px;  
+    }
+    
+    
+}
+
+@media (max-width:395px) {    
+    #Dots img {
+        height: 100vh;
+    }
+    
+    .loginForm {
+        margin-top: 6vh;
+    }
+    
+    #title{
+        font-size:17.7vw;
+    }
+    
+    .loginForm{
+        width: 60%;
+    }
+    
+    header{
+        margin:7vh 7vw;
+    }
+    
+    header h2{
+        margin-left:5vw;
+        font-size:0.85em;
+    }
+    
+    #registerform{
+        display:inherit;
+    }
+    
+    .in2, .in3{
+        width:65vw;    
+    }
+    
+    #registar{
+        margin: 0 50vw 5vh 0;
+    }
+    
+    
+    
+    
+    .filtrocat{
+        display: none;
+    }
+    
+    .tituloestagio{
+        font-size: 1.2em;
+        text-decoration: underline;
+    }
+    
+    
+    
+    #conteudoestag{
+        width:70vw;
+        padding:5vw;
+        margin-left:7vw;
+    }
+    
+    .estagio header{
+        width:82vw;
+    }
+    
+    .estagio .h2estagio{
+        font-size: 0.8em;
+    }
+}
+
+
+
+
+
+
+
+

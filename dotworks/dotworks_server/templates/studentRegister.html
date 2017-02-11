@@ -2,32 +2,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-  <title>Registar</title>
+  {% load static %}
+  <title>.registo</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
 
 <body class="valign-wrapper">
+  {% load bootstrap3 %}
+
   <form action="{% url 'register_action' %}" method="post">
     {% csrf_token %}
-    <h2> Registar .works </h2>
-    {% if studentRegisterForm.errors %}
-      <div id="form-error">
-        <p>The operation could not be performed because one or more error(s) occurred.</p>
-        {% for field in studentRegisterForm %}
-          {% if field.errors %}
-            <p>{{ field.errors|striptags }}</p>
-          {% endif %}
-        {% endfor %}
-        <br />
+    <header>
+      <div class="topleft">
+        <img src="{% static "logo.works.jpg" %}" class="logo"/>
+        <h2>.registar</h2> 
       </div>
-    {% endif %}
 
-    {% for field in studentRegisterForm %}
-      {{ field.label }}{{ field }}
-    {% endfor %}
+      {% if studentRegisterForm.errors %}
+        <div id="form-error">
+          <p>The operation could not be performed because one or more error(s) occurred.</p>
+          {% for field in studentRegisterForm %}
+            {% if field.errors %}
+              <p>{{ field.errors|striptags }}</p>
+            {% endif %}
+          {% endfor %}
+          <br />
+        </div>
+      {% endif %}
+    </header>
+    <div id="registerform" class="container-fluid">
+      {% for field in studentRegisterForm %}
+        {% if forloop.counter0|divisibleby:3 %}
+          <div class="row">
+        {% endif %}
+        <div class="col-md-4">
+          {{ field.label }}
+          {{ field }}
+        </div>
+        {% if forloop.counter0|add:1|divisibleby:3 %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
     <br><br>
-    <input type="submit" value="Registar" />
+    <input type="submit" value="" id="registar"/>
   </form>
 </body>
-
 </html>

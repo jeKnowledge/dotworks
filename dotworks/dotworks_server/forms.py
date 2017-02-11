@@ -6,24 +6,35 @@ from .models import Student, Internship, Inscription
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='email', max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(
+        label='email',
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': "in"})
+    )
+    password = forms.CharField(
+        label='Palavra-Passe',
+        widget=forms.PasswordInput(attrs={'class': "in"})
+    )
 
 
 class StudentRegisterForm(forms.Form):
     name = forms.CharField(
         max_length=100,
         label='Nome Completo',
-        required=True
+        required=True,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': "in in2"})
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'class': "in in2"}),
         label='Introduza a sua password',
         required=True
     )
     description = forms.CharField(
-        widget=forms.Textarea,
+        widget=forms.Textarea(attrs={'class': "in in3"}),
         max_length=500,
         label='Um texto sobre si [max:500car]',
         required=True
@@ -31,44 +42,51 @@ class StudentRegisterForm(forms.Form):
     github = forms.URLField(
         max_length=100,
         label='Github',
-        required=False
+        required=False,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
     linkedin = forms.URLField(
         max_length=100,
         label='Linkedin',
-        required=False
+        required=False,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
     facebook = forms.URLField(
         max_length=100,
         label='Facebook',
-        required=False
+        required=False,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
     phone = forms.RegexField(
         regex=r'^\+?1?\d{9,15}$',
         max_length=15,
         min_length=9,
         label='Telemovel',
-        required=True
+        required=True,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
     city = forms.CharField(
         max_length=100,
         label='Cidade',
-        required=True
+        required=True,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
     country = forms.CharField(
         max_length=100,
         label='Pais',
-        required=True
+        required=True,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
     birth_date = forms.DateField(
-        widget=forms.DateInput(),
+        widget=forms.DateInput(attrs={'class': "in in2"}),
         label='Data nascimento',
         required=True,
         initial=datetime.date.today
     )
     degree = forms.ChoiceField(
         choices=Student.DEGREE_CHOICES,
-        required=True
+        required=True,
+        widget=forms.TextInput(attrs={'class': "in in2"})
     )
 
     def clean_email(self):

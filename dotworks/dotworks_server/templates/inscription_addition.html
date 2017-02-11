@@ -2,18 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <title>.works</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  {% load static %}
+  <title>.inscrição</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
 
-<body class="valign-wrapper">
-
-    <form action="{% url 'inscription_add_action' internship.id %}" method="post">
-        {% csrf_token %}
-        <h2>Inscreveres-te no estagio</h2>
-        {{InscriptionAddForm}}
-        <br><br>
-        <input type="submit" value="Inscrever" />
-    </form>
+<body class="valign-wrapper inscricao">
+  <header>
+    <div class="topleft">
+      <img src="{% static "logo.works.jpg" %}" class="logo"/>
+      <h2> .inscrição</h2> 
+    </div>
+  </header>
+  <form action="{% url 'inscription_add_action' internship.id %}" method="post">
+    {% csrf_token %}
+    <div id="conteudoestag">
+      {{InscriptionAddForm}}
+    </div>
+    <input type="submit" value="" id="registar"/>
+  </form>
 </body>
 </html>

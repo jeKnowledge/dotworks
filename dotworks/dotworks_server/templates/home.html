@@ -1,37 +1,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Log in</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<style>
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    font-size: 12px;
-}
-</style>
+  {% load static %}
+  <title>.estágios</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
-<body>
-    {% load bootstrap3 %}
+    
+<body id="estagios">
+  {% load bootstrap3 %}
 
-   
-
+  <header>
+    <div class="topleft">
+      <img src="{% static "logo.works.jpg" %}" class="logo"/>
+      <h2 class="h2estagio"> .estágios</h2> 
+    </div>
     <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
-        {% csrf_token %}
-
-        <input type="submit" value="Log Out" />
+      {% csrf_token %}
+      <input type="submit" value="" id="exit"/>
     </form>
+  </header>
 
-    {% if is_company %}
-        <a href="{% url 'company_area' %}"> Area da Companhia </a>
-    {% endif %}
-    <h1>Available Internships</h1> <br>
-    <ul>
+  <ul class="listaestagios">
     {% for internship in internship_list %}
-        <li><a href="{% url 'internship_details' internship.id %}"> 
-            {{internship.title}} by {{internship.company.name}} 
-        </a> </li>
+      <li class="estagioid"><a href="{% url 'internship_details' internship.id %}"></a>
+        <img src="{% static "logo1.png" %}" width=60px/>
+        <div class="dadosestagio">
+          <span class="nomeestagio"><span class="tituloestagio">{{internship.title}}</span> <br> by {{internship.company.name}}</span>
+          <ul class="detalhesestag">
+            <div class="estagiodetalhe">
+              <img src="{% static "Wlocation.png" %}" width=30px/>
+              <li>{{internship.location}}</li>
+            </div>
+            <div class="estagiodetalhe">
+              <img src="{% static "Wduration.png" %}" width=30px/>
+              <li>{{internship.duration}} meses</li>
+            </div>
+            <div class="estagiodetalhe">
+              <img src="{% static "Wfullparttime.png" %}" width=30px/>
+              <li>{{internship.working_time}}</li>
+            </div>
+            <div class="estagiodetalhe">
+              <img src="{% static "Wvagas.png" %}" width=30px/>
+              <li>{{internship.n_positions}} vaga(s)</li>
+            </div>
+          </ul>
+        </div>
+      </li>
     {% endfor %}
-    </ul>
-
+  </ul>
+  <ul class="filtrocat">
+    <li><button id="fc1">Verão</button></li>
+    <li><button id="fc2">Curricular</button></li>
+    <li><button id="fc3">Profissional</button></li>
+  </ul>
 </body>
 </html>
