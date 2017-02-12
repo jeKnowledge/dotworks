@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
 
-<body class="valign-wrapper inscricao">
+<body class="valign-wrapper inscription">
   <header>
     <div class="topleft">
       <img src="{% static "logo.works.jpg" %}" class="logo"/>
@@ -19,10 +19,10 @@
   </header>
   <form action="{% url 'inscription_add_action' internship.id %}" method="post">
     {% csrf_token %}
-    <div id="conteudoestag">
+    <div id="content-internship">
       {{ InscriptionAddForm }}
     </div>
-    <input type="submit" value="" id="registar"/>
+    <input type="submit" value="" id="register"/>
   </form>
 </body>
 </html>

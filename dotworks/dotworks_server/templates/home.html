@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
-<body id="estagios">
+<body id="internships">
   {% load bootstrap3 %}
   <nav>
     <ul>
@@ -29,39 +29,39 @@
   </nav>
   <header>
     <div class="topleft">
-      <h2 class="h2estagio"> .estágios</h2>
+      <h2 class="h2internship"> .estágios</h2>
     </div>
   </header>
-  <ul class="listaestagios">
+  <ul class="internship-list">
     {% for internship in internship_list %}
-      <li class="estagioid"><a href="{% url 'internship_details' internship.id %}">
+      <li class="internship-id"><a href="{% url 'internship_details' internship.id %}">
         <div class="estagioline">
           <img src="{% static "logo1.png" %}" width=60px/>
-          <div class="dadosestagio">
-            <span class="nomeestagio"><span
-              class="tituloestagio">{{ internship.title }}</span> <br> by {{ internship.company.name }}</span>
-            <ul class="detalhesestag">
-              <div class="estagiodetalhe">
+          <div class="internship-data">
+            <span class="name-internship"><span
+              class="internship-title">{{ internship.title }}</span> <br> by {{ internship.company.name }}</span>
+            <ul class="details-internship">
+              <div class="internship-detail">
                 <img src="{% static "Wlocation.png" %}" width=20px/>
                 <li>{{ internship.location }}</li>
               </div>
-              <div class="estagiodetalhe">
+              <div class="internship-detail">
                 <img src="{% static "Wduration.png" %}" width=20px/>
                 <li>{{ internship.duration }} meses</li>
               </div>
-              <div class="estagiodetalhe">
+              <div class="internship-detail">
                 <img src="{% static "Wfullparttime.png" %}" width=20px/>
                 <li>{{ internship.working_time }}</li>
               </div>
-              <div class="estagiodetalhe">
+              <div class="internship-detail">
                 <img src="{% static "Wvagas.png" %}" width=20px/>
                 <li>{{ internship.n_positions }} vaga(s)</li>
               </div>
-              <div class="estagiodetalhe">
+              <div class="internship-detail">
                 <img src="{% static "Weuro.png" %}" width=20px/>
                 <li>{{ internship.payment }}</li>
               </div>
-              <div class="estagiodetalhe">
+              <div class="internship-detail">
                 <img src="{% static "Wplay.png" %}" width=20px/>
                 <li>26/12/2016</li>
               </div>
@@ -73,8 +73,8 @@
           <button class="more">Mais</button>
           <div class="descestag">
             <p style="max-width: 50%;"> {{ internship.description }} </p>
-            <div class="inscrever">
-              <h2 class="h2estag quero"> .quero! </h2>
+            <div class="register">
+              <h2 class="h2estag want"> .quero! </h2>
               <a href="{% url 'inscription_addition' internship.id %}">
                 <img src="{% static "Wadd.png" %}" width=30px/>
               </a>

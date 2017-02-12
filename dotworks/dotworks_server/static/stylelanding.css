@@ -1,0 +1,265 @@
+#landingOne h3 {
+  margin-top: 3vh;
+  /*10*/
+  font-size: 2.5em;
+  transition: margin 1s, font-size 1s;
+}
+
+
+/*------------------- LANDING PAGE -------------------------------
+
+#title {
+  margin-top:10vh;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10em;
+  transition: font-size 1s, margin 1s;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  transition: font-size 1s;
+}
+
+#logojek {
+  width: 13%;
+  margin-top: 7vh;
+  transition: width 1s;
+}
+
+
+/* ----------------------------------------O QUE É?--------------------------------------------------- */
+
+#oquee {
+  padding-top: 15vh;
+  font-size: 1.5em;
+  background-color: whitesmoke;
+  margin-top: -6.5%;
+  color: #1B384C;
+  width: 100vw;
+  transition: margin 1s, padding 1s, font-size 1s;
+}
+
+#h3-1 {
+  margin-top: 13vh;
+  transition: margin 1s;
+}
+
+.oqueeconteudo {
+  padding: 5vh 17vw 5vh 17vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: space-between;
+  transition: padding 1s;
+}
+
+#description {
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 5vw;
+  width: 50vw;
+  transition: width 1s;
+}
+
+#landingOne .filtrocat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50vh;
+}
+
+#landingOne .filtrocat button {
+  width: 95px;
+  height: 95px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: whitesmoke;
+  color: white;
+  transition: width 1s, height 1s, font-size 1s;
+}
+
+/* ----------------------------------------FORMATO--------------------------------------------------- */
+
+#format {
+  padding: 3vh 0;
+}
+
+.formato {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+#formato1, #formato2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#formato2 {
+  padding-top: 10vh;
+  flex-direction: row-reverse;
+  transition: padding 1s;
+}
+
+#formato1-1, #formato2-1 {
+  width: 35vw;
+  text-align: justify;
+  transition: width 1s;
+}
+
+.foto {
+  width: 29vw;
+  transition: padding 1s, width 1s;
+}
+
+#formato1 .foto {
+  padding-left: 2vw;
+}
+
+#formato2 .foto {
+  padding-right: 2vw;
+}
+
+.formato h3 {
+  font-size: 2em;
+}
+
+
+/* ----------------------------------------ONDE?--------------------------------------------------- */
+
+.map-container {
+  padding: 5vh 0 0 0;
+}
+
+.map-container iframe {
+  width: 100%;
+  pointer-events: none;
+  position: relative;
+  /* IE needs a position other than static */
+}
+
+.map-container iframe.clicked {
+  pointer-events: auto;
+}
+
+
+
+/* ---------------------------------------FOOTER--------------------------------------------------- */
+
+footer {
+  background-color: whitesmoke;
+  padding: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+footer a{
+  width:15%;
+}
+
+#logojek2 {
+  width: 100%;
+}
+
+
+/* ----------------------------------------RESPONSIVIDADE--------------------------------------------------- */
+
+@media (max-width:920px) {
+  #formato1, #formato2 {
+    flex-direction: column;
+    align-items: center;
+  }
+  #formato2 {
+    padding-top: 3vh;
+  }
+  #formato1-1, #formato2-1 {
+    width: 80vw;
+  }
+  .foto {
+    padding: 1vh;
+    width: 83vw;
+  }
+  footer a{
+    width: 20%;
+  }
+}
+
+@media (max-width:768px) {
+  #inform {
+    margin-top: 0;
+  }
+  #title {
+    font-size: 8em;
+  }
+  #logojek {
+    width: 20%;
+  }
+  #oquee {
+    margin-top: -11%;
+    padding-top: 7vh;
+    font-size: 1em;
+  }
+  .oqueeconteudo {
+    padding: 5vh 7vw;
+  }
+  #h3-1 {
+    margin-top: 10vh;
+  }
+  #landingOne h3 {
+    margin-top: 3vh;
+    font-size: 2.5em;
+  }
+  #description {
+    text-align: left;
+    width: 65vw;
+  }
+  #landingOne .filtrocat button {
+    width: 75px;
+    height: 75px;
+    font-size: 0.9em;
+  }
+  #formato1-1, #formato2-1 {
+    text-align: left;
+  }
+  footer a{
+    width: 30%;
+  }
+}
+
+@media (max-width:350px) {
+  #title {
+    margin-top: 6vh;
+    font-size: 3em;
+  }
+  #landingOne h2, label, .button1 {
+    font-size: 1.1em;
+  }
+  #logojek {
+    width: 20%;
+  }
+  #oquee {
+    margin-top: -11%;
+    font-size: 0.85em;
+  }
+  #h3-1 {
+    margin-top: 3vh;
+  }
+  #landingOne h3 {
+    margin-top: 1vh;
+    font-size: 2em;
+  }
+  .oqueeconteudo {
+    padding: 3vh 7vw;
+  }
+  footer a{
+    width: 55%;
+  }
+}
