@@ -374,7 +374,7 @@ header h2 {
   }
 
   #Dots img {
-    width:auto;
+    width:100vw;
     height: 100vh;
   }
 }
