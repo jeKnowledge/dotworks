@@ -10,32 +10,13 @@
 </head>
 <body id="internships">
   {% load bootstrap3 %}
-  <nav>
-    <ul>
-      <li style="background-color:black"><img src="{% static "logo.works.jpg" %}" class="logo"/></li>
-      <li class="hovernav"><a class="active" href="#estagios">.estágios</a></li>
-      <li class="hovernav"><a href="#perfil">.perfil</a></li>
-      <li class="dropdown" style="float:right">
-        <a href="javascript:void(0)" class="dropbtn"><img src="{% static "logo.works.jpg" %}" class="logo"/></a>
-        <div class="dropdown-content">
-          <a href="#" class="dropunit">Editar Perfil</a>
-          <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
-            {% csrf_token %}
-            <input type="submit" value="Sair" class="dropunit"/>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  <header>
-    <div class="topleft">
-      <h2 class="h2internship"> .estágios</h2>
-    </div>
-  </header>
+
+  {% include 'navbar.html' %}
+
   <ul class="internship-list">
     {% for internship in internship_list %}
       <li class="internship-id"><a href="{% url 'internship_details' internship.id %}">
-        <div class="estagioline">
+        <div class="internship-line">
           <img src="{% static "logo1.png" %}" width=60px/>
           <div class="internship-data">
             <span class="name-internship"><span

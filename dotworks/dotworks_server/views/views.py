@@ -88,7 +88,7 @@ def index(request):
     print(request.user.is_authenticated())
     if request.user.is_authenticated():
         company = is_company(request.user)
-        template = loader.get_template('home.html')
+        template = loader.get_template('base.html')
         # FILTERS
         filter = {
             'category': request.GET.get('category', None),
@@ -188,7 +188,7 @@ def register_action(request):
             }
             if user is not None:
                 login(request, user)
-                template = loader.get_template('home.html')
+                template = loader.get_template('base.html')
                 return HttpResponse(template.render(context, request))
         else:
             template = loader.get_template('studentRegister.html')

@@ -158,19 +158,65 @@ header {
   border:none;
 }
 
+/*------------------- NAV MENÚ -------------------------------*/
+.logo{
+  width:50px;
+  border-radius: 7px;
+}
+
+nav ul{
+  font-size:1.6em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  height: 10vh;
+}
+
+nav li {
+  float: left;
+  height: 100%;
+  display:flex;
+  align-items: center;
+
+  padding:0 2vw;
+}
+
+nav li a, nav li input{
+  color: white;
+  border:none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 10vh;
+  right: 2vw;
+  z-index: 1;  
+}
+
+.dropunit {
+  font-size:1em;
+  background-color: #333;
+  width:10vw;
+  text-align: center;
+  padding:1vh 0;
+}
+
+.hovernav:hover, .dropunit:hover{
+  background-color: black;
+  cursor:pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display:flex;
+  flex-direction: column;
+}
+
 /*------------------- estagios -------------------------------*/
 #internships {
   background-color: whitesmoke;
-}
-
-#exit {
-  margin-left:55vw;
-  padding-left:40px;
-  padding-bottom: 22.75px;
-  background-image: url(exit.png);
-  background-color: whitesmoke;
-  background-size: contain;
-  border:none;
 }
 
 header h2 {
@@ -182,30 +228,31 @@ header h2 {
 }
 
 .internship-list {
-  float:left;
+  float: left;
 }
 
 .internship-id {
-  margin:5vh 10vw;
-  border-radius: 60px;
+  margin:25px 10vw;
+  border-radius: 7px;
   padding: 25px 30px;
-  width:78%;
+  width:925px;
   font-size:1.2em;
-
   background-color: #53917e;
 }
 
 .internship-id a {
+  color: white;
+}
+
+.internship-line {
   display: flex;
   align-items: flex-start;
-  color:white;
-  width: 100%;
   align-items: center;
 }
 
 .internship-data {
-  width:100%;
-  padding:0 1.5vw;
+  width: 100%;
+  padding-left : 1.5vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -222,7 +269,38 @@ header h2 {
 }
 
 #internships .internship-detail {
-  padding:0 15px;
+  padding: 0 15px;
+  max-width: 30%;
+}
+
+.dropmore{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.more{
+  margin-top:15px;
+  border:solid whitesmoke;
+  border-radius:7px;
+  background:none;
+  color:white;
+  padding:5px;
+}
+
+.descestag{
+  overflow: hidden;
+  height: 0;
+}
+
+.open {
+  overflow: visible;
+  height: 100%;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #internships .filtrocat {
@@ -274,9 +352,8 @@ header h2 {
   margin-left: 10vw;
   padding: 37px 46px;
   margin-bottom: 8vh;
-
   border: 5px solid black;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 #name-internship {
@@ -307,10 +384,6 @@ header h2 {
   align-items: center;
 }
 
-#internship-description {
-  margin-top: 5vh;
-}
-
 .internship .internship-detail {
   width:33.33%;
   padding-top: 5vh;
@@ -333,7 +406,6 @@ header h2 {
 }
 
 .register {
-  width:54%;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
