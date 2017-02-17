@@ -439,6 +439,25 @@ header h2 {
   height:13vh;
 }
 
+/* ---------------------------------------FOOTER--------------------------------------------------- */
+
+footer {
+  background-color: whitesmoke;
+  padding: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+footer a{
+  width:15%;
+}
+
+#logojek2 {
+  width: 100%;
+}
+
 /*_______________responsividade_______________*/
 @media (max-width:920px) {
   .loginForm{
