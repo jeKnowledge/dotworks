@@ -36,17 +36,17 @@
     <div id="register-form" class="container-fluid">
       {% for field in studentRegisterForm %}
         {% if forloop.counter0|divisibleby:3 %}
-          <div class="row"></div>
-        {% endif %}
-        <div class="col-md-4">
-          {{ field.label }}
-          {{ field }}
-        </div>
-        {% if forloop.counter0|add:1|divisibleby:3 %}{% endif %}
+          <div class="row">
+            {% endif %}
+            <div class="col-md-4">
+              {{ field.label }}
+              {{ field }}
+            </div>
+            {% if forloop.counter0|add:1|divisibleby:3 %}
+          </div>
+          {% endif %}
       {% endfor %}
     </div>
-    <br><br>
-    <input class="button1 pink" type="submit" value="Registar" />
     <br><br>
     <input type="submit" value="" id="register"/>
   </form>

@@ -10,6 +10,7 @@
       <div class="dropdown-content">
         <a href="#" class="dropunit">Editar Perfil</a>
         <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
+          {% csrf_token %}
           <input type="submit" value="Sair" class="dropunit"/>
         </form>
       </div>
