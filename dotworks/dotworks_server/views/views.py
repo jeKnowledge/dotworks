@@ -32,7 +32,7 @@ def student_is_already_enrolled_in_internship(student_id, inscriptions_in_intern
 
 def get_internship_list(filter):
     '''
-    Retrieve available internships
+    Retrieve all available internships
     '''
     arguments = {}
     today = datetime.now()
@@ -45,17 +45,38 @@ def get_internship_list(filter):
     )
 
 
-def filter_internship(category_):
+def filter_internship(request, category_):
     '''
     Filter internships by category
     '''
-    if category_ == 'VER':
-        return Internship.objects.filter(category=category_)
-    elif category_ == 'CUR':
-        return Internship.objects.filter(category=category_)
-    elif category_ == 'PRO':
-        return Internship.objects.filter(category=category_)
-    return Internship.objects.all()
+    internship_list = []
+
+    if category_ == '1':
+        internship_list = Internship.objects.filter(category='VER')
+    elif category_ == '2':
+        internship_list = Internship.objects.filter(category='PRO')
+    else:
+        internship_list = Internship.objects.all()
+
+    if request.user.is_authenticated():
+        company = is_company(request.user)
+        template = loader.get_template('base.html')
+        # FILTERS
+        filter = {
+            'category': request.GET.get('category', None),
+            'area': request.GET.get('area', None),
+        }
+        context = {
+            'internship_list': internship_list,
+            'is_company': company,
+        }
+    else:
+        template = loader.get_template('landingPage.html')
+        login_form = LoginForm()
+        context = {
+            'loginForm': login_form
+        }
+    return HttpResponse(template.render(context, request))
 
 
 # Validations for the views
@@ -85,7 +106,6 @@ def is_student(user):
 
 
 def index(request):
-    print(request.user.is_authenticated())
     if request.user.is_authenticated():
         company = is_company(request.user)
         template = loader.get_template('base.html')

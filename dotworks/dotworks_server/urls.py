@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^internship/(?P<internship_id>[0-9]+)/$', views.internship_details, name='internship_details'),
     url(r'^edit_internship/(?P<internship_id>[0-9]+)/$', views.open_edit_internship_page, name='open_edit_internship_page'),
     url(r'^edit_internship_action/(?P<internship_id>[0-9]+)/$', views.edit_internship, name='edit_internship'),
+    url(r'^filter_internship/(?P<category_>[0-9]+)/$', views.filter_internship, name='filter_internship'),
     url(r'^company_area$', views.company_area, name="company_area"),
     url(r'^internship_addition/(?P<internship_id>[0-9]+)/$', views.inscription_addition, name='inscription_addition'),
     url(r'^inscription_add_action/(?P<internship_id>[0-9]+)/$', views.inscription_add_action, name='inscription_add_action'),

@@ -65,13 +65,13 @@
   </ul>
   <ul class="filtrocat">
     <li>
-      <a><img src="{% static "verao.png" %}" width=95px/>Verão</a>
+      <a href="{% url 'index' %}"><img src="{% static "verao.png" %}" width=95px/>Verão</a>
     </li>
     <li>
-      <a><img src="{% static "curricular.png" %}" width=95px/>Curricular</a>
+      <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "curricular.png" %}" width=95px/>Curricular</a>
     </li>
     <li>
-      <a><img src="{% static "profissional.png" %}" width=95px/>Profissional</a>
+      <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "profissional.png" %}" width=95px/>Profissional</a>
     </li>
   </ul>
   {% include 'footer.html' %}
