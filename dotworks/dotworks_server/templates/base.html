@@ -76,12 +76,15 @@
   </ul>
   <ul class="filtrocat">
     <li>
-      <button id="fc1">Verão</button>
+      <a href="{% url 'index' %}">Teste cenas1</a>
+      <button id="fc1">Todos</button>
     </li>
     <li>
-      <button id="fc2">Curricular</button>
+      <a href="{% url 'filter_internship' category_=1 %}">Teste cenas</a>
+      <button id="fc2">Verão</button>
     </li>
     <li>
+      <a href="{% url 'filter_internship' category_=3 %}">Teste cenas</a>
       <button id="fc3">Profissional</button>
     </li>
   </ul>
