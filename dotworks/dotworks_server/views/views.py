@@ -30,7 +30,7 @@ def student_is_already_enrolled_in_internship(student_id, inscriptions_in_intern
     return False
 
 
-def get_internship_list(filter):
+def get_available_internship_list(filter):
     '''
     Retrieve all available internships
     '''
@@ -116,7 +116,7 @@ def index(request):
             'category': request.GET.get('category', None),
             'area': request.GET.get('area', None),
         }
-        internship_list = get_internship_list(filter)
+        internship_list = get_available_internship_list(filter)
         context = {
             'internship_list': internship_list,
             'is_company': company,
@@ -201,7 +201,7 @@ def register_action(request):
                 'area': request.GET.get('area', None),
             }
 
-            internship_list = get_internship_list(filter)
+            internship_list = get_available_internship_list(filter)
             context = {
                 'internship_list': internship_list,
                 'is_company': company,
