@@ -21,17 +21,17 @@
         <img src="{% static "logo.works.jpg" %}" class="logo"/>
         <h2>.registar</h2>
       </div>
-      {% if studentRegisterForm.errors %}
-        <div id="form-error">
-          {% for field in studentRegisterForm %}
-            {% if field.errors %}
-              <p>{{ field.errors|striptags }}</p>
-            {% endif %}
-          {% endfor %}
-          <br />
-        </div>
-      {% endif %}
     </header>
+    {% if studentRegisterForm.errors %}
+      <div id="form-error">
+        {% for field in studentRegisterForm %}
+          {% if field.errors %}
+            <p>{{ field.errors|striptags }}</p>
+          {% endif %}
+        {% endfor %}
+        <br />
+      </div>
+    {% endif %}
     <div id="register-form" class="container-fluid">
       {% for field in studentRegisterForm %}
         {% if forloop.counter0|divisibleby:3 %}

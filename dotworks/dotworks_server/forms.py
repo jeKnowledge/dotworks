@@ -30,13 +30,7 @@ class StudentRegisterForm(forms.Form):
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
-        label='Introduza a sua password',
-        required=True
-    )
-    description = forms.CharField(
-        widget=forms.Textarea(attrs={'class': "in in3"}),
-        max_length=500,
-        label='Um texto sobre si [max:500car]',
+        label='Palavra-Passe',
         required=True
     )
     github = forms.URLField(
@@ -61,13 +55,13 @@ class StudentRegisterForm(forms.Form):
         regex=r'^\+?1?\d{9,15}$',
         max_length=15,
         min_length=9,
-        label='Telemovel',
+        label='Telemóvel',
         required=True,
         widget=forms.TextInput(attrs={'class': "in in2"})
     )
     city = forms.CharField(
         max_length=100,
-        label='Cidade',
+        label='Localidade',
         required=True,
         widget=forms.TextInput(attrs={'class': "in in2"})
     )
@@ -88,12 +82,18 @@ class StudentRegisterForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={'class': "in in2"})
     )
+    description = forms.CharField(
+        widget=forms.Textarea(attrs={'class': "in in3"}),
+        max_length=500,
+        label='Um texto sobre ti',
+        required=True
+    )
 
     def clean_email(self):
         cleaned_data = self.cleaned_data
         email_ = cleaned_data.get('email')
         if Student.objects.filter(e_mail=email_).exists():
-            raise forms.ValidationError('This email already exists')
+            raise forms.ValidationError('Este email já existe')
         return email_
 
 
@@ -170,10 +170,16 @@ class InternshipEditForm(forms.ModelForm):
 
 
 class InscriptionAddForm(forms.Form):
-    first_question = 'What do you do in your free time?'
-    second_question = 'Why are you applying?'
-    first_answer = forms.CharField(max_length=500, label=first_question)
-    second_answer = forms.CharField(max_length=500, label=second_question)
+    first_question = 'Competências Técnicas'
+    second_question = 'Competências Pessoais Relevantes'
+    first_answer = forms.CharField(max_length=500,
+                                   label=first_question,
+                                   widget=forms.Textarea(attrs={'placeholder': 'ex: C++, javascript, html, photoahop', 'class': 'in'})
+    )
+    second_answer = forms.CharField(max_length=500,
+                                   label=second_question,
+                                   widget=forms.Textarea(attrs={'placeholder': 'ex: criatividade, organização', 'class': 'in'})
+    )
 
 
 class ChangePasswordForm(forms.Form):

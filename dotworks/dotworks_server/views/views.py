@@ -54,6 +54,8 @@ def filter_internship(request, category_):
     if category_ == '1':
         internship_list = Internship.objects.filter(category='VER')
     elif category_ == '2':
+        internship_list = Internship.objects.filter(category='CUR')
+    elif category_ == '3':
         internship_list = Internship.objects.filter(category='PRO')
     else:
         internship_list = Internship.objects.all()
