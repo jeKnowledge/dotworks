@@ -431,6 +431,9 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: left;
+}
+
+#internships footer {
   position:absolute;
   right:0;
   bottom:0;
@@ -439,7 +442,7 @@ footer {
 }
 
 footer p{
-    font-size:16px;
+  font-size:16px;
 }
 
 footer a{
