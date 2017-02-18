@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body id="internships">
   {% load bootstrap3 %}
@@ -43,25 +44,20 @@
             <a href="{% url 'inscription_addition' internship.id %}" class="want">.quero!</a>
           </div>
             
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-          <script>
-              
-            $(".more").click(function(event){
-                $(this).next("div.descestag").toggleClass("open");
-                console.log($(this));
-                event.preventDefault();
-                $(this).toggleText('.menos', '.mais');
-            });
-           $.fn.toggleText=function(t1,t2){
-              if (this.text()==t1) this.text(t2);
-              else this.text(t1);
-              return this;
-            };
-
-          </script>
         </div>
       </li>
     {% endfor %}
+    <script>
+      $(".more").click(function(event){
+        $(this).next("div.descestag").toggleClass("open");
+        $(this).toggleText('.menos', '.mais');
+      });
+     $.fn.toggleText=function(t1,t2){
+        if (this.text()==t1) this.text(t2);
+        else this.text(t1);
+        return this;
+      };
+    </script>
   </ul>
   <ul class="filtrocat">
     <li>
