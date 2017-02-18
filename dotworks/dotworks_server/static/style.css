@@ -156,7 +156,8 @@ header {
  
 .in3 {
   border-radius: 7px;
-  height: 17.5px;
+  height: 92px;
+  resize: none;
 }
  
 .row {
