@@ -167,7 +167,7 @@ def register_action(request):
             description = form.cleaned_data['description']
             github = form.cleaned_data['github']
             linkedin = form.cleaned_data['linkedin']
-            facebook = form.cleaned_data['facebook']
+            behance = form.cleaned_data["behance"]
             phone = form.cleaned_data['phone']
             city = form.cleaned_data['city']
             country = form.cleaned_data['country']
@@ -186,7 +186,7 @@ def register_action(request):
                 description=description,
                 github=github,
                 linkedin=linkedin,
-                facebook=facebook,
+                behance=behance,
                 phone_number=phone,
                 city=city,
                 country=country,

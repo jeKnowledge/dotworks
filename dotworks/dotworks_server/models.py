@@ -35,7 +35,7 @@ class Student(models.Model):
     description = models.TextField(max_length=500, blank=False)
     github = models.URLField(max_length=100, blank=True)
     linkedin = models.URLField(max_length=100, blank=True)
-    facebook = models.URLField(max_length=100, blank=True)
+    behance = models.URLField(max_length=100, blank=True)
 
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',

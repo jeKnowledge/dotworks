@@ -45,9 +45,9 @@ class StudentRegisterForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={'class': "in in2"})
     )
-    facebook = forms.URLField(
+    behance = forms.URLField(
         max_length=100,
-        label='Facebook',
+        label='Behance',
         required=False,
         widget=forms.TextInput(attrs={'class': "in in2"})
     )
