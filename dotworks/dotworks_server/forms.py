@@ -65,12 +65,6 @@ class StudentRegisterForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={'class': "in in2"})
     )
-    country = forms.CharField(
-        max_length=100,
-        label='Pais',
-        required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"})
-    )
     birth_date = forms.DateField(
         widget=forms.DateInput(attrs={'class': "in in2"}),
         label='Data nascimento',

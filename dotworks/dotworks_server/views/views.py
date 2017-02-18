@@ -170,7 +170,6 @@ def register_action(request):
             behance = form.cleaned_data["behance"]
             phone = form.cleaned_data['phone']
             city = form.cleaned_data['city']
-            country = form.cleaned_data['country']
             birth_date = form.cleaned_data['birth_date']
             degree = form.cleaned_data['degree']
 
@@ -189,7 +188,6 @@ def register_action(request):
                 behance=behance,
                 phone_number=phone,
                 city=city,
-                country=country,
                 birth_date=birth_date,
                 degree=degree
             )
