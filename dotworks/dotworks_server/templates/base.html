@@ -18,7 +18,7 @@
   <div class='content'>
     <ul class="internship-list">
       {% for internship in internship_list %}
-        <li class="internship-id"><a href="{% url 'internship_details' internship.id %}">
+        <li class="internship-id">
           <div class="internship-line">
             <img src="{% static "logo1.png" %}" width=60px/>
             <div class="internship-data">
@@ -37,7 +37,6 @@
               </ul>
             </div>
           </div>
-        </a>
           <div class="dropmore">
             <a class="more">.mais</a>
             <div class="descestag">
