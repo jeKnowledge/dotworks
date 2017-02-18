@@ -3,6 +3,10 @@
   padding: 0;
 }
  
+html{
+  height: 100%;
+}
+ 
 body {    
   font-size:12px;
   background-color: #1B384C;
@@ -12,6 +16,15 @@ body {
   width: 100vw;
   color:whitesmoke;
   overflow-x: hidden;
+ 
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.content{
+  flex:1;
+  padding-bottom:5vh;
 }
  
 h1:hover, h2:hover {
@@ -31,8 +44,8 @@ ul {
 }
  
 a:hover{
-    cursor: pointer;
-}s
+  cursor: pointer;
+}
  
  
 /*------------------- LANDING PAGE -------------------------------*/
@@ -164,11 +177,9 @@ header {
 }
  
 #form-error{
-    padding-left:10vw;  
-    font-size:1.4em;
+  padding-left:10vw;  
+  font-size:1.4em;
 }
- 
- 
  
 /*------------------- NAV MENÚ -------------------------------*/
 .logo{
@@ -201,8 +212,8 @@ nav li a, nav li input{
 }
  
 .dropdown{
-    float:right;
-    padding-right: 6.4%;
+  float:right;
+  padding-right: 6.4%;
 }
  
 .dropunit {
@@ -294,7 +305,7 @@ header h2 {
   height: 50vh;
   position: fixed;
   right:0;
-  margin-top:15vh;
+  margin-top:13vh;
   margin-right:7.4%;
   display: flex;
   flex-direction: column;
@@ -309,8 +320,8 @@ header h2 {
 }
  
 #internships .filtrocat li a img{
-    z-index: -1;
-    position: absolute;
+  z-index: -1;
+  position: absolute;
 }
  
 .ft2 button {
@@ -424,29 +435,23 @@ header h2 {
 }
  
 /* ---------------------------------------FOOTER--------------------------------------------------- */
- 
-footer {
+footer{
   background-color: whitesmoke;
   padding: 5vh;
+}
+ 
+.footer2 {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
 }
  
-#internships footer{
-  position:absolute;
-  right:0;
-  bottom:0;
-  left:0;
-  top:85vh;
+.footer2 p{
+  font-size:16px;
 }
  
-footer p{
-    font-size:16px;
-}
- 
-footer a{
+.footer2 a{
   width:15%;
 }
  

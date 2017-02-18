@@ -15,64 +15,66 @@
 
   {% include 'navbar.html' %}
 
-  <ul class="internship-list">
-    {% for internship in internship_list %}
-      <li class="internship-id"><a href="{% url 'internship_details' internship.id %}">
-        <div class="internship-line">
-          <img src="{% static "logo1.png" %}" width=60px/>
-          <div class="internship-data">
-            <span class="name-internship">{{ internship.title }}</span>
-            <ul class="details-internship">
-              <li>{{ internship.company.name }}</li>
-              <div class="internship-detail">
-                <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
-                <li>{{ internship.location }}</li>
-              </div>
-              <li>{{internship.get_category_display}}</li>
-              <li>{{internship.get_working_time_display}}</li>
-              <li>{{internship.n_positions}} vaga(s)</li>
-              <li>{{internship.duration}} meses</li>
-              <li>{{internship.payment}}</li>
-            </ul>
+  <div class='content'>
+    <ul class="internship-list">
+      {% for internship in internship_list %}
+        <li class="internship-id"><a href="{% url 'internship_details' internship.id %}">
+          <div class="internship-line">
+            <img src="{% static "logo1.png" %}" width=60px/>
+            <div class="internship-data">
+              <span class="name-internship">{{ internship.title }}</span>
+              <ul class="details-internship">
+                <li>{{ internship.company.name }}</li>
+                <div class="internship-detail">
+                  <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
+                  <li>{{ internship.location }}</li>
+                </div>
+                <li>{{internship.get_category_display}}</li>
+                <li>{{internship.get_working_time_display}}</li>
+                <li>{{internship.n_positions}} vaga(s)</li>
+                <li>{{internship.duration}} meses</li>
+                <li>{{internship.payment}}</li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </a>
-        <div class="dropmore">
-          <a class="more">.mais</a>
-          <div class="descestag">
-            <p style="max-width: 50%;"> {{ internship.description }} </p>
-            <a href="{% url 'inscription_addition' internship.id %}" class="want">.quero!</a>
+        </a>
+          <div class="dropmore">
+            <a class="more">.mais</a>
+            <div class="descestag">
+              <p style="max-width: 50%;"> {{ internship.description }} </p>
+              <a href="{% url 'inscription_addition' internship.id %}" class="want">.quero!</a>
+            </div>
+              
           </div>
-            
-        </div>
+        </li>
+      {% endfor %}
+      <script>
+        $(".more").click(function(event){
+          $(this).next("div.descestag").toggleClass("open");
+          $(this).toggleText('.menos', '.mais');
+        });
+       $.fn.toggleText=function(t1,t2){
+          if (this.text()==t1) this.text(t2);
+          else this.text(t1);
+          return this;
+        };
+      </script>
+    </ul>
+    <ul class="filtrocat">
+      <li>
+        <a href="{% url 'index' %}"><img src="{% static "todos.png" %}" width=95px/>Todos</a>
       </li>
-    {% endfor %}
-    <script>
-      $(".more").click(function(event){
-        $(this).next("div.descestag").toggleClass("open");
-        $(this).toggleText('.menos', '.mais');
-      });
-     $.fn.toggleText=function(t1,t2){
-        if (this.text()==t1) this.text(t2);
-        else this.text(t1);
-        return this;
-      };
-    </script>
-  </ul>
-  <ul class="filtrocat">
-    <li>
-      <a href="{% url 'index' %}"><img src="{% static "verao.png" %}" width=95px/>Todos</a>
-    </li>
-    <li>
-      <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" width=95px/>Verão</a>
-    </li>
-    <li>
-      <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" width=95px/>Curricular</a>
-    </li>
-    <li>
-      <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" width=95px/>Profissional</a>
-    </li>
-  </ul>
+      <li>
+        <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" width=95px/>Verão</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" width=95px/>Curricular</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" width=95px/>Profissional</a>
+      </li>
+    </ul>
+  </div>
   {% include 'footer.html' %}
 </body>
 </html>
