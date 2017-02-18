@@ -30,13 +30,18 @@ ul {
   list-style:none;
 }
 
+a:hover{
+    cursor: pointer;
+}s
+
+
 /*------------------- LANDING PAGE -------------------------------*/
 #landingOne {
   height: 100vh;
-  text-align: center;
+  text-align:center;
 }
 
-input, a, .button1, .internship-list li, .filtrocat button {
+input, a, .button1, .internship-list li{
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   text-decoration: none;
@@ -170,11 +175,11 @@ nav ul{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #1B384C;
   height: 10vh;
 }
 
-nav li {
+nav li, .dropunit {
   float: left;
   height: 100%;
   display:flex;
@@ -188,47 +193,39 @@ nav li a, nav li input{
   border:none;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 10vh;
-  right: 2vw;
-  z-index: 1;  
+.dropdown{
+    float:right;
+    padding-right: 4vw;
 }
 
 .dropunit {
   font-size:1em;
-  background-color: #333;
-  width:10vw;
-  text-align: center;
-  padding:1vh 0;
+  background-color: #1B384C;
 }
 
 .hovernav:hover, .dropunit:hover{
-  background-color: black;
+  background-color: #0a273b;
   cursor:pointer;
-}
-
-.dropdown:hover .dropdown-content {
-  display:flex;
-  flex-direction: column;
 }
 
 /*------------------- estagios -------------------------------*/
 #internships {
-  background-color: whitesmoke;
+  background-color: white;
+  color:black;
 }
 
 header h2 {
   margin-left:2vw;
 }
 
-.h2internship {
+/*.h2internship {
   color: black;
-}
+}*/
 
 .internship-list {
   float: left;
+  margin-top: 5vh;
+  width:100%;
 }
 
 .internship-id {
@@ -236,12 +233,13 @@ header h2 {
   border-radius: 7px;
   padding: 25px 30px;
   width:925px;
-  font-size:1.2em;
-  background-color: #53917e;
+  font-size:1.1em;
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 1.5px lightgrey;
 }
 
 .internship-id a {
-  color: white;
+  color: black;
 }
 
 .internship-line {
@@ -252,89 +250,79 @@ header h2 {
 
 .internship-data {
   width: 100%;
-  padding-left : 1.5vw;
+  padding-left : 22px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 
-.internship-title {
+.name-internship{
+  float:left;
   font-size:1.6em;
+  font-weight: bold;
 }
 
 .details-internship {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
 }
 
-#internships .internship-detail {
+/*#internships .internship-detail {
   padding: 0 15px;
   max-width: 30%;
-}
+}*/
 
-.dropmore{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+.details-internship li {
+  padding-right: 20px;
 }
 
 .more{
-  margin-top:15px;
-  border:solid whitesmoke;
-  border-radius:7px;
-  background:none;
-  color:white;
-  padding:5px;
+  display:flex;
+  justify-content: flex-end;
 }
 
 .descestag{
-  overflow: hidden;
-  height: 0;
+  display:none;
 }
 
 .open {
-  overflow: visible;
-  height: 100%;
-  padding-top: 15px;
+  padding-left:80px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items:flex-end;
 }
 
-#internships .filtrocat {
+#internships .filtrocat{
   height: 50vh;
   position: fixed;
   right:0;
+  margin-top:15vh;
   margin-right:10vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#internships .filtrocat button, .ft2 button {
+#internships .filtrocat li a{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  color:white;
+}
+
+#internships .filtrocat li a img{
+    z-index: -1;
+    position: absolute;
+}
+
+.ft2 button {
   width:95px;
   height: 95px;
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
-  background-color: whitesmoke;
+  background-color: white;
   color:white;
-}
-
-#fc1 {
-  background-image: url(verao.png);
-}
-#fc2 {
-  background-image: url(curricular.png);
-}
-#fc3 {
-  background-image: url(profissional.png);
-}
-
-.filtrocat button:hover {
-  cursor:default;
 }
 
 /*------------------- ESTAGIO! -------------------------------*/
@@ -354,11 +342,6 @@ header h2 {
   margin-bottom: 8vh;
   border: 5px solid black;
   border-radius: 7px;
-}
-
-#name-internship {
-  float:left;
-  padding:0 1.5vw;
 }
 
 #head-internship {
@@ -384,34 +367,33 @@ header h2 {
   align-items: center;
 }
 
-.internship .internship-detail {
+/*.internship .internship-detail {
   width:33.33%;
   padding-top: 5vh;
-}
+}*/
 
 .internship-detail {
   display:flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.internship-detail img {
+/*.internship-detail img {
   padding-bottom: 7px;
+}*/
+
+.want, .more {
+  font-size:1.3em;
+  font-weight: bold;
 }
 
-.want {
-  font-size:2em;
-  padding-right: 10px;
-}
-
-.register {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-right: 12.66%;
-}
+/*.want{
+    border:solid black;
+    border-radius:7px;
+    /*color:white;
+    background-color: #1B384C;*/
+    padding:5px;
+}*/
 
 /*_______________INSCREVER_______________*/
 
@@ -434,8 +416,9 @@ header h2 {
 .inscription #content-internship input {
   margin:1vh 0;
   border: none;
-  border-radius: 30px;
-  padding: 5px 10px;
+  border-radius: 7px;
+  
+  padding: 25px 30px;
   height:13vh;
 }
 
@@ -448,6 +431,10 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: left;
+}
+
+footer p{
+    font-size:16px;
 }
 
 footer a{
@@ -499,7 +486,7 @@ footer a{
   }
 
   .details-internship {
-    margin-top:15px;
+    margin-top:20px;
     justify-content: space-between;
   }
 
@@ -557,7 +544,7 @@ footer a{
     display: none;
   }
 
-  .internship-title {
+  .name-internship {
     font-size: 1.2em;
     text-decoration: underline;
   }
