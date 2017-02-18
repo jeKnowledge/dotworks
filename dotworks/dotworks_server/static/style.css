@@ -431,6 +431,11 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: left;
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  top:85vh;
 }
 
 footer p{
