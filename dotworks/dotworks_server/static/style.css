@@ -35,18 +35,17 @@ h2 {
   font-size: 1.3em;
 }
  
-button:hover {
-  cursor:pointer;
+button:hover, a:hover, #register:hover, .button1:hover, #inscbutton:hover {
+  cursor: pointer;
 }
  
 ul {
   list-style:none;
 }
- 
-a:hover{
-  cursor: pointer;
-}
- 
+
+#landingOne .filtrocat button:hover {
+  cursor: default;
+} 
  
 /*------------------- LANDING PAGE -------------------------------*/
 #landingOne {
