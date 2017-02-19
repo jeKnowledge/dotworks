@@ -181,8 +181,10 @@ def profile(request):
     student = Student.objects.filter(user_id=user_id_)[0]
     student_id = int(student.id)
     edit_student_form = StudentEditProfile(instance=student)
+    change_password_form = ChangePasswordForm()
     context = {
         'edit_student_form': edit_student_form,
+        'changePasswordForm': change_password_form,
         'id': int(student_id)
     }
     return HttpResponse(template.render(context, request))
