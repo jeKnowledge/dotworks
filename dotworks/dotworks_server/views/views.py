@@ -144,16 +144,19 @@ def info(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required(login_url=reverse_lazy('index'))
 def edit_profile(request, student_id):
     '''
     Edit the profile
     '''
+    user = request.user
     student = Student.objects.get(pk=student_id)
 
     if request.method == 'POST':
         form = StudentEditProfile(request.POST, instance=student)
 
         if form.is_valid():
+            # Student editing and saving 
             student.name = form.cleaned_data['name']
             student.e_mail = form.cleaned_data['e_mail']
             student.github = form.cleaned_data['github']
@@ -165,6 +168,7 @@ def edit_profile(request, student_id):
             student.degree = form.cleaned_data['degree']
             student.description = form.cleaned_data['description']
             student.save()
+
     return HttpResponseRedirect(reverse('index'))
 
 
@@ -425,6 +429,7 @@ def change_password_page(request):
     }
     template = loader.get_template('change_password_page.html')
     return HttpResponse(template.render(context, request))
+
 
 @login_required(login_url=reverse_lazy('index'))
 def change_password(request):

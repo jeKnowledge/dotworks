@@ -37,7 +37,7 @@ var parallax = new Parallax(scene);
         <h1 id="title"> .works </h1>
         <h2 style="margin-bottom:1.5vh"> 31 de Março | 2017</h2>
         <form action="login/" method="post" class="center-align valign loginForm">
-          {% csrf_token %} 
+          {% csrf_token %}
           <div id="login">
             {{ loginForm }}
             <input type="submit" value="Entrar" class="button1"/>
@@ -99,12 +99,8 @@ var parallax = new Parallax(scene);
           <div class="map-container">
             <iframe id="mapa" width="100%" height="350" frameborder="0" style="border:0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3046.9426400914354!2d-8.424905074854554!3d40.21033886499096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22f9095f661e93%3A0xe2cee8efb228845a!2sCentro+Cultural+Dom+Dinis!5e0!3m2!1spt-PT!2spt!4v1482929993190"></iframe>
           </div>
+          {% include 'footer.html' %}
 
-          <footer>
-            <p>Organizado por</p>
-            <a target="_blank" href="http://jeknowledge.pt">
-              <img id="logojek2" src="{% static "logojek2.png" %}" alt="logojek2"></a>
-          </footer>
         </div>
       </div>
     </div>

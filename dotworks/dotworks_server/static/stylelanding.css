@@ -5,7 +5,6 @@
   transition: margin 1s, font-size 1s;
 }
 
-
 /*------------------- LANDING PAGE -------------------------------*/
 
 #title {
@@ -64,14 +63,14 @@ h2 {
   transition: width 1s;
 }
 
-#landingOne .filtrocat {
+#landingOne .filtrocat{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 50vh;
 }
 
-#landingOne .filtrocat button {
+#landingOne .filtrocat button{
   width: 95px;
   height: 95px;
   background-size: contain;
@@ -130,7 +129,6 @@ h2 {
   font-size: 2em;
 }
 
-
 /* ----------------------------------------ONDE?--------------------------------------------------- */
 
 .map-container {
@@ -147,28 +145,6 @@ h2 {
 .map-container iframe.clicked {
   pointer-events: auto;
 }
-
-
-
-/* ---------------------------------------FOOTER--------------------------------------------------- */
-
-footer {
-  background-color: whitesmoke;
-  padding: 5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-}
-
-footer a{
-  width:15%;
-}
-
-#logojek2 {
-  width: 100%;
-}
-
 
 /* ----------------------------------------RESPONSIVIDADE--------------------------------------------------- */
 

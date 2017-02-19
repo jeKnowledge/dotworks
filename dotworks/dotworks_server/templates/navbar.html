@@ -2,9 +2,9 @@
 
 <nav>
   <ul>
-    <li style="background-color:#0a273b"><a href="{% url 'info' %}"><img src="{% static "logo.works.jpg" %}" class="logo"/></a></li>
-    <li class="hovernav"><a href="{% url 'index' %}" class="active" >.estágios</a></li>
-    <li class="hovernav"><a href="{% url 'profile' %}">.perfil</a></li>
+    <a href="{% url 'info' %}" style="background-color:#0a273b"> <img src="{% static "logo.works.jpg" %}" class="logo"/></a>
+    <a href="{% url 'index' %}" class="hovernav">.estágios</a>
+    <a href="{% url 'profile' %}" class="hovernav">.perfil</a>
     <li class="dropdown">
       <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
         {% csrf_token %}
@@ -13,3 +13,13 @@
     </li>
   </ul>
 </nav>
+
+<script>
+  $(function(){
+    $('.hovernav').each(function() {
+      if ($(this).prop('href') == window.location.href) {
+        $(this).addClass('active');
+      }
+    });
+  });
+</script>

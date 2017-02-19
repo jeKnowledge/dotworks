@@ -5,3 +5,11 @@
   <br><br>
   <input type="submit" value="Guardar" />
 </form>
+
+<form action="{% url 'change_password' %}" method="post">
+  {% csrf_token %}
+  <h2>Change you password:</h2>
+  {{ changePasswordForm }}
+  <br><br>
+  <input type="submit" value="Submeter"/>
+</form>
