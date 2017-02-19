@@ -1,0 +1,7 @@
+<form action="{% url 'edit_profile' student_id=id %}" method="post"/>
+  {% csrf_token %}
+  <h2>Edit Profile</h2>
+  {{ edit_student_form }}
+  <br><br>
+  <input type="submit" value="Guardar" />
+</form>

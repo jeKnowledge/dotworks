@@ -4,7 +4,7 @@
   <ul>
     <li style="background-color:#0a273b"><a href="{% url 'info' %}"><img src="{% static "logo.works.jpg" %}" class="logo"/></a></li>
     <li class="hovernav"><a href="{% url 'index' %}" class="active" >.estágios</a></li>
-    <li class="hovernav"><a href="#perfil">.perfil</a></li>
+    <li class="hovernav"><a href="{% url 'profile' %}">.perfil</a></li>
     <li class="dropdown">
       <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
         {% csrf_token %}

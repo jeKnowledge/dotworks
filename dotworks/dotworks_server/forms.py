@@ -2,7 +2,7 @@
 import datetime
 from django import forms
 from django.forms import ModelForm
-from .models import Student, Internship, Inscription
+from dotworks_server.models import Student, Internship, Inscription
 
 
 class LoginForm(forms.Form):
@@ -89,6 +89,23 @@ class StudentRegisterForm(forms.Form):
         if Student.objects.filter(e_mail=email_).exists():
             raise forms.ValidationError('Este email já existe')
         return email_
+
+
+class StudentEditProfile(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = [
+            'name',
+            'e_mail',
+            'github',
+            'linkedin',
+            'behance',
+            'phone_number',
+            'city',
+            'birth_date',
+            'degree',
+            'description'
+        ]
 
 
 class CompanyRegisterForm(forms.Form):

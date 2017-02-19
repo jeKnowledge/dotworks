@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
-from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, InternshipEditForm
+from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, StudentEditProfile, InternshipEditForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
@@ -141,6 +141,46 @@ def info(request):
     '''
     template = loader.get_template('info.html')
     context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def edit_profile(request, student_id):
+    '''
+    Edit the profile
+    '''
+    student = Student.objects.get(pk=student_id)
+
+    if request.method == 'POST':
+        form = StudentEditProfile(request.POST, instance=student)
+
+        if form.is_valid():
+            student.name = form.cleaned_data['name']
+            student.e_mail = form.cleaned_data['e_mail']
+            student.github = form.cleaned_data['github']
+            student.linkedin = form.cleaned_data['linkedin']
+            student.behance = form.cleaned_data['behance']
+            student.phone = form.cleaned_data['phone_number']
+            student.city = form.cleaned_data['city']
+            student.birth_date = form.cleaned_data['birth_date']
+            student.degree = form.cleaned_data['degree']
+            student.description = form.cleaned_data['description']
+            student.save()
+    return HttpResponseRedirect(reverse('index'))
+
+
+def profile(request):
+    '''
+    Opens profile page
+    '''
+    template = loader.get_template('profile.html')
+    user_id_ = int(request.user.id)
+    student = Student.objects.filter(user_id=user_id_)[0]
+    student_id = int(student.id)
+    edit_student_form = StudentEditProfile(instance=student)
+    context = {
+        'edit_student_form': edit_student_form,
+        'id': int(student_id)
+    }
     return HttpResponse(template.render(context, request))
 
 
