@@ -83,8 +83,10 @@ def filter_internship(request, category_):
 
 # Validations for the views
 
-# Validates whether the user is a company
 def is_company(user):
+    '''
+    Validates wheter the user is a company
+    '''
     if user.is_superuser:
         return True
     if user.is_authenticated():
@@ -95,8 +97,10 @@ def is_company(user):
     return False
 
 
-# Validates whether the user is a student
 def is_student(user):
+    '''
+    Validates wheter the user is a student
+    '''
     if user.is_superuser:
         return True
     if user.is_authenticated():
@@ -127,6 +131,16 @@ def index(request):
         context = {
             'loginForm': login_form
         }
+    return HttpResponse(template.render(context, request))
+
+
+@user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
+def info(request):
+    '''
+    Render page with info about .works
+    '''
+    template = loader.get_template('info.html')
+    context = {}
     return HttpResponse(template.render(context, request))
 
 
