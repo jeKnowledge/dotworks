@@ -169,9 +169,10 @@ def edit_profile(request, student_id):
             student.description = form.cleaned_data['description']
             student.save()
 
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('profile'))
 
 
+@login_required(login_url=reverse_lazy('index'))
 def profile(request):
     '''
     Opens profile page
@@ -179,13 +180,15 @@ def profile(request):
     template = loader.get_template('profile.html')
     user_id_ = int(request.user.id)
     student = Student.objects.filter(user_id=user_id_)[0]
-    student_id = int(student.id)
+    student_id_ = int(student.id)
+    list_of_inscriptions = Inscription.objects.filter(student_id = student_id_)
     edit_student_form = StudentEditProfile(instance=student)
     change_password_form = ChangePasswordForm()
     context = {
+        'id': student_id_,
         'edit_student_form': edit_student_form,
         'changePasswordForm': change_password_form,
-        'id': int(student_id)
+        'list_of_inscriptions': list_of_inscriptions
     }
     return HttpResponse(template.render(context, request))
 
@@ -449,4 +452,4 @@ def change_password(request):
                     user.save()
                     user = authenticate(username=username, password=new_password)
                     login(request, user)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('profile'))

@@ -107,6 +107,11 @@ class StudentEditProfile(forms.ModelForm):
             'description'
         ]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({'class': 'in in2'})
+
 
 class CompanyRegisterForm(forms.Form):
     company = forms.CharField(
@@ -195,17 +200,17 @@ class InscriptionAddForm(forms.Form):
 
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'class': "in2"}),
         label='Current password',
         required=True
     )
     new_password = forms.CharField(
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'class': "in2"}),
         label='New password',
         required=True
     )
     confirm_new_password = forms.CharField(
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'class': "in2"}),
         label='Confirm new password',
         required=True
     )

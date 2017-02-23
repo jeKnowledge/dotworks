@@ -1,15 +1,61 @@
-<form action="{% url 'edit_profile' student_id=id %}" method="post"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  {% load static %}
   {% csrf_token %}
-  <h2>Editar Perfil</h2>
-  {{ edit_student_form }}
-  <br><br>
-  <input type="submit" value="Guardar" />
-</form>
+  <title>.profile</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
 
-<form action="{% url 'change_password' %}" method="post">
-  {% csrf_token %}
-  <h2>Change you password:</h2>
-  {{ changePasswordForm }}
-  <br><br>
-  <input type="submit" value="Submeter"/>
-</form>
+<body id="internships">
+  {% include 'navbar.html' %}
+
+  <form action="{% url 'edit_profile' student_id=id %}" method="post"/>
+    {% csrf_token %}
+    <h2>Editar Perfil</h2>
+    {{ edit_student_form }}
+    <br><br>
+    <input type="submit" value="Guardar" />
+  </form>
+
+  <form action="{% url 'change_password' %}" method="post">
+    {% csrf_token %}
+    <h2>Change you password:</h2>
+    {{ changePasswordForm }}
+    <br><br>
+    <input type="submit" value="Submeter"/>
+  </form>
+
+  <div class='content'>
+    <ul class="internship-list">
+      {% for inscription in list_of_inscriptions %}
+        <li class="internship-id">
+          <div class="internship-line">
+            <img src="{% static "logo1.png" %}" width=60px/>
+            <div class="internship-data">
+              <span class="name-internship">{{ inscription.internship.title }}</span>
+              <ul class="details-internship">
+                <li>{{ inscription.internship.company.name }}</li>
+                <div class="internship-detail">
+                  <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
+                  <li>{{ inscription.internship.location }}</li>
+                </div>
+                <li>{{ inscription.internship.get_category_display }}</li>
+                <li>{{ inscription.internship.get_working_time_display }}</li>
+                <li>{{ inscription.internship.n_positions }} vaga(s)</li>
+                <li>{{ inscription.internship.duration }} meses</li>
+                <li>{{ inscription.internship.payment }}</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% include 'footer.html' %}
+</body>
