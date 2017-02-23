@@ -45,12 +45,8 @@ def get_available_internship_list(filter):
     )
 
 
-def filter_internship(request, category_):
-    '''
-    Filter internships by category
-    '''
+def filter_available_internships(available_internships, category_):
     internship_list = []
-
     if category_ == '1':
         internship_list = Internship.objects.filter(category='VER')
     elif category_ == '2':
@@ -59,26 +55,7 @@ def filter_internship(request, category_):
         internship_list = Internship.objects.filter(category='PRO')
     else:
         internship_list = Internship.objects.all()
-
-    if request.user.is_authenticated():
-        company = is_company(request.user)
-        template = loader.get_template('base.html')
-        # FILTERS
-        filter = {
-            'category': request.GET.get('category', None),
-            'area': request.GET.get('area', None),
-        }
-        context = {
-            'internship_list': internship_list,
-            'is_company': company,
-        }
-    else:
-        template = loader.get_template('landingPage.html')
-        login_form = LoginForm()
-        context = {
-            'loginForm': login_form
-        }
-    return HttpResponse(template.render(context, request))
+    return internship_list
 
 
 # Validations for the views
@@ -190,6 +167,26 @@ def profile(request):
         'changePasswordForm': change_password_form,
         'list_of_inscriptions': list_of_inscriptions
     }
+    return HttpResponse(template.render(context, request))
+
+
+def filter_internship(request, category_):
+    '''
+    Filter internships by category
+    '''
+    template = loader.get_template('base.html')
+    filter = {
+        'category': request.GET.get('category', None),
+        'area': request.GET.get('area', None),
+    }
+    internship_list = get_available_internship_list(filter)
+    internship_list = filter_available_internships(internship_list, category_)
+    company = is_company(request.user)
+    context = {
+        'internship_list': internship_list,
+        'is_company': company,
+    }
+
     return HttpResponse(template.render(context, request))
 
 
