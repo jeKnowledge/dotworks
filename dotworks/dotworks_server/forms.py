@@ -26,7 +26,8 @@ class StudentRegisterForm(forms.Form):
     )
     email = forms.EmailField(
         required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': "in in2"}),
+        error_messages={'invalid': 'Email inválido'}
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
@@ -200,17 +201,17 @@ class InscriptionAddForm(forms.Form):
 
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': "in2"}),
+        widget=forms.PasswordInput(attrs={'class': "in in2"}),
         label='Current password',
         required=True
     )
     new_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': "in2"}),
+        widget=forms.PasswordInput(attrs={'class': "in in2"}),
         label='New password',
         required=True
     )
     confirm_new_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': "in2"}),
+        widget=forms.PasswordInput(attrs={'class': "in in2"}),
         label='Confirm new password',
         required=True
     )

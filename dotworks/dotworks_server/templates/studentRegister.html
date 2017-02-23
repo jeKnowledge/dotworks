@@ -22,14 +22,12 @@
         <h2>.registar</h2>
       </div>
     </header>
-    {% if studentRegisterForm.errors %}
+    {% if studentRegisterForm.email.errors %}
       <div id="form-error">
-        {% for field in studentRegisterForm %}
-          {% if field.errors %}
-            <p>{{ field.errors|striptags }}</p>
-          {% endif %}
+        {% for error in studentRegisterForm.email.errors %}
+            <p>{{ error|escape }}</p>
         {% endfor %}
-        <br />
+        <br/>
       </div>
     {% endif %}
     <div>
