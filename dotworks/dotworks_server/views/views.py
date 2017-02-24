@@ -7,6 +7,7 @@ from django.template import loader
 
 from django.core.urlresolvers import reverse, reverse_lazy
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
@@ -450,11 +451,13 @@ def change_password_page(request):
 def change_password(request):
     if request.POST:
         form = ChangePasswordForm(request.POST)
+
         if form.is_valid():
             user = request.user
             old_password = form.cleaned_data['password']
             new_password = form.cleaned_data['new_password']
             confirm_new_password = form.cleaned_data['confirm_new_password']
+
             if user.check_password(old_password):
                 if new_password == confirm_new_password:
                     username = user.username #to login after the password is changed
@@ -462,4 +465,8 @@ def change_password(request):
                     user.save()
                     user = authenticate(username=username, password=new_password)
                     login(request, user)
+                else:
+                    messages.error(request, 'A nova password não coincide')
+            else:
+                messages.error(request, 'Password antiga incorreta')
     return HttpResponseRedirect(reverse('profile'))

@@ -20,6 +20,12 @@
     {% endfor %}
   {% endif %}
 
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message|safe }}</p>
+    {% endfor %}
+  {% endif %}
+
   <form action="{% url 'edit_profile' student_id=id %}" method="post"/>
     {% csrf_token %}
 

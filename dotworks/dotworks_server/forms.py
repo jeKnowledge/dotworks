@@ -32,6 +32,7 @@ class StudentRegisterForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'in in2'}),
         label='Palavra-Passe',
+        min_length=4,
         required=True
     )
     github = forms.URLField(
@@ -190,13 +191,15 @@ class InternshipEditForm(forms.ModelForm):
 class InscriptionAddForm(forms.Form):
     first_question = 'Competências Técnicas'
     second_question = 'Competências Pessoais Relevantes'
-    first_answer = forms.CharField(max_length=500,
-                                   label=first_question,
-                                   widget=forms.Textarea(attrs={'placeholder': 'ex: C++, javascript, html, photoahop', 'class': 'in'})
+    first_answer = forms.CharField(
+        max_length=500,
+        label=first_question,
+        widget=forms.Textarea(attrs={'placeholder': 'ex: C++, javascript, html, photoahop', 'class': 'in'})
     )
-    second_answer = forms.CharField(max_length=500,
-                                   label=second_question,
-                                   widget=forms.Textarea(attrs={'placeholder': 'ex: criatividade, organização', 'class': 'in'})
+    second_answer = forms.CharField(
+        max_length=500,
+        label=second_question,
+        widget=forms.Textarea(attrs={'placeholder': 'ex: criatividade, organização', 'class': 'in'})
     )
 
 
@@ -209,10 +212,12 @@ class ChangePasswordForm(forms.Form):
     new_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
         label='New password',
+        min_length=4,
         required=True
     )
     confirm_new_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
         label='Confirm new password',
+        min_length=4,
         required=True
     )
