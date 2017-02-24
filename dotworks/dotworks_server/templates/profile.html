@@ -16,8 +16,12 @@
 
   <form action="{% url 'edit_profile' student_id=id %}" method="post"/>
     {% csrf_token %}
+
     <h2>Editar Perfil</h2>
-    {{ edit_student_form }}
+      {% for field in editStudentForm %}
+        {{ field.label }}
+        {{ field }}
+      {% endfor %}
     <br><br>
     <input type="submit" value="Guardar" />
   </form>
@@ -25,7 +29,10 @@
   <form action="{% url 'change_password' %}" method="post">
     {% csrf_token %}
     <h2>Change you password:</h2>
-    {{ changePasswordForm }}
+    {% for field in changePasswordForm  %}
+      {{ field.label }}
+      {{ field }}
+    {% endfor %}
     <br><br>
     <input type="submit" value="Submeter"/>
   </form>

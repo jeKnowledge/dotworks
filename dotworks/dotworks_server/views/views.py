@@ -156,14 +156,15 @@ def profile(request):
     '''
     template = loader.get_template('profile.html')
     user_id_ = int(request.user.id)
+    # Unsafe if query doesnt return anything, need to change this after completion
     student = Student.objects.filter(user_id=user_id_)[0]
     student_id_ = int(student.id)
-    list_of_inscriptions = Inscription.objects.filter(student_id = student_id_)
+    list_of_inscriptions = Inscription.objects.filter(student_id=student_id_)
     edit_student_form = StudentEditProfile(instance=student)
     change_password_form = ChangePasswordForm()
     context = {
         'id': student_id_,
-        'edit_student_form': edit_student_form,
+        'editStudentForm': edit_student_form,
         'changePasswordForm': change_password_form,
         'list_of_inscriptions': list_of_inscriptions
     }
@@ -227,7 +228,7 @@ def register_action(request):
             description = form.cleaned_data['description']
             github = form.cleaned_data['github']
             linkedin = form.cleaned_data['linkedin']
-            behance = form.cleaned_data["behance"]
+            behance = form.cleaned_data['behance']
             phone = form.cleaned_data['phone']
             city = form.cleaned_data['city']
             birth_date = form.cleaned_data['birth_date']
