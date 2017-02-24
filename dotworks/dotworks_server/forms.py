@@ -9,11 +9,11 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         label='email',
         max_length=100,
-        widget=forms.TextInput(attrs={'class': "in"})
+        widget=forms.TextInput(attrs={'class': 'in'})
     )
     password = forms.CharField(
         label='Palavra-Passe',
-        widget=forms.PasswordInput(attrs={'class': "in"})
+        widget=forms.PasswordInput(attrs={'class': 'in'})
     )
 
 
@@ -22,15 +22,15 @@ class StudentRegisterForm(forms.Form):
         max_length=100,
         label='Nome Completo',
         required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     email = forms.EmailField(
         required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"}),
+        widget=forms.TextInput(attrs={'class': 'in in2'}),
         error_messages={'invalid': 'Email inválido'}
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': "in in2"}),
+        widget=forms.PasswordInput(attrs={'class': 'in in2'}),
         label='Palavra-Passe',
         required=True
     )
@@ -38,19 +38,19 @@ class StudentRegisterForm(forms.Form):
         max_length=100,
         label='Github',
         required=False,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     linkedin = forms.URLField(
         max_length=100,
         label='Linkedin',
         required=False,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     behance = forms.URLField(
         max_length=100,
         label='Behance',
         required=False,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     phone = forms.RegexField(
         regex=r'^\+?1?\d{9,15}$',
@@ -58,16 +58,16 @@ class StudentRegisterForm(forms.Form):
         min_length=9,
         label='Telemóvel',
         required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     city = forms.CharField(
         max_length=100,
         label='Localidade',
         required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     birth_date = forms.DateField(
-        widget=forms.DateInput(attrs={'class': "in in2"}),
+        widget=forms.DateInput(attrs={'class': 'in in2'}),
         label='Data nascimento',
         required=True,
         initial=datetime.date.today
@@ -75,10 +75,10 @@ class StudentRegisterForm(forms.Form):
     degree = forms.ChoiceField(
         choices=Student.DEGREE_CHOICES,
         required=True,
-        widget=forms.TextInput(attrs={'class': "in in2"})
+        widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     description = forms.CharField(
-        widget=forms.Textarea(attrs={'class': "in in3"}),
+        widget=forms.Textarea(attrs={'class': 'in in3'}),
         max_length=500,
         label='Um texto sobre ti',
         required=True
@@ -93,6 +93,7 @@ class StudentRegisterForm(forms.Form):
 
 
 class StudentEditProfile(forms.ModelForm):
+    e_mail = forms.EmailField(error_messages={'unique': 'Este email já existe'})
     class Meta:
         model = Student
         fields = [

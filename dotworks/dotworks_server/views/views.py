@@ -145,7 +145,19 @@ def edit_profile(request, student_id):
             student.degree = form.cleaned_data['degree']
             student.description = form.cleaned_data['description']
             student.save()
-
+            return HttpResponseRedirect(reverse('profile'))
+        else:
+            template = loader.get_template('profile.html')
+            student_id_ = int(student.id)
+            list_of_inscriptions = Inscription.objects.filter(student_id=student_id_)
+            change_password_form = ChangePasswordForm()
+            context = {
+                'id': student_id_,
+                'editStudentForm': form,
+                'changePasswordForm': change_password_form,
+                'list_of_inscriptions': list_of_inscriptions
+            }
+            return HttpResponse(template.render(context, request))
     return HttpResponseRedirect(reverse('profile'))
 
 
