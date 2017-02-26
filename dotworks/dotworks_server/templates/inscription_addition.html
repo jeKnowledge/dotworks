@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+ 
 <head>
   {% load static %}
   <title>.inscrição</title>
@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 </head>
-
+ 
 <body class="valign-wrapper inscription">
   <header>
     <div class="topleft">
@@ -20,9 +20,12 @@
   <form action="{% url 'inscription_add_action' internship.id %}" method="post">
     {% csrf_token %}
     <div id="content-internship">
-      {{ InscriptionAddForm }}
+      {% for field in InscriptionAddForm %}
+        {{ field.label }}
+        {{ field }}
+      {% endfor %}
     </div>
-    <input type="submit" value="" id="inscbutton"/>
+    <input type="submit" value="Inscrever" id="inscbutton"/>
   </form>
 </body>
 </html>

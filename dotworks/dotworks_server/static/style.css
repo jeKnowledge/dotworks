@@ -109,8 +109,8 @@ label {
 }
 
 .button1 {
-  background-color: whitesmoke;
-  color:black;
+  background-color: #53917e;
+  color:whitesmoke;
   text-align:center;
   width:30%;
   font-size:1.2em;
@@ -166,19 +166,27 @@ header {
 }
 
 #register {
-  margin-right:10vw;
+  /* margin-right:10vw;
   float:right;
   padding-left:40px;
   padding-bottom: 22.75px;
   background-image: url(check.png);
   background-color: #1B384C;
   background-size: contain;
-  border:none;
+  border:none;*/
+  background-color: #53917e;
+  color:whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+  margin-right:10vw;
+  float:right;
 }
 
 #form-error{
   padding-left:10vw;  
   font-size:1.4em;
+  color:#d62251;
 }
 
 /*------------------- NAV MENÚ -------------------------------*/
@@ -421,14 +429,20 @@ header h2 {
 /*_______________INSCREVER_______________*/
 
 #inscbutton{
-  padding-left:40px;
+  /*padding-left:40px;
   padding-bottom: 22.75px;
   background-image: url(check.png);
   background-color: #1B384C;
   background-size: contain;
-  border:none;
+  border:none;*/
   float:left;
-  margin:5vh 38vw;
+  margin:3vh 35.8vw;
+
+  background-color: #53917e;
+  color:whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
 }
 
 .inscription #content-internship {
@@ -449,6 +463,34 @@ header h2 {
   padding: 15px;
   height:13vh;
   color:black;
+}
+
+/* ---------------------------------------PROFILE--------------------------------------------------- */
+.profile-edit{
+  margin: 7.5vh 7.4%;
+  padding-bottom: 5vh;
+  border-bottom:  4px solid #1B384C;
+}
+
+.profile-edit #register-form{
+  margin:0 10vw 0 0;
+}
+
+.profile-edit h2, #specialh2{
+  font-size:2em;
+  margin-bottom: 2vh;
+}
+
+#specialh2{
+  margin: 7.5vh 7.4% 0 7.4%;
+}
+
+.submitbutton{
+  background-color: #53917e;
+  color:whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
 }
 
 /* ---------------------------------------FOOTER--------------------------------------------------- */
@@ -593,4 +635,3 @@ footer{
   .internship .h2internship {
     font-size: 0.8em;
   }
-}

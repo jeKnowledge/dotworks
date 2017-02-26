@@ -1,53 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-<head>
-  {% load static %}
-  <title>.registo</title>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-</head>
+  <head>
+    {% load static %}
+    <title>.registo</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  </head>
 
-<body class="valign-wrapper">
-  {% load bootstrap3 %}
+  <body class="valign-wrapper">
+    {% load bootstrap3 %}
 
-  <form action="{% url 'register_action' %}" method="post">
-    {% csrf_token %}
-    <header>
-      <div class="topleft">
-        <img src="{% static "logo.works.jpg" %}" class="logo"/>
-        <h2>.registar</h2>
-      </div>
-    </header>
-    {% if studentRegisterForm.email.errors %}
+    <form action="{% url 'register_action' %}" method="post">
+      {% csrf_token %}
+      <header>
+        <div class="topleft">
+          <img src="{% static "logo.works.jpg" %}" class="logo"/>
+          <h2>.registar</h2>
+        </div>
+      </header>
+      {% if studentRegisterForm.email.errors %}
       <div id="form-error">
         {% for error in studentRegisterForm.email.errors %}
-            <p>{{ error|escape }}</p>
+        <p> - {{ error|escape }} -</p>
         {% endfor %}
         <br/>
       </div>
-    {% endif %}
-    <div>
-      <div id="register-form" class="container-fluid">
-        {% for field in studentRegisterForm %}
-          {% if forloop.counter0|divisibleby:3 %}
+      {% endif %}
+      <div>
+        <div id="register-form" class="container-fluid">
+          {% for field in studentRegisterForm %}
+            {% if forloop.counter0|divisibleby:3 %}
             <div class="row">
-          {% endif %}
-          <div class="col-md-4">
-            {{ field.label }}
-            {{ field }}
-          </div>
-          {% if forloop.counter0|add:1|divisibleby:3 %}
+              {% endif %}
+              <div class="col-md-4">
+                {{ field.label }}
+                {{ field }}
+              </div>
+              {% if forloop.counter0|add:1|divisibleby:3 %}
             </div>
-          {% endif %}
-        {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
-    </div>
-    <br><br>
-    <input type="submit" value="" id="register"/>
-  </form>
-</body>
+      <br><br>
+      <input type="submit" value="Registar" id="register"/>
+    </form>
+  </body>
 </html>

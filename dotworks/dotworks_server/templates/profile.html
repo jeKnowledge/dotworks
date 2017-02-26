@@ -1,80 +1,106 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<head>
-  {% load static %}
-  {% csrf_token %}
-  <title>.profile</title>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-
-<body id="internships">
-  {% include 'navbar.html' %}
-
-  {% if editStudentForm.e_mail.errors %}
-    {% for error in editStudentForm.e_mail.errors %}
-      <p>{{ error|escape }}</p>
-    {% endfor %}
-  {% endif %}
-
-  {% if messages %}
-    {% for message in messages %}
-      <p>{{ message|safe }}</p>
-    {% endfor %}
-  {% endif %}
-
-  <form action="{% url 'edit_profile' student_id=id %}" method="post"/>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <head>
+    {% load static %}
     {% csrf_token %}
+    <title>.profile</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
 
-    <h2>Editar Perfil</h2>
-      {% for field in editStudentForm %}
-        {{ field.label }}
-        {{ field }}
-      {% endfor %}
-    <br><br>
-    <input type="submit" value="Guardar" />
-  </form>
+  <body id="internships">
+    {% load bootstrap3 %}
 
-  <form action="{% url 'change_password' %}" method="post">
-    {% csrf_token %}
-    <h2>Change you password:</h2>
-    {% for field in changePasswordForm  %}
-      {{ field.label }}
-      {{ field }}
-    {% endfor %}
-    <br><br>
-    <input type="submit" value="Submeter"/>
-  </form>
-
-  <div class='content'>
-    <ul class="internship-list">
-      {% for inscription in list_of_inscriptions %}
-        <li class="internship-id">
-          <div class="internship-line">
-            <img src="{% static "logo1.png" %}" width=60px/>
-            <div class="internship-data">
-              <span class="name-internship">{{ inscription.internship.title }}</span>
-              <ul class="details-internship">
-                <li>{{ inscription.internship.company.name }}</li>
-                <div class="internship-detail">
-                  <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
-                  <li>{{ inscription.internship.location }}</li>
-                </div>
-                <li>{{ inscription.internship.get_category_display }}</li>
-                <li>{{ inscription.internship.get_working_time_display }}</li>
-                <li>{{ inscription.internship.n_positions }} vaga(s)</li>
-                <li>{{ inscription.internship.duration }} meses</li>
-                <li>{{ inscription.internship.payment }}</li>
-              </ul>
+    {% include 'navbar.html' %}
+    <div class="content">
+      <div>
+        <div class='profile-edit'>
+          <h2>.editar</h2>  
+          {% if editStudentForm.e_mail.errors %}
+            <div id="form-error" style="padding-left:0; padding-bottom:1vh;">
+              {% for error in editStudentForm.e_mail.errors %}
+                <p>- {{ error|escape }} -</p>
+              {% endfor %}
             </div>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+          {% endif %}
+          <form action="{% url 'edit_profile' student_id=id %}" method="post">
+            {% csrf_token %}
+            <div>
+              <div id="register-form" class="container-fluid">
+                {% for field in editStudentForm %}
+                  {% if forloop.counter0|divisibleby:3 %}
+                    <div class="row">
+                      {% endif %}
+                      <div class="col-md-4">
+                        {{ field.label }}
+                        {{ field }}
+                      </div>
+                      {% if forloop.counter0|add:1|divisibleby:3 %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <br><br>
+            <input type="submit" value="Guardar" class="submitbutton"/>
+          </form>
+        </div>
+      </div>
 
+      <div class='profile-edit'>
+        <h2>.alterar</h2>
+        {% if messages %}
+          <div id="form-error" style="padding-left:0; padding-bottom:1vh;">
+            {% for message in messages %}
+              <p>- {{ message|safe }} -</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <form action="{% url 'change_password' %}" method="post">
+          {% csrf_token %}
+          {% for field in changePasswordForm  %}
+            {{ field.label }}
+            {{ field }}
+          {% endfor %}
+          <br><br>
+          <input type="submit" value="Submeter" class="submitbutton"/>
+        </form>
+      </div>
+
+      <h2 id="specialh2">.inscrições</h2>
+      <ul class="internship-list" style="margin-top:0;">
+        {% for inscription in list_of_inscriptions %}
+          <li class="internship-id">
+            <div class="internship-line">
+              <img src="{% static "logo1.png" %}" width=60px/>
+              <div class="internship-data">
+                <span class="name-internship">{{ inscription.internship.title }}</span>
+                <ul class="details-internship">
+                  <li>{{ inscription.internship.company.name }}</li>
+                  <div class="internship-detail">
+                    <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
+                    <li>{{ inscription.internship.location }}</li>
+                  </div>
+                  <li>{{ inscription.internship.get_category_display }}</li>
+                  <li>{{ inscription.internship.get_working_time_display }}</li>
+                  <li>{{ inscription.internship.n_positions }} vaga(s)</li>
+                  <li>{{ inscription.internship.duration }} meses</li>
+                  <li>{{ inscription.internship.payment }}</li>
+                </ul>
+              </div>
+            </div>
+            <br>
+            <div class="open">
+              <p style="max-width: 50%;"> {{ inscription.internship.description }} </p>
+              <a href="#remover" id="register" style="margin:0;">Remover</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+  </div></div>
   {% include 'footer.html' %}
 </body>
+</html>
