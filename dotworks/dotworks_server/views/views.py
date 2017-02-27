@@ -413,11 +413,12 @@ def inscription_addition(request, internship_id):
     user_id_ = int(request.user.id)
     student_id_ = int(Student.objects.filter(user_id=user_id_)[0].id)
     student_inscriptions = Inscription.objects.filter(student_id=student_id_)
+    inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
 
     if len(student_inscriptions) >= 3:
         messages.error(request, 'Limite de 3 inscrições atingido')
         return HttpResponseRedirect(reverse('index'))
-    elif student_is_already_enrolled_in_internship(student_id_, student_inscriptions):
+    elif student_is_already_enrolled_in_internship(student_id_, inscriptions_in_internship):
         messages.error(request, 'Já estás inscrito neste estágio')
         return HttpResponseRedirect(reverse('index'))
 
@@ -441,7 +442,6 @@ def inscription_add_action(request, internship_id):
                 form.cleaned_data['first_answer'],
                 form.cleaned_data['second_answer']
             ]
-            inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
 
             inscription = Inscription(
                 internship=internship,
@@ -463,6 +463,7 @@ def inscription_removal(request, inscription_id_):
 
     if len(student_inscriptions) == 0 or not inscription_belongs_to_user(student_id_, inscription_id_):
        return no_permission_error(request) 
+
     Inscription.objects.filter(id=int(inscription_id_)).delete()
     return profile(request)
 
