@@ -21,6 +21,18 @@ from datetime import datetime
 
 # Util functions
 
+def inscription_belongs_to_user(student_id_, inscription_id_):
+    '''
+    Checks if the inscription belongs to the user
+    '''
+    user_inscriptions = Inscription.objects.filter(student_id=student_id_)
+
+    for inscription in user_inscriptions:
+        if int(inscription.id) == int(inscription_id_):
+            return True
+    return False
+
+
 def student_is_already_enrolled_in_internship(student_id, inscriptions_in_internship):
     '''
     Checks if student is already inrolled in internship
@@ -430,6 +442,21 @@ def inscription_add_action(request, internship_id):
             )
             inscription.save()
     return HttpResponseRedirect(reverse('index'))
+
+
+@login_required(login_url=reverse_lazy('no_permission_error'))
+def inscription_removal(request, inscription_id_):
+    '''
+    Removes inscription
+    '''
+    user_id_ = int(request.user.id)
+    student_id_ = int(Student.objects.filter(user_id=user_id_)[0].id)
+    student_inscriptions = Inscription.objects.filter(student_id=student_id_)
+
+    if len(student_inscriptions) == 0 or not inscription_belongs_to_user(student_id_, inscription_id_):
+       return no_permission_error(request) 
+    Inscription.objects.filter(id=int(inscription_id_)).delete()
+    return profile(request)
 
 
 def no_permission_error(request):

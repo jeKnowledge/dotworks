@@ -95,7 +95,7 @@
             <br>
             <div class="open">
               <p style="max-width: 50%;"> {{ inscription.internship.description }} </p>
-              <a href="#remover" id="register" style="margin:0;">Remover</a>
+              <a href="{% url 'inscription_removal' inscription_id_=inscription.id %}" id="register" style="margin:0;">Remover</a>
             </div>
           </li>
         {% endfor %}
