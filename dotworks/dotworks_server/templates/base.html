@@ -16,6 +16,13 @@
   {% include 'navbar.html' %}
 
   <div class='content'>
+    {% if messages %}
+      <div id="form-error" style="padding-left:0; padding-bottom:1vh;">
+        {% for message in messages %}
+          <p>- {{ message|safe }} -</p>
+        {% endfor %}
+      </div>
+    {% endif %}
     <ul class="internship-list">
       {% for internship in internship_list %}
         <li class="internship-id">

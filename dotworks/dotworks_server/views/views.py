@@ -410,6 +410,17 @@ def company_area(request):
 
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_addition(request, internship_id):
+    user_id_ = int(request.user.id)
+    student_id_ = int(Student.objects.filter(user_id=user_id_)[0].id)
+    student_inscriptions = Inscription.objects.filter(student_id=student_id_)
+
+    if len(student_inscriptions) >= 3:
+        messages.error(request, 'Limite de 3 inscrições atingido')
+        return HttpResponseRedirect(reverse('index'))
+    elif student_is_already_enrolled_in_internship(student_id_, student_inscriptions):
+        messages.error(request, 'Já estás inscrito neste estágio')
+        return HttpResponseRedirect(reverse('index'))
+
     template = loader.get_template('inscription_addition.html')
     inscription_add_form = InscriptionAddForm()
     context = {
@@ -431,9 +442,6 @@ def inscription_add_action(request, internship_id):
                 form.cleaned_data['second_answer']
             ]
             inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
-
-            if student_is_already_enrolled_in_internship(student.id, inscriptions_in_internship):
-                return HttpResponseRedirect(reverse('index'))
 
             inscription = Inscription(
                 internship=internship,
