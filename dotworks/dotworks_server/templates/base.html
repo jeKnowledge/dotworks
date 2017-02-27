@@ -36,11 +36,11 @@
                   <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
                   <li>{{ internship.location }}</li>
                 </div>
-                <li>{{internship.get_category_display}}</li>
-                <li>{{internship.get_working_time_display}}</li>
-                <li>{{internship.n_positions}} vaga(s)</li>
-                <li>{{internship.duration}} meses</li>
-                <li>{{internship.payment}}</li>
+                <li>{{ internship.get_category_display }}</li>
+                <li>{{ internship.get_working_time_display }}</li>
+                <li>{{ internship.n_positions }} vaga(s)</li>
+                <li>{{ internship.duration }} meses</li>
+                <li>{{ internship.payment }}</li>
               </ul>
             </div>
           </div>
@@ -50,7 +50,6 @@
               <p style="max-width: 50%;"> {{ internship.description }} </p>
               <a href="{% url 'inscription_addition' internship.id %}" class="want">.quero!</a>
             </div>
-              
           </div>
         </li>
       {% endfor %}
