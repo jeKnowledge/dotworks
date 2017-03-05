@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
+from django.shortcuts import redirect
+
 from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, StudentEditProfile, InternshipEditForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
@@ -469,7 +471,7 @@ def inscription_removal(request, inscription_id_):
        return no_permission_error(request) 
 
     Inscription.objects.filter(id=int(inscription_id_)).delete()
-    return profile(request)
+    return redirect('profile')
 
 
 def no_permission_error(request):
