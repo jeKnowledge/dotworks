@@ -16,7 +16,7 @@ body {
   width: 100vw;
   color:whitesmoke;
   overflow-x: hidden;
-
+  overflow-y: scroll;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -185,7 +185,7 @@ header {
 
 #form-error{
   padding-left:10vw;  
-  font-size:1.4em;
+  font-size:1.6em;
   color:#d62251;
 }
 
@@ -310,11 +310,6 @@ header h2 {
   padding-right: 20px;
 }
 
-.more{
-  display:flex;
-  justify-content: flex-end;
-}
-
 .descestag{
   display:none;
 }
@@ -420,21 +415,9 @@ header h2 {
   justify-content: center;
 }
 
-.want, .more {
-  font-size:1.3em;
-  font-weight: bold;
-}
-
-
 /*_______________INSCREVER_______________*/
 
 #inscbutton{
-  /*padding-left:40px;
-  padding-bottom: 22.75px;
-  background-image: url(check.png);
-  background-color: #1B384C;
-  background-size: contain;
-  border:none;*/
   float:left;
   margin:3vh 35.8vw;
 
@@ -463,6 +446,7 @@ header h2 {
   padding: 15px;
   height:13vh;
   color:black;
+  resize:none;
 }
 
 /* ---------------------------------------PROFILE--------------------------------------------------- */

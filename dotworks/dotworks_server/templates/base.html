@@ -12,17 +12,18 @@
 </head>
 <body id="internships">
   {% load bootstrap3 %}
-
+ 
   {% include 'navbar.html' %}
-
+ 
   <div class='content'>
     {% if messages %}
-      <div id="form-error" style="padding-left:0; padding-bottom:1vh;">
+      <div id="form-error" style="padding:5vh 0 0 30%;">
         {% for message in messages %}
           <p>- {{ message|safe }} -</p>
         {% endfor %}
       </div>
     {% endif %}
+     
     <ul class="internship-list">
       {% for internship in internship_list %}
         <li class="internship-id">
@@ -45,25 +46,14 @@
             </div>
           </div>
           <div class="dropmore">
-            <a class="more">.mais</a>
-            <div class="descestag">
+            <br>
+            <div class="open">
               <p style="max-width: 50%;"> {{ internship.description }} </p>
-              <a href="{% url 'inscription_addition' internship.id %}" class="want">.quero!</a>
+              <a href="{% url 'inscription_addition' internship.id %}" id="register" style="margin:0;">Adicionar</a>
             </div>
           </div>
         </li>
       {% endfor %}
-      <script>
-        $(".more").click(function(event){
-          $(this).next("div.descestag").toggleClass("open");
-          $(this).toggleText('.menos', '.mais');
-        });
-       $.fn.toggleText=function(t1,t2){
-          if (this.text()==t1) this.text(t2);
-          else this.text(t1);
-          return this;
-        };
-      </script>
     </ul>
     <ul class="filtrocat">
       <li>
@@ -83,3 +73,4 @@
   {% include 'footer.html' %}
 </body>
 </html>
+RAW Paste Data
