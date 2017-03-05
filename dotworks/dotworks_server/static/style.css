@@ -166,16 +166,8 @@ header {
 }
 
 #register {
-  /* margin-right:10vw;
-  float:right;
-  padding-left:40px;
-  padding-bottom: 22.75px;
-  background-image: url(check.png);
-  background-color: #1B384C;
-  background-size: contain;
-  border:none;*/
   background-color: #53917e;
-  color:whitesmoke;
+  color: whitesmoke;
   border: none;
   border-radius: 7px;
   padding: 0.5vw 1vh;
@@ -183,7 +175,7 @@ header {
   float:right;
 }
 
-#form-error{
+#form-error {
   padding-left:10vw;  
   font-size:1.6em;
   color:#d62251;
@@ -475,6 +467,16 @@ header h2 {
   border: none;
   border-radius: 7px;
   padding: 0.5vw 1vh;
+}
+
+#inscription-card-remove {
+  background-color: #d32854;
+  color: whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+  margin-right:10vw;
+  float: right;
 }
 
 /* ---------------------------------------FOOTER--------------------------------------------------- */

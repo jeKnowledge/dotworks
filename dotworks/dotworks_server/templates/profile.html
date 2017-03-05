@@ -18,7 +18,7 @@
     <div class="content">
       <div>
         <div class='profile-edit'>
-          <h2>.editar</h2>  
+          <h2>Editar Perfil</h2>  
           {% if editStudentForm.e_mail.errors %}
             <div id="form-error" style="padding-left:0; padding-bottom:1vh;">
               {% for error in editStudentForm.e_mail.errors %}
@@ -51,7 +51,7 @@
       </div>
 
       <div class='profile-edit'>
-        <h2>.alterar</h2>
+        <h2>Alterar Palavra Passe</h2>
         {% if messages %}
           <div id="form-error" style="padding-left:0; padding-bottom:1vh;">
             {% for message in messages %}
@@ -70,7 +70,7 @@
         </form>
       </div>
 
-      <h2 id="specialh2">.inscrições</h2>
+      <h2 id="specialh2">Inscrições</h2>
       <ul class="internship-list" style="margin-top:0;">
         {% for inscription in list_of_inscriptions %}
           <li class="internship-id">
@@ -95,7 +95,7 @@
             <br>
             <div class="open">
               <p style="max-width: 50%;"> {{ inscription.internship.description }} </p>
-              <a href="{% url 'inscription_removal' inscription_id_=inscription.id %}" id="register" style="margin:0;">Remover</a>
+              <a href="{% url 'inscription_removal' inscription_id_=inscription.id %}" id="inscription-card-remove" style="margin:0;">Remover</a>
             </div>
           </li>
         {% endfor %}
