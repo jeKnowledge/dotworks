@@ -7,7 +7,7 @@ from dotworks_server.models import Student, Internship, Inscription
 
 class LoginForm(forms.Form):
     username = forms.CharField(
-        label='email',
+        label='Email',
         max_length=100,
         widget=forms.TextInput(attrs={'class': 'in'})
     )

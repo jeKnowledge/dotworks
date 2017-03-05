@@ -39,7 +39,17 @@ var parallax = new Parallax(scene);
         <form action="login/" method="post" class="center-align valign loginForm">
           {% csrf_token %}
           <div id="login">
-            {{ loginForm }}
+            {% if messages %}
+              <div id="form-error" style="padding: 0 27% 0 20%;">
+                {% for message in messages %}
+                  <p>- {{ message|safe }} -</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% for field in loginForm %}
+              {{ field.label }} {{ field }}
+            {% endfor %}
             <input type="submit" value="Entrar" class="button1"/>
             <a href="{% url 'register' %}"><h2 class="button1 button2"> Regista-te </h2></a>
           </div>

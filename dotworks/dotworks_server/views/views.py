@@ -219,16 +219,20 @@ def filter_internship(request, category_):
 def user_login(request):
     if request.POST:
         form = LoginForm(request.POST)
+
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
+
             if user is not None:  # Login succesfull
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
             else:
+                messages.error(request, 'Wrong Email or Password')
                 return HttpResponseRedirect(reverse('index'))
         else:
+            messages.error(request, 'Wrong Email or Password')
             return HttpResponseRedirect(reverse('index'))
     else:
         return HttpResponseRedirect(reverse('index'))
