@@ -16,10 +16,14 @@ body {
   width: 100vw;
   color:whitesmoke;
   overflow-x: hidden;
-
+  overflow-y: scroll;
   min-height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+textarea {
+  resize: none;
 }
 
 .content{
@@ -157,7 +161,6 @@ header {
 .in3 {
   border-radius: 7px;
   height: 92px;
-  resize: none;
 }
 
 .row {
@@ -166,16 +169,8 @@ header {
 }
 
 #register {
-  /* margin-right:10vw;
-  float:right;
-  padding-left:40px;
-  padding-bottom: 22.75px;
-  background-image: url(check.png);
-  background-color: #1B384C;
-  background-size: contain;
-  border:none;*/
   background-color: #53917e;
-  color:whitesmoke;
+  color: whitesmoke;
   border: none;
   border-radius: 7px;
   padding: 0.5vw 1vh;
@@ -183,9 +178,9 @@ header {
   float:right;
 }
 
-#form-error{
+#form-error {
   padding-left:10vw;  
-  font-size:1.4em;
+  font-size:1.6em;
   color:#d62251;
 }
 
@@ -310,11 +305,6 @@ header h2 {
   padding-right: 20px;
 }
 
-.more{
-  display:flex;
-  justify-content: flex-end;
-}
-
 .descestag{
   display:none;
 }
@@ -420,21 +410,9 @@ header h2 {
   justify-content: center;
 }
 
-.want, .more {
-  font-size:1.3em;
-  font-weight: bold;
-}
-
-
 /*_______________INSCREVER_______________*/
 
 #inscbutton{
-  /*padding-left:40px;
-  padding-bottom: 22.75px;
-  background-image: url(check.png);
-  background-color: #1B384C;
-  background-size: contain;
-  border:none;*/
   float:left;
   margin:3vh 35.8vw;
 
@@ -463,6 +441,7 @@ header h2 {
   padding: 15px;
   height:13vh;
   color:black;
+  resize:none;
 }
 
 /* ---------------------------------------PROFILE--------------------------------------------------- */
@@ -491,6 +470,16 @@ header h2 {
   border: none;
   border-radius: 7px;
   padding: 0.5vw 1vh;
+}
+
+#inscription-card-remove {
+  background-color: #d32854;
+  color: whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+  margin-right:10vw;
+  float: right;
 }
 
 /* ---------------------------------------FOOTER--------------------------------------------------- */

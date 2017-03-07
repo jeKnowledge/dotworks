@@ -12,10 +12,18 @@
 </head>
 <body id="internships">
   {% load bootstrap3 %}
-
+ 
   {% include 'navbar.html' %}
-
+ 
   <div class='content'>
+    {% if messages %}
+      <div id="form-error" style="padding:5vh 0 0 7.4%;">
+        {% for message in messages %}
+          <p>- {{ message|safe }} -</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+     
     <ul class="internship-list">
       {% for internship in internship_list %}
         <li class="internship-id">
@@ -29,35 +37,23 @@
                   <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
                   <li>{{ internship.location }}</li>
                 </div>
-                <li>{{internship.get_category_display}}</li>
-                <li>{{internship.get_working_time_display}}</li>
-                <li>{{internship.n_positions}} vaga(s)</li>
-                <li>{{internship.duration}} meses</li>
-                <li>{{internship.payment}}</li>
+                <li>{{ internship.get_category_display }}</li>
+                <li>{{ internship.get_working_time_display }}</li>
+                <li>{{ internship.n_positions }} vaga(s)</li>
+                <li>{{ internship.duration }} meses</li>
+                <li>{{ internship.payment }}</li>
               </ul>
             </div>
           </div>
           <div class="dropmore">
-            <a class="more">.mais</a>
-            <div class="descestag">
+            <br>
+            <div class="open">
               <p style="max-width: 50%;"> {{ internship.description }} </p>
-              <a href="{% url 'inscription_addition' internship.id %}" class="want">.quero!</a>
+              <a href="{% url 'inscription_addition' internship.id %}" id="register" style="margin:0;">Adicionar</a>
             </div>
-              
           </div>
         </li>
       {% endfor %}
-      <script>
-        $(".more").click(function(event){
-          $(this).next("div.descestag").toggleClass("open");
-          $(this).toggleText('.menos', '.mais');
-        });
-       $.fn.toggleText=function(t1,t2){
-          if (this.text()==t1) this.text(t2);
-          else this.text(t1);
-          return this;
-        };
-      </script>
     </ul>
     <ul class="filtrocat">
       <li>
@@ -77,3 +73,4 @@
   {% include 'footer.html' %}
 </body>
 </html>
+RAW Paste Data

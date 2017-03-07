@@ -23,12 +23,12 @@
         </div>
       </header>
       {% if studentRegisterForm.email.errors %}
-      <div id="form-error">
-        {% for error in studentRegisterForm.email.errors %}
-        <p> - {{ error|escape }} -</p>
-        {% endfor %}
-        <br/>
-      </div>
+        <div id="form-error">
+          {% for error in studentRegisterForm.email.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          <br/>
+        </div>
       {% endif %}
       <div>
         <div id="register-form" class="container-fluid">

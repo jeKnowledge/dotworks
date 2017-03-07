@@ -7,7 +7,7 @@ from dotworks_server.models import Student, Internship, Inscription
 
 class LoginForm(forms.Form):
     username = forms.CharField(
-        label='email',
+        label='Email',
         max_length=100,
         widget=forms.TextInput(attrs={'class': 'in'})
     )
@@ -206,18 +206,18 @@ class InscriptionAddForm(forms.Form):
 class ChangePasswordForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
-        label='Current password',
+        label='Password Atual',
         required=True
     )
     new_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
-        label='New password',
+        label='Nova Password',
         min_length=4,
         required=True
     )
     confirm_new_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': "in in2"}),
-        label='Confirm new password',
+        label='Confirmar Nova Password',
         min_length=4,
         required=True
     )
