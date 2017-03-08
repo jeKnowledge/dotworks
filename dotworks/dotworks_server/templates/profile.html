@@ -2,18 +2,19 @@
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <head>
     {% load static %}
-    {% csrf_token %}
-    <title>.profile</title>
+    <!--{% csrf_token %}-->
+    <title>.perfil</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
-
+ 
   <body id="internships">
     {% load bootstrap3 %}
-
+ 
     {% include 'navbar.html' %}
     <div class="content">
       <div>
@@ -49,7 +50,7 @@
           </form>
         </div>
       </div>
-
+ 
       <div class='profile-edit'>
         <h2>Alterar Palavra Passe</h2>
         {% if messages %}
@@ -69,33 +70,37 @@
           <input type="submit" value="Submeter" class="submitbutton"/>
         </form>
       </div>
-
+ 
       <h2 id="specialh2">Inscrições</h2>
       <ul class="internship-list" style="margin-top:0;">
         {% for inscription in list_of_inscriptions %}
           <li class="internship-id">
             <div class="internship-line">
-              <img src="{% static "logo1.png" %}" width=60px/>
+              <img src="{% static "logo1.png" %}" class="internship-logo"/>
               <div class="internship-data">
                 <span class="name-internship">{{ inscription.internship.title }}</span>
                 <ul class="details-internship">
                   <li>{{ inscription.internship.company.name }}</li>
                   <div class="internship-detail">
                     <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
-                    <li>{{ inscription.internship.location }}</li>
+                    <li style="font-weight: 700;">{{ inscription.internship.location }}</li>
                   </div>
                   <li>{{ inscription.internship.get_category_display }}</li>
-                  <li>{{ inscription.internship.get_working_time_display }}</li>
+                  <li class="boldlist">{{ inscription.internship.get_working_time_display }}</li>
                   <li>{{ inscription.internship.n_positions }} vaga(s)</li>
-                  <li>{{ inscription.internship.duration }} meses</li>
+                  <li class="boldlist">{{ inscription.internship.duration }} meses</li>
                   <li>{{ inscription.internship.payment }}</li>
                 </ul>
               </div>
             </div>
-            <br>
-            <div class="open">
-              <p style="max-width: 50%;"> {{ inscription.internship.description }} </p>
-              <a href="{% url 'inscription_removal' inscription_id_=inscription.id %}" id="inscription-card-remove" style="margin:0;">Remover</a>
+            <div class="dropmore">
+                <br>
+                <div class="open">
+                  <p> {{ inscription.internship.description }} </p>
+                  <div class="openb">
+                    <a href="{% url 'inscription_removal' inscription_id_=inscription.id %}" id="inscription-card-remove" style="margin:0;">Remover</a>
+                  </div>
+                </div>
             </div>
           </li>
         {% endfor %}

@@ -5,6 +5,7 @@
   {% csrf_token %}
   <title>.estágios</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
@@ -28,19 +29,19 @@
       {% for internship in internship_list %}
         <li class="internship-id">
           <div class="internship-line">
-            <img src="{% static "logo1.png" %}" width=60px/>
+            <img src="{% static "logo1.png" %}" class="internship-logo"/>
             <div class="internship-data">
               <span class="name-internship">{{ internship.title }}</span>
               <ul class="details-internship">
-                <li>{{ internship.company.name }}</li>
+                <li id="company">{{ internship.company.name }}</li>
                 <div class="internship-detail">
                   <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
-                  <li>{{ internship.location }}</li>
+                  <li style="font-weight: 700;">{{ internship.location }}</li>
                 </div>
                 <li>{{ internship.get_category_display }}</li>
-                <li>{{ internship.get_working_time_display }}</li>
+                <li class="boldlist">{{ internship.get_working_time_display }}</li>
                 <li>{{ internship.n_positions }} vaga(s)</li>
-                <li>{{ internship.duration }} meses</li>
+                <li class="boldlist">{{ internship.duration }} meses</li>
                 <li>{{ internship.payment }}</li>
               </ul>
             </div>
@@ -48,8 +49,10 @@
           <div class="dropmore">
             <br>
             <div class="open">
-              <p style="max-width: 50%;"> {{ internship.description }} </p>
-              <a href="{% url 'inscription_addition' internship.id %}" id="register" style="margin:0;">Adicionar</a>
+              <p> {{ internship.description }} </p>
+              <div class="openb">
+                <a href="{% url 'inscription_addition' internship.id %}" id="register" style="margin:0;">Adicionar</a>
+              </div>
             </div>
           </div>
         </li>
@@ -57,20 +60,19 @@
     </ul>
     <ul class="filtrocat">
       <li>
-        <a href="{% url 'index' %}"><img src="{% static "todos.png" %}" width=95px/>Todos</a>
+        <a href="{% url 'index' %}"><img src="{% static "todos.png" %}"/>Todos</a>
       </li>
       <li>
-        <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" width=95px/>Verão</a>
+        <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" />Verão</a>
       </li>
       <li>
-        <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" width=95px/>Curricular</a>
+        <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" />Curricular</a>
       </li>
       <li>
-        <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" width=95px/>Profissional</a>
+        <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" />Profissional</a>
       </li>
     </ul>
   </div>
   {% include 'footer.html' %}
 </body>
 </html>
-RAW Paste Data

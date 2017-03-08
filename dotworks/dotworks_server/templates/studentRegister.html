@@ -1,19 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+ 
   <head>
     {% load static %}
     <title>.registo</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
   </head>
-
+ 
   <body class="valign-wrapper">
     {% load bootstrap3 %}
-
+ 
     <form action="{% url 'register_action' %}" method="post">
       {% csrf_token %}
       <header>
@@ -46,7 +47,7 @@
           {% endfor %}
         </div>
       </div>
-      <br><br>
+      <br>
       <input type="submit" value="Registar" id="register"/>
     </form>
   </body>
