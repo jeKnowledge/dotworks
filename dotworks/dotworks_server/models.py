@@ -52,17 +52,8 @@ class Student(models.Model):
     name = models.CharField(max_length=100, blank=False)
     city = models.CharField(max_length=100, blank=False)
     birth_date = models.DateField(blank=False)
-
-    # Capital because of convention in django docs
-    DEGREE_CHOICES = (
-        ('SECUNDARIO', 'Secundario'),
-        ('LICENCIATURA', 'Licenciatura'),
-        ('MESTRADO', 'Mestrado'),
-        ('DOUTORAMENTO', 'Doutoramento'),
-    )
     degree = models.CharField(
         max_length=100,
-        choices=DEGREE_CHOICES,
         blank=False
     )
 

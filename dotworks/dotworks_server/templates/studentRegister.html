@@ -31,6 +31,14 @@
           <br/>
         </div>
       {% endif %}
+      {% if studentRegisterForm.birth_date.errors %}
+        <div id="form-error">
+          {% for error in studentRegisterForm.birth_date.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          <br/>
+        </div>
+      {% endif %}
       <div>
         <div id="register-form" class="container-fluid">
           {% for field in studentRegisterForm %}

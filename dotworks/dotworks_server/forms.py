@@ -71,10 +71,10 @@ class StudentRegisterForm(forms.Form):
         widget=forms.DateInput(attrs={'class': 'in in2'}),
         label='Data nascimento',
         required=True,
-        initial=datetime.date.today
+        initial=datetime.date.today,
+        error_messages={'invalid': 'Data inválida'}
     )
-    degree = forms.ChoiceField(
-        choices=Student.DEGREE_CHOICES,
+    degree = forms.CharField(
         required=True,
         widget=forms.TextInput(attrs={'class': 'in in2'})
     )
