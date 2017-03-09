@@ -84,6 +84,10 @@ class Internship(models.Model):
         ('PRO', 'Profissional'),
         ('VER', 'Verao'),
     ]
+    PAYMENT_CHOICES = [
+        ('R', 'Remunerado'),
+        ('NR', ' Não Remunerado'),
+    ]
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -94,7 +98,7 @@ class Internship(models.Model):
     duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES, blank=False)
     working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES, blank=False)
     application_deadline = models.DateField('aplications deadline')
-    payment = models.CharField(max_length=30)
+    payment = models.CharField(max_length=30, choices=PAYMENT_CHOICES)
     location = models.CharField(max_length=100)
     n_positions = models.IntegerField()
 

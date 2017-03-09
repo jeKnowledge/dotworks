@@ -167,7 +167,7 @@ class InternshipCreationForm(forms.Form):
     )
     duration = forms.ChoiceField(choices=Internship.MONTHS_CHOICES, required=True)
     working_time = forms.ChoiceField(choices=Internship.WORK_TIME_CHOICES, required=True)
-    payment = forms.CharField(max_length=30)
+    payment = forms.ChoiceField(choices=Internship.PAYMENT_CHOICES)
     location = forms.CharField(max_length=100)
     n_positions = forms.IntegerField(label='Number of Positions')
 
