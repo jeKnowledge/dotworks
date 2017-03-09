@@ -503,6 +503,7 @@ header h2 {
   border: none;
   border-radius: 7px;
   padding: 0.5vw 1vh;
+  cursor: pointer;
 }
 
 #inscription-card-remove {
