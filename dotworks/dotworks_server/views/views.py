@@ -7,11 +7,14 @@ from django.template import loader
 
 from django.core.urlresolvers import reverse, reverse_lazy
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
-from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, InternshipEditForm
+from django.shortcuts import redirect
+
+from ..forms import LoginForm, StudentRegisterForm, InternshipCreationForm, StudentEditProfile, InternshipEditForm
 from ..forms import InscriptionAddForm, ChangePasswordForm
 from ..models import Student, Internship, Inscription
 
@@ -19,6 +22,18 @@ from datetime import datetime
 
 
 # Util functions
+
+def inscription_belongs_to_user(student_id_, inscription_id_):
+    '''
+    Checks if the inscription belongs to the user
+    '''
+    user_inscriptions = Inscription.objects.filter(student_id=student_id_)
+
+    for inscription in user_inscriptions:
+        if int(inscription.id) == int(inscription_id_):
+            return True
+    return False
+
 
 def student_is_already_enrolled_in_internship(student_id, inscriptions_in_internship):
     '''
@@ -30,9 +45,9 @@ def student_is_already_enrolled_in_internship(student_id, inscriptions_in_intern
     return False
 
 
-def get_internship_list(filter):
+def get_available_internship_list(filter):
     '''
-    Retrieve available internships
+    Retrieve all available internships
     '''
     arguments = {}
     today = datetime.now()
@@ -45,23 +60,25 @@ def get_internship_list(filter):
     )
 
 
-def filter_internship(category_):
-    '''
-    Filter internships by category
-    '''
-    if category_ == 'VER':
-        return Internship.objects.filter(category=category_)
-    elif category_ == 'CUR':
-        return Internship.objects.filter(category=category_)
-    elif category_ == 'PRO':
-        return Internship.objects.filter(category=category_)
-    return Internship.objects.all()
+def filter_available_internships(available_internships, category_):
+    internship_list = []
+    if category_ == '1':
+        internship_list = Internship.objects.filter(category='VER')
+    elif category_ == '2':
+        internship_list = Internship.objects.filter(category='CUR')
+    elif category_ == '3':
+        internship_list = Internship.objects.filter(category='PRO')
+    else:
+        internship_list = Internship.objects.all()
+    return internship_list
 
 
 # Validations for the views
 
-# Validates whether the user is a company
 def is_company(user):
+    '''
+    Validates wheter the user is a company
+    '''
     if user.is_superuser:
         return True
     if user.is_authenticated():
@@ -72,8 +89,10 @@ def is_company(user):
     return False
 
 
-# Validates whether the user is a student
 def is_student(user):
+    '''
+    Validates wheter the user is a student
+    '''
     if user.is_superuser:
         return True
     if user.is_authenticated():
@@ -85,16 +104,15 @@ def is_student(user):
 
 
 def index(request):
-    print(request.user.is_authenticated())
     if request.user.is_authenticated():
         company = is_company(request.user)
-        template = loader.get_template('home.html')
+        template = loader.get_template('base.html')
         # FILTERS
         filter = {
             'category': request.GET.get('category', None),
             'area': request.GET.get('area', None),
         }
-        internship_list = get_internship_list(filter)
+        internship_list = get_available_internship_list(filter)
         context = {
             'internship_list': internship_list,
             'is_company': company,
@@ -108,19 +126,115 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+@user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
+def info(request):
+    '''
+    Render page with info about .works
+    '''
+    template = loader.get_template('info.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url=reverse_lazy('index'))
+def edit_profile(request, student_id):
+    '''
+    Edit the profile
+    '''
+    user = request.user
+    student = Student.objects.get(pk=student_id)
+
+    if request.method == 'POST':
+        form = StudentEditProfile(request.POST, instance=student)
+
+        if form.is_valid():
+            # Student editing and saving 
+            student.name = form.cleaned_data['name']
+            student.e_mail = form.cleaned_data['e_mail']
+            student.github = form.cleaned_data['github']
+            student.linkedin = form.cleaned_data['linkedin']
+            student.behance = form.cleaned_data['behance']
+            student.phone = form.cleaned_data['phone_number']
+            student.city = form.cleaned_data['city']
+            student.birth_date = form.cleaned_data['birth_date']
+            student.degree = form.cleaned_data['degree']
+            student.description = form.cleaned_data['description']
+            student.save()
+            return HttpResponseRedirect(reverse('profile'))
+        else:
+            template = loader.get_template('profile.html')
+            student_id_ = int(student.id)
+            list_of_inscriptions = Inscription.objects.filter(student_id=student_id_)
+            change_password_form = ChangePasswordForm()
+            context = {
+                'id': student_id_,
+                'editStudentForm': form,
+                'changePasswordForm': change_password_form,
+                'list_of_inscriptions': list_of_inscriptions
+            }
+            return HttpResponse(template.render(context, request))
+    return HttpResponseRedirect(reverse('profile'))
+
+
+@login_required(login_url=reverse_lazy('index'))
+def profile(request):
+    '''
+    Opens profile page
+    '''
+    template = loader.get_template('profile.html')
+    user_id_ = int(request.user.id)
+    # Unsafe if query doesnt return anything, need to change this after completion
+    student = Student.objects.filter(user_id=user_id_)[0]
+    student_id_ = int(student.id)
+    list_of_inscriptions = Inscription.objects.filter(student_id=student_id_)
+    edit_student_form = StudentEditProfile(instance=student)
+    change_password_form = ChangePasswordForm()
+    context = {
+        'id': student_id_,
+        'editStudentForm': edit_student_form,
+        'changePasswordForm': change_password_form,
+        'list_of_inscriptions': list_of_inscriptions
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def filter_internship(request, category_):
+    '''
+    Filter internships by category
+    '''
+    template = loader.get_template('base.html')
+    filter = {
+        'category': request.GET.get('category', None),
+        'area': request.GET.get('area', None),
+    }
+    internship_list = get_available_internship_list(filter)
+    internship_list = filter_available_internships(internship_list, category_)
+    company = is_company(request.user)
+    context = {
+        'internship_list': internship_list,
+        'is_company': company,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
 def user_login(request):
     if request.POST:
         form = LoginForm(request.POST)
+
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
+
             if user is not None:  # Login succesfull
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
             else:
+                messages.error(request, 'Email ou Password inválida')
                 return HttpResponseRedirect(reverse('index'))
         else:
+            messages.error(request, 'Email ou Password inválida')
             return HttpResponseRedirect(reverse('index'))
     else:
         return HttpResponseRedirect(reverse('index'))
@@ -145,10 +259,9 @@ def register_action(request):
             description = form.cleaned_data['description']
             github = form.cleaned_data['github']
             linkedin = form.cleaned_data['linkedin']
-            facebook = form.cleaned_data['facebook']
+            behance = form.cleaned_data['behance']
             phone = form.cleaned_data['phone']
             city = form.cleaned_data['city']
-            country = form.cleaned_data['country']
             birth_date = form.cleaned_data['birth_date']
             degree = form.cleaned_data['degree']
 
@@ -164,10 +277,9 @@ def register_action(request):
                 description=description,
                 github=github,
                 linkedin=linkedin,
-                facebook=facebook,
+                behance=behance,
                 phone_number=phone,
                 city=city,
-                country=country,
                 birth_date=birth_date,
                 degree=degree
             )
@@ -181,14 +293,14 @@ def register_action(request):
                 'area': request.GET.get('area', None),
             }
 
-            internship_list = get_internship_list(filter)
+            internship_list = get_available_internship_list(filter)
             context = {
                 'internship_list': internship_list,
                 'is_company': company,
             }
             if user is not None:
                 login(request, user)
-                template = loader.get_template('home.html')
+                template = loader.get_template('base.html')
                 return HttpResponse(template.render(context, request))
         else:
             template = loader.get_template('studentRegister.html')
@@ -304,6 +416,18 @@ def company_area(request):
 
 @user_passes_test(is_student, login_url=reverse_lazy('no_permission_error'))
 def inscription_addition(request, internship_id):
+    user_id_ = int(request.user.id)
+    student_id_ = int(Student.objects.filter(user_id=user_id_)[0].id)
+    student_inscriptions = Inscription.objects.filter(student_id=student_id_)
+    inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
+
+    if len(student_inscriptions) >= 3:
+        messages.error(request, 'Limite de 3 inscrições atingido')
+        return HttpResponseRedirect(reverse('index'))
+    elif student_is_already_enrolled_in_internship(student_id_, inscriptions_in_internship):
+        messages.error(request, 'Já estás inscrito neste estágio')
+        return HttpResponseRedirect(reverse('index'))
+
     template = loader.get_template('inscription_addition.html')
     inscription_add_form = InscriptionAddForm()
     context = {
@@ -324,10 +448,6 @@ def inscription_add_action(request, internship_id):
                 form.cleaned_data['first_answer'],
                 form.cleaned_data['second_answer']
             ]
-            inscriptions_in_internship = Inscription.objects.filter(internship_id=internship_id)
-
-            if student_is_already_enrolled_in_internship(student.id, inscriptions_in_internship):
-                return HttpResponseRedirect(reverse('index'))
 
             inscription = Inscription(
                 internship=internship,
@@ -336,6 +456,22 @@ def inscription_add_action(request, internship_id):
             )
             inscription.save()
     return HttpResponseRedirect(reverse('index'))
+
+
+@login_required(login_url=reverse_lazy('no_permission_error'))
+def inscription_removal(request, inscription_id_):
+    '''
+    Removes inscription
+    '''
+    user_id_ = int(request.user.id)
+    student_id_ = int(Student.objects.filter(user_id=user_id_)[0].id)
+    student_inscriptions = Inscription.objects.filter(student_id=student_id_)
+
+    if len(student_inscriptions) == 0 or not inscription_belongs_to_user(student_id_, inscription_id_):
+       return no_permission_error(request) 
+
+    Inscription.objects.filter(id=int(inscription_id_)).delete()
+    return redirect('profile')
 
 
 def no_permission_error(request):
@@ -352,15 +488,18 @@ def change_password_page(request):
     template = loader.get_template('change_password_page.html')
     return HttpResponse(template.render(context, request))
 
+
 @login_required(login_url=reverse_lazy('index'))
 def change_password(request):
     if request.POST:
         form = ChangePasswordForm(request.POST)
+
         if form.is_valid():
             user = request.user
             old_password = form.cleaned_data['password']
             new_password = form.cleaned_data['new_password']
             confirm_new_password = form.cleaned_data['confirm_new_password']
+
             if user.check_password(old_password):
                 if new_password == confirm_new_password:
                     username = user.username #to login after the password is changed
@@ -368,4 +507,8 @@ def change_password(request):
                     user.save()
                     user = authenticate(username=username, password=new_password)
                     login(request, user)
-    return HttpResponseRedirect(reverse('index'))
+                else:
+                    messages.error(request, 'A nova password não coincide')
+            else:
+                messages.error(request, 'Password antiga incorreta')
+    return HttpResponseRedirect(reverse('profile'))

@@ -1,10 +1,75 @@
-<h1> {{internship.title}} </h1> 
-<br>
-
-<h2> by {{internship.company.name}} </h2>
-<br><br>
-
-<p> {{internship.description}} </p>
-
-<a href="{% url 'inscription_addition' internship.id %}">
-    Inscreve-te </a>
+<!DOCTYPE html>
+<html lang="pt" lang="pt">
+<head>
+  {% load static %}
+  <title>.estágio</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+</head>
+<body class="internship">
+  <header>
+    <div class="topleft">
+      <img src="{% static "logo.works.jpg" %}" class="logo"/>
+      <h2 class="h2internship"> .{{ internship.title }}</h2>
+    </div>
+  </header>
+  <div id="content-internship">
+    <div id="head-internship">
+      <div id="box-internship-name">
+        <div id="logo-title">
+          <img src="{% static "logo1.png" %}" width=60px/>
+          <span id="name-internship">  {{ internship.company.name }}</span></div>
+      </div>
+      <div class="ft2">
+        <button id="fc2">Curricular</button>
+      </div>
+    </div>
+    <p id="internship-description"> {{ internship.description }} </p>
+    <ul class="details-internship">
+      <div class="internship-detail">
+        <img src="{% static "location.png" %}" width=30px/>
+        <li>{{ internship.location }}</li>
+      </div>
+      <div class="internship-detail">
+        <img src="{% static "duration.png" %}" width=30px/>
+        <li>{{ internship.duration }} meses</li>
+      </div>
+      <div class="internship-detail">
+        <img src="{% static "fullparttime.png" %}" width=30px/>
+        <li>{{ internship.working_time }}</li>
+      </div>
+    </ul>
+    <ul class="details-internship">
+      <div class="internship-detail">
+        <img src="{% static "vagas.png" %}" width=30px/>
+        <li>{{ internship.n_positions }} vaga(s)</li>
+      </div>
+      <div class="internship-detail">
+        <img src="{% static "euro.png" %}" width=30px/>
+        <li>{{ internship.payment }}</li>
+      </div>
+      <div class="internship-detail">
+        <img src="{% static "play.png" %}" width=30px/>
+        <!-- <li>Início a {{internship.beginning_date}}</li> -->
+        <!--<li>Inicío a</li>-->
+        <li>26/12/2016</li>
+      </div>
+    </ul>
+    <ul class="details-internship">
+      <div class="internship-detail">
+        <img src="{% static "diasqfaltam.png" %}" width=30px/>
+        <!-- <li>Tens até {{internship.application_deadline}} !</li> -->
+        <p>Tens até 26/12/2016</p>
+      </div>
+      <div class="internship-detail register">
+        <h2 class="h2estag want"> .quero! </h2>
+        <a href="{% url 'inscription_addition' internship.id %}">
+          <img src="{% static "add.png" %}" width=40px/>
+        </a>
+      </div>
+    </ul>
+  </div>
+</body>
+</html>

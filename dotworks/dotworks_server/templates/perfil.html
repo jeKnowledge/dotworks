@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  {% load static %}
+  <title>.estágios</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+</head>
+
+<body id="internships">
+  {% load bootstrap3 %}
+  <nav>
+    <ul>
+      <li style="background-color:black"><img src="{% static "logo.works.jpg" %}" class="logo"/></li>
+      <li class="hovernav"><a class="active" href="#estagios">.estágios</a></li>
+      <li class="hovernav"><a href="#perfil">.perfil</a></li>
+      <li class="dropdown" style="float:right">
+        <a href="javascript:void(0)" class="dropbtn"><img src="{% static "logo.works.jpg" %}" class="logo"/></a>
+        <div class="dropdown-content">
+          <a href="#" class="dropunit">Editar Perfil</a>
+          <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
+            {% csrf_token %}
+            <input type="submit" value="Sair" class="dropunit"/>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <header>
+    <div class="topleft">
+      <h2 class="h2internship"> .estágios</h2>
+    </div>
+  </header>
+  <ul class="internship-list">
+    {% for internship in internship_list %}
+      <li class="internship-id"><a href="{% url 'internship_details' internship.id %}">
+        <img src="{% static "logo1.png" %}" width=60px/>
+        <div class="internship-data">
+          <span class="name-internship"><span
+            class="internship-title">{{ internship.title }}</span> <br> by {{ internship.company.name }}</span>
+          <ul class="details-internship">
+            <div class="internship-detail">
+              <img src="{% static "Wlocation.png" %}" width=30px/>
+              <li>{{ internship.location }}</li>
+            </div>
+            <div class="internship-detail">
+              <img src="{% static "Wduration.png" %}" width=30px/>
+              <li>{{ internship.duration }} meses</li>
+            </div>
+            <div class="internship-detail">
+              <img src="{% static "Wfullparttime.png" %}" width=30px/>
+              <li>{{ internship.working_time }}</li>
+            </div>
+            <div class="internship-detail">
+              <img src="{% static "Wvagas.png" %}" width=30px/>
+              <li>{{ internship.n_positions }} vaga(s)</li>
+            </div>
+          </ul>
+        </div>
+      </a></li>
+    {% endfor %}
+  </ul>
+  <ul class="filtrocat">
+    <li>
+      <button id="fc1">Verão</button>
+    </li>
+    <li>
+      <button id="fc2">Curricular</button>
+    </li>
+    <li>
+      <button id="fc3">Profissional</button>
+    </li>
+  </ul>
+</body>
+</html>

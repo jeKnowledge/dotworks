@@ -1,16 +1,29 @@
-astroid (1.4.8)
-coverage (4.2)
-Django (1.10.1)
-django-bootstrap3 (7.1.0)
-django-extensions (1.7.4)
-isort (4.2.5)
-lazy-object-proxy (1.2.2)
-mccabe (0.5.2)
-pip (9.0.1)
-psycopg2 (2.6.2)
-pylint (1.6.4)
-pylint-django (0.7.2)
-pylint-plugin-utils (0.2.4)
-setuptools (28.3.0)
-six (1.10.0)
-wrapt (1.10.8)
+appnope==0.1.0
+astroid==1.4.8
+coverage==4.2
+decorator==4.0.11
+dj-database-url==0.4.2
+Django==1.10.1
+django-bootstrap3==7.1.0
+django-extensions==1.7.4
+gunicorn==19.7.0
+ipython==5.2.2
+ipython-genutils==0.1.0
+isort==4.2.5
+lazy-object-proxy==1.2.2
+mccabe==0.5.2
+pexpect==4.2.1
+pickleshare==0.7.4
+prompt-toolkit==1.0.13
+psycopg2==2.6.2
+ptyprocess==0.5.1
+Pygments==2.2.0
+pylint==1.6.4
+pylint-django==0.7.2
+pylint-plugin-utils==0.2.4
+simplegeneric==0.8.1
+six==1.10.0
+traitlets==4.3.1
+wcwidth==0.1.7
+whitenoise==3.3.0
+wrapt==1.10.8

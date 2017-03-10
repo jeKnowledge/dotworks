@@ -35,7 +35,7 @@ class Student(models.Model):
     description = models.TextField(max_length=500, blank=False)
     github = models.URLField(max_length=100, blank=True)
     linkedin = models.URLField(max_length=100, blank=True)
-    facebook = models.URLField(max_length=100, blank=True)
+    behance = models.URLField(max_length=100, blank=True)
 
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
@@ -44,26 +44,16 @@ class Student(models.Model):
     )
 
     phone_number = models.CharField(validators=[phone_regex],
-                                    max_length=15,
-                                    blank=False
-                                   )
+        max_length=15,
+        blank=False
+    )
 
     # Validators should be a list
     name = models.CharField(max_length=100, blank=False)
     city = models.CharField(max_length=100, blank=False)
-    country = models.CharField(max_length=100, blank=False)
     birth_date = models.DateField(blank=False)
-
-    # Capital because of convention in django docs
-    DEGREE_CHOICES = (
-        ('SECUNDARIO', 'Secundario'),
-        ('LICENCIATURA', 'Licenciatura'),
-        ('MESTRADO', 'Mestrado'),
-        ('DOUTORAMENTO', 'Doutoramento'),
-    )
     degree = models.CharField(
         max_length=100,
-        choices=DEGREE_CHOICES,
         blank=False
     )
 
@@ -85,6 +75,10 @@ class Internship(models.Model):
         ('PRO', 'Profissional'),
         ('VER', 'Verao'),
     ]
+    PAYMENT_CHOICES = [
+        ('R', 'Remunerado'),
+        ('NR', ' Não Remunerado'),
+    ]
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -95,9 +89,10 @@ class Internship(models.Model):
     duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES, blank=False)
     working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES, blank=False)
     application_deadline = models.DateField('aplications deadline')
-    payment = models.CharField(max_length=30)
+    payment = models.CharField(max_length=30, choices=PAYMENT_CHOICES)
     location = models.CharField(max_length=100)
     n_positions = models.IntegerField()
+    avatar = models.CharField(max_length=300)
 
     def __str__(self):
         return self.company.name + self.title

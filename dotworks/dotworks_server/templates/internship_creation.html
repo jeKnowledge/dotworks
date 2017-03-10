@@ -2,18 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <title>.works</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>.works</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 </head>
 
 <body class="valign-wrapper">
-
-    <form action="{% url 'internship_creation_action' %}" method="post">
-        {% csrf_token %}
-        <h2>Criar Internship</h2>
-        {{internshipCreationForm}}
-        <br><br>
-        <input type="submit" value="Criar" />
-    </form>
+  <form action="{% url 'internship_creation_action' %}" method="post">
+    {% csrf_token %}
+    <h2>Criar Internship</h2>
+    {{ internshipCreationForm }}
+    <br><br>
+    <input type="submit" value="Criar"/>
+  </form>
 </body>
 </html>

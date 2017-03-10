@@ -1,93 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
- 
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <head>
     {% load static %}
-    <title>.works</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static "stylelanding.css"  %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "stylelanding.css"  %}">
+    <script src="{% static "extras.js" %}"></script>
   </head>
- 
-  <body class="valign-wrapper">
-    <div id="landingOne" style="text-align:center;">
-      <div id="Dots">
-        <div data-stellar-background-ratio="0.95">
-          <ul id="scene">
-            <li class="layer" data-depth="1"><img src="{% static "1.png" %}"/></li>
-            <li class="layer" data-depth="2"><img src="{% static "2.png" %}"/></li>
-            <li class="layer" data-depth="0.5"><img src="{% static "3.png" %}"/></li>
-          </ul>
-        </div>
-        <script src="{% static "jquery-3.1.1.min.js" %}"></script>
-        <script src="{% static "jquery.stellar.min.js" %}"></script>
-        <script src="{% static "parallax.min.js" %}"></script>
-        <script src="{% static "extras.js" %}"></script>
-        <script>
-          var scene = document.getElementById('scene');
-var parallax = new Parallax(scene);
-        </script>
-        <script>$(window).stellar();</script>
-      </div>
+  <body>
+    {% include 'navbar.html' %}
+    <div id="landingOne" class="landingInfo" style="text-align:center;" >
       <div id="inform">
- 
-        <h1 id="title"> .works </h1>
-        <h2 style="margin-bottom:1.5vh"> 31 de Março | 2017</h2>
-        <form action="login/" method="post" class="center-align valign loginForm">
-          {% csrf_token %}
-          <div id="login">
-            {% if messages %}
-              <div id="form-error" style="padding: 0 0 1.5vh 0; text-align:center;">
-                {% for message in messages %}
-                  <p>- {{ message|safe }} -</p>
-                {% endfor %}
-              </div>
-            {% endif %}
- 
-            {% for field in loginForm %}
-              {{ field.label }} {{ field }}
-            {% endfor %}
-            <div id="loginbuttons">
-                <input type="submit" value="Entrar" class="button1"/>
-                <a href="{% url 'register' %}"><h2 class="button1 button2"> Regista-te </h2></a>
-            </div>
-          </div>
-        </form>
- 
- 
-        <h2 style="margin-top:5vh"> Inscreve-te até 17 de Março!</h2>
-        <a target="_blank" href="http://jeknowledge.pt"><img id="logojek" src="{% static "logojek.png" alt="logojek" %}"></a>
- 
- 
         <!-- ______________________O QUE É?_______________________ -->
         <div id="oquee">
- 
           <h3 id="h3-1"> O que é?</h3>
- 
           <div class="oqueeconteudo">
             <ul class="filtrocat">
-              <li><button id="fc1">Verão</button></li>
-              <li><button id="fc2">Curricular</button></li>
-              <li><button id="fc3">Profissional</button></li>
+              <li><button id="fc1" style="background-color:white;">Verão</button></li>
+              <li><button id="fc2" style="background-color:white;">Curricular</button></li>
+              <li><button id="fc3" style="background-color:white;">Profissional</button></li>
             </ul>
- 
             <div id="description">
               <p>O .works é um evento dirigido para os estudantes do ensino superior que procuram um estágio de Verão, Curricular ou Profissional nas áreas da tecnologia, engenharia e design. </p>
               <p>Terás a oportunidade de conhecer empresas e concorrer a um estágio que estas tenham para oferecer.</p>
               <p>O objetivo é eliminar as dificuldades sentidas pelos estudantes, na procura de estágios, permitindo um contacto mais próximo e real entre estudantes e empresas/startups.</p>
             </div>
           </div>
- 
- 
+
           <!-- ______________________FORMATO_______________________ -->
           <div id="format">
             <h3> Formato</h3>
- 
             <div class="oqueeconteudo formato">
- 
               <div id="formato1">
                 <div id="formato1-1">
                   <h3>.works | 14h-19h</h3> <br>
@@ -95,7 +41,6 @@ var parallax = new Parallax(scene);
                 </div>
                 <img class="foto" src="{% static "foto1.jpg" %}" alt="foto1">
               </div>
- 
               <div id="formato2">
                 <div id="formato2-1">
                   <h3>.moment | 19h-22h</h3> <br>
@@ -105,14 +50,13 @@ var parallax = new Parallax(scene);
               </div>
             </div>
           </div>
- 
+
           <!-- ______________________ONDE?_______________________ -->
           <h3> Onde?</h3>
           <div class="map-container">
             <iframe id="mapa" width="100%" height="350" frameborder="0" style="border:0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3046.9426400914354!2d-8.424905074854554!3d40.21033886499096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22f9095f661e93%3A0xe2cee8efb228845a!2sCentro+Cultural+Dom+Dinis!5e0!3m2!1spt-PT!2spt!4v1482929993190"></iframe>
           </div>
           {% include 'footer.html' %}
- 
         </div>
       </div>
     </div>
