@@ -1,1 +1,1 @@
-web: gunicorn dotworks.dotworks.wsgi --log-file -
+web: gunicorn dotworks.wsgi.dotworks --log-file -
