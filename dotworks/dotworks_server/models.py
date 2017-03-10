@@ -92,6 +92,7 @@ class Internship(models.Model):
     payment = models.CharField(max_length=30, choices=PAYMENT_CHOICES)
     location = models.CharField(max_length=100)
     n_positions = models.IntegerField()
+    avatar = models.CharField(max_length=300)
 
     def __str__(self):
         return self.company.name + self.title
