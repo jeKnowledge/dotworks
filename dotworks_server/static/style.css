@@ -249,7 +249,6 @@ nav .active {
   color: white;
 }
 /*------------------- info -------------------------------*/
-
 .landingInfo #inform {
   position: relative;
   width: 100%;
@@ -259,6 +258,20 @@ nav .active {
   padding-top: 10vh;
   margin-top: 0;
   background-color: white;
+}
+
+#parceiros img{
+  width:35vw;
+  height: auto;
+  padding: 5vh 0vh;
+}
+
+#parceiros{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 /*------------------- estagios -------------------------------*/
 
@@ -641,6 +654,10 @@ footer {
 /*-----------------------------------------------------*/
 
 @media (max-width:395px) {
+  #parceiros img {
+    width:75vw;
+  }
+
   .in {
     padding: 1.5vw 1vh;
   }
