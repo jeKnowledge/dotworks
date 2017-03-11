@@ -3,6 +3,7 @@ import datetime
 from django import forms
 from django.forms import ModelForm
 from dotworks_server.models import Student, Internship, Inscription
+from django.utils.translation import gettext_lazy as _
 
 
 class LoginForm(forms.Form):
@@ -69,13 +70,14 @@ class StudentRegisterForm(forms.Form):
     )
     birth_date = forms.DateField(
         widget=forms.DateInput(attrs={'class': 'in in2'}),
-        label='Data nascimento',
+        label='Data de nascimento',
         required=True,
         initial=datetime.date.today,
         error_messages={'invalid': 'Data inválida'}
     )
     degree = forms.CharField(
         required=True,
+        label='Curso',
         widget=forms.TextInput(attrs={'class': 'in in2'})
     )
     description = forms.CharField(
@@ -97,7 +99,7 @@ class StudentEditProfile(forms.ModelForm):
     e_mail = forms.EmailField(error_messages={'unique': 'Este email já existe'})
     class Meta:
         model = Student
-        fields = [
+        fields = (
             'name',
             'e_mail',
             'github',
@@ -108,7 +110,16 @@ class StudentEditProfile(forms.ModelForm):
             'birth_date',
             'degree',
             'description'
-        ]
+        )
+        labels = {
+            'name': _('Nome'),
+            'e_mail': _('Email'),
+            'phone_number': _('Número de Telemóvel'),
+            'city': _('Cidade'),
+            'birth_date': _('Data de Nascimento'),
+            'degree': _('Curso'),
+            'description': _('Descrição')
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
