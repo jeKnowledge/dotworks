@@ -298,7 +298,6 @@ header h2 {
 
 .internship-line {
   display: flex;
-  align-items: flex-start;
   align-items: center;
 }
 
@@ -542,26 +541,9 @@ footer {
 }
 /*_______________responsividade_______________*/
 
-@media (max-width:1000px) {
-  .details-internship {
-    flex-direction: column;
-  }
-  .details-internship li {
-    padding-right: 0;
-  }
-  .internship-detail {
-    justify-content: flex-start;
-  }
-  .internship-line {
-    align-items: flex-start;
-    flex-direction: row-reverse;
-  }
+@media (max-width:1070px) {
   .internship-id {
     width: 60%;
-  }
-  .internship-list li .boldlist {
-    font-weight: 700;
-    color: #d32854;
   }
   /*ESTAGIOS*/
   .open {
@@ -575,6 +557,19 @@ footer {
   }
   .openb {
     width: 100%;
+  }
+  .details-internship li {
+    min-width: 35%;
+  }
+  .internship-detail {
+    justify-content: flex-start;
+  }
+  .details-internship {
+    flex-wrap: wrap;
+    justify-content: inherit;
+  }
+  .internship-line {
+    align-items: flex-start;
   }
 }
 
@@ -603,11 +598,24 @@ footer {
   }
   /*ESTAGIOS*/
   .internship-id {
-    width: 50%;
+    width: 70%;
   }
   .ft2 button {
     width: 70px;
     height: 70px;
+  }
+  #internships .filtrocat {
+    height: 5vw;
+    width: 75vw;
+    position: inherit;
+    margin-top: 55px;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #internships .filtrocat li {
+    width: 10vw;
   }
 }
 /*-----------------------------------------------------*/
@@ -720,9 +728,11 @@ footer {
   .internship .h2internship {
     font-size: 0.8em;
   }
-  .internship-data,
   .open {
     padding-left: 0;
+  }
+  .internship-data {
+    padding-left: 15px;
   }
   /*------footer------*/
   .footer2 p {

@@ -2,7 +2,7 @@
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <head>
     {% load static %}
-    <!--{% csrf_token %}-->
+    {% csrf_token %}
     <title>.perfil</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,15 +82,15 @@
                 <span class="name-internship">{{ inscription.internship.title }}</span>
                 <ul class="details-internship">
                   <li>{{ inscription.internship.company.name }}</li>
-                  <div class="internship-detail">
+                  <li class="internship-detail">
                     <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
-                    <li style="font-weight: 700;">{{ inscription.internship.location }}</li>
-                  </div>
+                    <span style="font-weight: 700;">{{ inscription.internship.location }}</span>
+                  </li>
                   <li>{{ inscription.internship.get_category_display }}</li>
                   <li class="boldlist">{{ inscription.internship.get_working_time_display }}</li>
                   <li>{{ inscription.internship.n_positions }} vaga(s)</li>
                   <li class="boldlist">{{ inscription.internship.duration }} meses</li>
-                  <li>{{ inscription.internship.payment }}</li>
+                  <li>{{ inscription.internship.get_payment_display }}</li>
                 </ul>
               </div>
             </div>

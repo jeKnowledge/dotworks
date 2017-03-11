@@ -18,6 +18,21 @@
   {% include 'navbar.html' %}
  
   <div class='content'>
+    <ul class="filtrocat">
+      <li>
+        <a href="{% url 'index' %}"><img src="{% static "todos.png" %}"/>Todos</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" />Verão</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" />Curricular</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" />Profissional</a>
+      </li>
+    </ul>  
+     
     {% if messages %}
       <div id="form-error" style="padding:5vh 0 0 7.4%;">
         {% for message in messages %}
@@ -30,19 +45,19 @@
       {% for internship in internship_list %}
         <li class="internship-id">
           <div class="internship-line">
-            <img src="{{ internship.avatar }}" class="internship-logo"/>
+            <img src="{% static "logo1.png" %}" class="internship-logo"/>
             <div class="internship-data">
               <span class="name-internship">{{ internship.title }}</span>
               <ul class="details-internship">
                 <li id="company">{{ internship.company.name }}</li>
-                <div class="internship-detail">
+                <li class="internship-detail">
                   <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
-                  <li style="font-weight: 700;">{{ internship.location }}</li>
-                </div>
+                  <span style="font-weight: 700;">{{ internship.location }}</span>
+                </li>
                 <li>{{ internship.get_category_display }}</li>
-                <li class="boldlist">{{ internship.get_working_time_display }}</li>
+                <li>{{ internship.get_working_time_display }}</li>
                 <li>{{ internship.n_positions }} vaga(s)</li>
-                <li class="boldlist">{{ internship.duration }} meses</li>
+                <li>{{ internship.duration }} meses</li>
                 <li>{{ internship.get_payment_display }}</li>
               </ul>
             </div>
@@ -58,21 +73,7 @@
           </div>
         </li>
       {% endfor %}
-    </ul>
-    <ul class="filtrocat">
-      <li>
-        <a href="{% url 'index' %}"><img src="{% static "todos.png" %}"/>Todos</a>
-      </li>
-      <li>
-        <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" />Verão</a>
-      </li>
-      <li>
-        <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" />Curricular</a>
-      </li>
-      <li>
-        <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" />Profissional</a>
-      </li>
-    </ul>
+      </ul>
   </div>
   {% include 'footer.html' %}
 </body>
