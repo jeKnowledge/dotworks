@@ -95,7 +95,7 @@ class Internship(models.Model):
     avatar = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.company.name + self.title
+        return self.company.name + ' ' + self.title
 
 
 class Inscription(models.Model):
@@ -109,4 +109,4 @@ class Inscription(models.Model):
 
 
     def __str__(self):
-        return self.student.name + " " + self.internship.company.name
+        return self.student.name + ' ' + self.internship.company.name
