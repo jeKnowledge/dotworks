@@ -45,7 +45,7 @@
       {% for internship in internship_list %}
         <li class="internship-id">
           <div class="internship-line">
-            <img src="{% static "logo1.png" %}" class="internship-logo"/>
+            <img src="{{internship.avatar}}" class="internship-logo"/>
             <div class="internship-data">
               <span class="name-internship">{{ internship.title }}</span>
               <ul class="details-internship">
