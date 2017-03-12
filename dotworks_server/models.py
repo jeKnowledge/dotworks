@@ -85,8 +85,8 @@ class Internship(models.Model):
     category = models.CharField(max_length=20, choices=TYPE_CHOICES)
     description = models.CharField(max_length=500)
     area = models.CharField(max_length=50)  # JSON list!!!
-    beginning_date = models.DateField('Beginning date')
-    duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES, blank=False)
+    beginning_date = models.DateField('Beginning date', blank=True, null=True)
+    duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES, blank=True, null=True)
     working_time = models.CharField(max_length=15, choices=WORK_TIME_CHOICES, blank=False)
     application_deadline = models.DateField('aplications deadline')
     payment = models.CharField(max_length=30, choices=PAYMENT_CHOICES)

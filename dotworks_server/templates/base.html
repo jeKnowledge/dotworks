@@ -55,10 +55,14 @@
                   <span style="font-weight: 700;">{{ internship.location }}</span>
                 </li>
                 <li>{{ internship.get_category_display }}</li>
-                <li>{{ internship.beginning_date }}</li>
+                {% if internship.beginning_date is not None %}
+                  <li>{{ internship.beginning_date }}</li>
+                {% endif %}
                 <li>{{ internship.get_working_time_display }}</li>
                 <li>{{ internship.n_positions }} vaga(s)</li>
-                <li>{{ internship.duration }} meses</li>
+                {% if internship.duration is not None %}
+                  <li>{{ internship.duration }} meses</li>
+                {% endif %}
                 <li>{{ internship.get_payment_display }}</li>
               </ul>
             </div>
