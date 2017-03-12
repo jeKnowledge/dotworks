@@ -196,6 +196,10 @@ header {
   font-size: 1.6em;
   color: #d62251;
 }
+
+#terms-and-conditions {
+  color: whitesmoke;
+}
 /*------------------- NAV MENÚ -------------------------------*/
 
 .logo {

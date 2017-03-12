@@ -86,6 +86,7 @@ class StudentRegisterForm(forms.Form):
         label='Um texto sobre ti',
         required=True
     )
+    terms_and_conditions = forms.BooleanField(label='Aceito os termos e condições')
 
     def clean_email(self):
         cleaned_data = self.cleaned_data

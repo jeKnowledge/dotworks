@@ -7,6 +7,7 @@
     <title>.registo</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static "logo.works.jpg" %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
@@ -19,7 +20,7 @@
       {% csrf_token %}
       <header>
         <div class="topleft">
-          <img src="{% static "logo.works.jpg" %}" class="logo"/>
+          <a href="{% url 'index' %}"><img src="{% static "logo.works.jpg" %}" class="logo"/></a>
           <h2>.registar</h2>
         </div>
       </header>
@@ -42,15 +43,28 @@
       <div>
         <div id="register-form" class="container-fluid">
           {% for field in studentRegisterForm %}
-            {% if forloop.counter0|divisibleby:3 %}
-            <div class="row">
-              {% endif %}
-              <div class="col-md-4">
-                {{ field.label }}
-                {{ field }}
+            {% if field.label != 'Aceito os termos e condições' %}
+              {% if forloop.counter0|divisibleby:3 %}
+              <div class="row">
+                {% endif %}
+                <div class="col-md-4">
+                  {{ field.label }}
+                  {{ field }}
+                </div>
+                {% if forloop.counter0|add:1|divisibleby:3 %}
               </div>
-              {% if forloop.counter0|add:1|divisibleby:3 %}
-            </div>
+              {% endif %}
+            {% else %}
+              {% if forloop.counter0|divisibleby:3 %}
+              <div class="row">
+                {% endif %}
+                <div class="col-md-4">
+                  <a href="{% static "terms.pdf" %}" id="terms-and-conditions" target='_blank'>{{ studentRegisterForm.terms_and_conditions.label }}</a>
+                  {{ studentRegisterForm.terms_and_conditions }}
+                </div>
+                {% if forloop.counter0|add:1|divisibleby:3 %}
+              </div>
+              {% endif %}
             {% endif %}
           {% endfor %}
         </div>
@@ -58,5 +72,6 @@
       <br>
       <input type="submit" value="Registar" id="register"/>
     </form>
+    
   </body>
 </html>
