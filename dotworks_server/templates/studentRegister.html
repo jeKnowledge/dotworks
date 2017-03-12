@@ -58,9 +58,11 @@
               {% if forloop.counter0|divisibleby:3 %}
               <div class="row">
                 {% endif %}
-                <div class="col-md-4">
-                  <a href="{% static "terms.pdf" %}" id="terms-and-conditions" target='_blank'>{{ studentRegisterForm.terms_and_conditions.label }}</a>
-                  {{ studentRegisterForm.terms_and_conditions }}
+                <div class="col-md-4" id="terms1">
+                  <div id="terms2">
+                    <a href="{% static "terms.pdf" %}" id="terms-and-conditions" target='_blank'>{{ studentRegisterForm.terms_and_conditions.label }}</a>
+                    {{ studentRegisterForm.terms_and_conditions }}
+                  </div>
                 </div>
                 {% if forloop.counter0|add:1|divisibleby:3 %}
               </div>

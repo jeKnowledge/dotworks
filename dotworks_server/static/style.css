@@ -198,8 +198,18 @@ header {
 }
 
 #terms-and-conditions {
-  color: whitesmoke;
+  color: #fcd0a1;
 }
+
+#terms1 {
+  display: flex;
+  align-items: center;
+}
+
+#terms2 {
+  width: 13vw;
+}
+
 /*------------------- NAV MENÚ -------------------------------*/
 
 .logo {
@@ -761,5 +771,8 @@ footer {
   }
   .footer2 a {
     width: 35%;
+  }
+  .in2, .in3, #terms2 {
+    width: 65vw;
   }
 }
