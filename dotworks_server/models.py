@@ -83,7 +83,7 @@ class Internship(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=800)
     area = models.CharField(max_length=50)  # JSON list!!!
     beginning_date = models.DateField('Beginning date', blank=True, null=True)
     duration = models.PositiveSmallIntegerField(choices=MONTHS_CHOICES, blank=True, null=True)
