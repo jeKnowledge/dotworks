@@ -288,22 +288,10 @@ def register_action(request):
             student.save()
 
             user = authenticate(username=email, password=password)
-            company = is_company(user)
-            arguments = {}
-            filter = {
-                'category': request.GET.get('category', None),
-                'area': request.GET.get('area', None),
-            }
 
-            internship_list = get_available_internship_list(filter)
-            context = {
-                'internship_list': internship_list,
-                'is_company': company,
-            }
             if user is not None:
                 login(request, user)
-                template = loader.get_template('base.html')
-                return HttpResponse(template.render(context, request))
+                return HttpResponseRedirect(reverse('index'))
         else:
             template = loader.get_template('studentRegister.html')
             context = {
