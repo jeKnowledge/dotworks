@@ -23,15 +23,6 @@
             <li class="layer" data-depth="0.5"><img src="{% static "3.png" %}"/></li>
           </ul>
         </div>
-        <script src="{% static "jquery-3.1.1.min.js" %}"></script>
-        <script src="{% static "jquery.stellar.min.js" %}"></script>
-        <script src="{% static "parallax.min.js" %}"></script>
-        <script src="{% static "extras.js" %}"></script>
-        <script>
-          var scene = document.getElementById('scene');
-var parallax = new Parallax(scene);
-        </script>
-        <script>$(window).stellar();</script>
       </div>
       <div id="inform">
  
@@ -124,5 +115,14 @@ var parallax = new Parallax(scene);
         </div>
       </div>
     </div>
+    <script src="{% static "jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "jquery.stellar.min.js" %}"></script>
+    <script src="{% static "parallax.min.js" %}"></script>
+    <script src="{% static "extras.js" %}"></script>
+    <script>
+      var scene = document.getElementById('scene');
+var parallax = new Parallax(scene);
+    </script>
+    <script>$(window).stellar();</script>
   </body>
 </html>

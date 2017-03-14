@@ -10,7 +10,6 @@
   <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body id="internships">
   {% load bootstrap3 %}
@@ -81,5 +80,15 @@
       </ul>
   </div>
   {% include 'footer.html' %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('.hovernav').each(function() {
+        if ($(this).prop('href') == window.location.href) {
+          $(this).addClass('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
