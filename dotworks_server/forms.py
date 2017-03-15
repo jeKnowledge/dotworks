@@ -46,7 +46,7 @@ class StudentRegisterForm(forms.Form):
                 'class': 'in in2 not-required',
             }
         ),
-        error_messages={'invalid': 'Url de Github inválido'}
+        error_messages={'invalid': 'Github inválido'}
     )
     linkedin = forms.URLField(
         max_length=100,
@@ -58,7 +58,7 @@ class StudentRegisterForm(forms.Form):
                 'class': 'in in2 not-required'
             }
         ),
-        error_messages={'invalid': 'Url de Linkedin inválido'}
+        error_messages={'invalid': 'Linkedin inválido'}
     )
     behance = forms.URLField(
         max_length=100,
@@ -70,7 +70,7 @@ class StudentRegisterForm(forms.Form):
                 'class': 'in in2 not-required'
             }
         ),
-        error_messages={'invalid': 'Url de Behance inválido'}
+        error_messages={'invalid': 'Behance inválido'}
     )
     phone = forms.RegexField(
         regex=r'^\+?1?\d{9,15}$',
