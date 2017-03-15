@@ -102,7 +102,7 @@ class Inscription(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     internship = models.ForeignKey(Internship, on_delete=models.CASCADE)
     answers = ArrayField(
-        models.CharField(max_length=100),
+        models.CharField(max_length=1000),
         size=2,
         blank=False
     )

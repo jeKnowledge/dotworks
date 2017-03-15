@@ -222,12 +222,12 @@ class InscriptionAddForm(forms.Form):
     first_question = 'Competências Técnicas'
     second_question = 'Competências Pessoais Relevantes'
     first_answer = forms.CharField(
-        max_length=500,
+        max_length=1000,
         label=first_question,
         widget=forms.Textarea(attrs={'placeholder': 'ex: C++, javascript, html, photoahop', 'class': 'in'})
     )
     second_answer = forms.CharField(
-        max_length=500,
+        max_length=1000,
         label=second_question,
         widget=forms.Textarea(attrs={'placeholder': 'ex: criatividade, organização', 'class': 'in'})
     )
