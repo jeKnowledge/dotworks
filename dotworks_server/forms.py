@@ -40,19 +40,37 @@ class StudentRegisterForm(forms.Form):
         max_length=100,
         label='Github',
         required=False,
-        widget=forms.TextInput(attrs={'class': 'in in2'})
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Opcional',
+                'class': 'in in2 not-required',
+            }
+        ),
+        error_messages={'invalid': 'Url de Github inválido'}
     )
     linkedin = forms.URLField(
         max_length=100,
         label='Linkedin',
         required=False,
-        widget=forms.TextInput(attrs={'class': 'in in2'})
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Opcional',
+                'class': 'in in2 not-required'
+            }
+        ),
+        error_messages={'invalid': 'Url de Linkedin inválido'}
     )
     behance = forms.URLField(
         max_length=100,
         label='Behance',
         required=False,
-        widget=forms.TextInput(attrs={'class': 'in in2'})
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Opcional',
+                'class': 'in in2 not-required'
+            }
+        ),
+        error_messages={'invalid': 'Url de Behance inválido'}
     )
     phone = forms.RegexField(
         regex=r'^\+?1?\d{9,15}$',
