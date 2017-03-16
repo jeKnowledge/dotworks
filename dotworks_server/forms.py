@@ -78,7 +78,8 @@ class StudentRegisterForm(forms.Form):
         min_length=9,
         label='Telemóvel',
         required=True,
-        widget=forms.TextInput(attrs={'class': 'in in2'})
+        widget=forms.TextInput(attrs={'class': 'in in2'}),
+        error_messages={'invalid': 'Número de telemóvel inválido'}
     )
     city = forms.CharField(
         max_length=100,

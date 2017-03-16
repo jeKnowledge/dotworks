@@ -24,9 +24,12 @@
           <h2>.registar</h2>
         </div>
       </header>
-      {% if studentRegisterForm.email.errors or studentRegisterForm.github.errors or studentRegisterForm.linkedin.errors or studentRegisterForm.behance.error %}
+      {% if studentRegisterForm.email.errors or studentRegisterForm.phone.errors or studentRegisterForm.github.errors or studentRegisterForm.linkedin.errors or studentRegisterForm.behance.error %}
         <div id="form-error">
           {% for error in studentRegisterForm.email.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          {% for error in studentRegisterForm.phone.errors %}
             <p> - {{ error|escape }} -</p>
           {% endfor %}
           {% for error in studentRegisterForm.github.errors %}
