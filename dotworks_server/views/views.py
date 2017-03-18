@@ -113,7 +113,7 @@ def index(request):
             'area': request.GET.get('area', None),
         }
         internship_list = get_available_internship_list(filter)
-        internship_list = internship_list.order_by('company__name')
+        internship_list = internship_list.order_by('-company__name')
         context = {
             'internship_list': internship_list,
             'is_company': company,
@@ -210,7 +210,7 @@ def filter_internship(request, category_):
     }
     internship_list = get_available_internship_list(filter)
     internship_list = filter_available_internships(internship_list, category_)
-    internship_list = internship_list.order_by('company__name')
+    internship_list = internship_list.order_by('-company__name')
     company = is_company(request.user)
     context = {
         'internship_list': internship_list,
