@@ -225,7 +225,7 @@ class InscriptionAddForm(forms.Form):
     first_answer = forms.CharField(
         max_length=1000,
         label=first_question,
-        widget=forms.Textarea(attrs={'placeholder': 'ex: C++, javascript, html, photoahop', 'class': 'in'})
+        widget=forms.Textarea(attrs={'placeholder': 'ex: C++, javascript, html, photoshop', 'class': 'in'})
     )
     second_answer = forms.CharField(
         max_length=1000,
