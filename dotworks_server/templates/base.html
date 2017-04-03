@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  {% load static %}
+  {% csrf_token %}
+  <title>.estágios</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{% static "logo.works.jpg" %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+</head>
+<body id="internships">
+  {% load bootstrap3 %}
+ 
+  {% include 'navbar.html' %}
+ 
+  <div class='content'>
+    <ul class="filtrocat">
+      <li>
+        <a href="{% url 'index' %}"><img src="{% static "todos.png" %}"/>Todos</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=1 %}"><img src="{% static "verao.png" %}" />Verão</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=2 %}"><img src="{% static "curricular.png" %}" />Curricular</a>
+      </li>
+      <li>
+        <a href="{% url 'filter_internship' category_=3 %}"><img src="{% static "profissional.png" %}" />Profissional</a>
+      </li>
+    </ul>  
+     
+    {% if messages %}
+      <div id="form-error" style="padding:5vh 0 0 7.4%;">
+        {% for message in messages %}
+          <p>- {{ message|safe }} -</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+     
+    <ul class="internship-list">
+      {% for internship in internship_list %}
+        <li class="internship-id">
+          <div class="internship-line">
+            <img src="{{internship.avatar}}" class="internship-logo"/>
+            <div class="internship-data">
+              <span class="name-internship">{{ internship.title }}</span>
+              <ul class="details-internship">
+                <li id="company">{{ internship.company.name }}</li>
+                <li class="internship-detail">
+                  <img src="{% static "location.png" %}" width=15px style="padding-right:3px;"/>
+                  <span style="font-weight: 700;">{{ internship.location }}</span>
+                </li>
+                <li>{{ internship.get_category_display }}</li>
+                {% if internship.beginning_date is not None %}
+                  <li>{{ internship.beginning_date }}</li>
+                {% endif %}
+                <li>{{ internship.get_working_time_display }}</li>
+                <li>{{ internship.n_positions }} vaga(s)</li>
+                {% if internship.duration is not None %}
+                  <li>{{ internship.duration }} meses</li>
+                {% endif %}
+                <li>{{ internship.get_payment_display }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropmore">
+            <br>
+            <div class="open">
+              <p> {{ internship.description }} </p>
+              <div class="openb">
+                <a href="{% url 'inscription_addition' internship.id %}" id="register" style="margin:0;">Adicionar</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+  </div>
+  {% include 'footer.html' %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('.hovernav').each(function() {
+        if ($(this).prop('href') == window.location.href) {
+          $(this).addClass('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

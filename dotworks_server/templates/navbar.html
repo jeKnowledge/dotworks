@@ -1,0 +1,15 @@
+{% load static %}
+
+<nav>
+  <ul>
+    <a href="{% url 'info' %}" style="background-color:#0a273b"> <img src="{% static "logo.works.jpg" %}" class="logo"/></a>
+    <a href="{% url 'index' %}" class="hovernav">.estágios</a>
+    <a href="{% url 'profile' %}" class="hovernav">.perfil</a>
+    <li class="dropdown">
+      <form action="{% url 'user_logout' %}" method="post" class="center-align valign">
+        {% csrf_token %}
+        <input type="submit" value=".sair" class="dropunit"/>
+      </form>
+    </li>
+  </ul>
+</nav>

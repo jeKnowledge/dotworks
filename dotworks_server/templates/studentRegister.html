@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ 
+  <head>
+    {% load static %}
+    <title>.registo</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static "logo.works.jpg" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  </head>
+ 
+  <body class="valign-wrapper">
+    {% load bootstrap3 %}
+ 
+    <form action="{% url 'register_action' %}" method="post">
+      {% csrf_token %}
+      <header>
+        <div class="topleft">
+          <a href="{% url 'index' %}"><img src="{% static "logo.works.jpg" %}" class="logo"/></a>
+          <h2>.registar</h2>
+        </div>
+      </header>
+      {% if studentRegisterForm.email.errors or studentRegisterForm.phone.errors or studentRegisterForm.github.errors or studentRegisterForm.linkedin.errors or studentRegisterForm.behance.error %}
+        <div id="form-error">
+          {% for error in studentRegisterForm.email.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          {% for error in studentRegisterForm.phone.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          {% for error in studentRegisterForm.github.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          {% for error in studentRegisterForm.linkedin.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          {% for error in studentRegisterForm.behance.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          <br/>
+        </div>
+      {% endif %}
+      {% if studentRegisterForm.birth_date.errors %}
+        <div id="form-error">
+          {% for error in studentRegisterForm.birth_date.errors %}
+            <p> - {{ error|escape }} -</p>
+          {% endfor %}
+          <br/>
+        </div>
+      {% endif %}
+      <div>
+        <div id="register-form" class="container-fluid">
+          {% for field in studentRegisterForm %}
+            {% if field.label != 'Aceito os termos e condições' %}
+              {% if forloop.counter0|divisibleby:3 %}
+              <div class="row">
+                {% endif %}
+                <div class="col-md-4">
+                  {{ field.label }}
+                  {{ field }}
+                </div>
+                {% if forloop.counter0|add:1|divisibleby:3 %}
+              </div>
+              {% endif %}
+            {% else %}
+              {% if forloop.counter0|divisibleby:3 %}
+              <div class="row">
+                {% endif %}
+                <div class="col-md-4" id="terms1">
+                  <div id="terms2">
+                    <a href="{% static "terms.pdf" %}" id="terms-and-conditions" target='_blank'>{{ studentRegisterForm.terms_and_conditions.label }}</a>
+                    {{ studentRegisterForm.terms_and_conditions }}
+                  </div>
+                </div>
+                {% if forloop.counter0|add:1|divisibleby:3 %}
+              </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <br>
+      <input type="submit" value="Registar" id="register"/>
+    </form>
+    
+  </body>
+</html>

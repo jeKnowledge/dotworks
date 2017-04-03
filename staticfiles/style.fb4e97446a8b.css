@@ -1,0 +1,782 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-size: 12px;
+  background-color: #1B384C;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100vw;
+  color: whitesmoke;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  resize: none;
+}
+
+.content {
+  flex: 1;
+  padding-bottom: 5vh;
+}
+
+h1:hover,
+h2:hover {
+  cursor: default;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+button:hover,
+a:hover,
+#register:hover,
+.button1:hover,
+#inscbutton:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+#landingOne .filtrocat button:hover {
+  cursor: default;
+}
+/*------------------- LANDING PAGE -------------------------------*/
+
+#landingOne {
+  height: 100vh;
+  text-align: center;
+}
+
+input,
+a,
+.button1,
+.internship-list li,
+textarea {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#inform {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+}
+
+.loginForm {
+  width: 26%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+label {
+  font-size: 1.2em;
+}
+
+#login {
+  margin-top: 3vh;
+  width: 100%;
+  text-align: left;
+}
+
+#Dots img {
+  width: 100vw;
+}
+
+#Dots {
+  z-index: 0;
+  position: absolute;
+}
+
+.in,
+.button1 {
+  margin: 1vh 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+}
+
+.in {
+  width: 96.5%;
+  background-color: whitesmoke;
+  text-indent: 3px;
+}
+
+.buttonlogin:hover,
+#setascroll:hover {
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #53917e;
+  color: whitesmoke;
+  text-align: center;
+  width: 30%;
+  font-size: 1.2em;
+  display: inline-block;
+}
+
+.button2 {
+  float: right;
+  padding: 0.5vw 1vh;
+}
+/*------------------- STUDENTREGISTER -------------------------------*/
+
+#register-form {
+  margin: 0 10vw;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1em;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 8vh 10vw;
+}
+
+.topleft {
+  font-size: 3em;
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+}
+
+.logo {
+  width: 74px;
+  border-radius: 7px;
+}
+
+.in2,
+.in3 {
+  width: 13vw;
+  display: flex;
+}
+
+.in3 {
+  border-radius: 7px;
+  height: 92px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+#register {
+  background-color: #53917e;
+  color: whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+  margin-right: 10vw;
+  float: right;
+}
+
+#form-error {
+  padding-left: 10vw;
+  font-size: 1.6em;
+  color: #d62251;
+}
+
+#terms-and-conditions {
+  color: #fcd0a1;
+}
+
+#terms1 {
+  display: flex;
+  align-items: center;
+}
+
+#terms2 {
+  width: 13vw;
+}
+
+.not-required {
+  opacity: 0.7;
+}
+
+/*------------------- NAV MENÚ -------------------------------*/
+
+.logo {
+  width: 50px;
+  border-radius: 7px;
+}
+
+nav ul {
+  font-size: 1.6em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1B384C;
+  height: 10vh;
+}
+
+nav a,
+.dropunit {
+  float: left;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 0 2vw;
+}
+
+.dropdown {
+  float: right;
+  padding-right: 6.4%;
+}
+
+.dropunit {
+  font-size: 1em;
+  background-color: #1B384C;
+  color: white;
+  border: none;
+}
+
+nav .active {
+  background-color: white;
+  color: #1B384C;
+  font-weight: bold;
+}
+
+.hovernav:not(.active):hover,
+.dropunit:hover {
+  background-color: #0a273b;
+  cursor: pointer;
+  font-weight: inherit;
+  color: white;
+}
+/*------------------- info -------------------------------*/
+.landingInfo #inform {
+  position: relative;
+  width: 100%;
+}
+
+.landingInfo #oquee {
+  padding-top: 10vh;
+  margin-top: 0;
+  background-color: white;
+}
+
+#parceiros img{
+  width:35vw;
+  height: auto;
+  padding: 5vh 0vh;
+}
+
+#parceiros{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/*------------------- estagios -------------------------------*/
+
+#internships {
+  background-color: white;
+  color: black;
+}
+
+header h2 {
+  margin-left: 2vw;
+}
+
+#company {
+  font-weight: 700;
+  color: #53917e;
+}
+
+.internship-list {
+  float: left;
+  margin-top: 5vh;
+  width: 100%;
+}
+
+.internship-id {
+  margin: 25px 7.4%;
+  border-radius: 7px;
+  padding: 25px 30px;
+  width: 67%;
+  font-size: 1.1em;
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 1.5px lightgrey;
+}
+
+.internship-id a {
+  color: black;
+}
+
+.internship-line {
+  display: flex;
+  align-items: center;
+}
+
+.internship-logo {
+  width: 60px;
+}
+
+.internship-data {
+  width: 100%;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name-internship {
+  float: left;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.details-internship {
+  display: flex;
+  flex-direction: row;
+}
+
+.details-internship li {
+  padding-right: 20px;
+}
+
+.descestag {
+  display: none;
+}
+
+.open {
+  padding-left: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.open p {
+  max-width: 50%;
+}
+
+#internships .filtrocat {
+  height: 50vh;
+  position: fixed;
+  right: 0;
+  margin-top: 13vh;
+  margin-right: 7.4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#internships .filtrocat li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#internships .filtrocat li a img {
+  z-index: -1;
+  position: absolute;
+  width: 95px;
+}
+
+.ft2 button {
+  width: 95px;
+  height: 95px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: white;
+  color: white;
+}
+
+#fc1 {
+  background-image: url("verao.3f19488eb8de.png");
+}
+
+#fc2 {
+  background-image: url("curricular.6e03bad5229b.png");
+}
+
+#fc3 {
+  background-image: url("profissional.37145067454e.png");
+}
+/*------------------- ESTAGIO! -------------------------------*/
+
+.internship {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.internship header {
+  width: 555px;
+}
+
+#content-internship {
+  width: 458px;
+  margin-left: 10vw;
+  padding: 37px 46px;
+  margin-bottom: 8vh;
+  border: 5px solid black;
+  border-radius: 7px;
+}
+
+#head-internship {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#box-internship-name {
+  width: 290px;
+  border-radius: 7px;
+  padding: 5px 16px;
+  font-size: 1.2em;
+  background-color: #53917e;
+}
+
+#logo-title {
+  display: flex;
+  align-items: flex-start;
+  color: white;
+  width: 100%;
+  align-items: center;
+}
+
+.internship-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*_______________INSCREVER_______________*/
+
+#inscbutton {
+  background-color: #53917e;
+  color: whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+}
+
+#inscbuttondiv {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 103%;
+  margin-top: 3vh;
+}
+
+.inscription #content-internship {
+  height: 50vh;
+  border: none;
+  margin-bottom: 0;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.inscription #content-internship textarea {
+  margin: 1vh 0;
+  border: none;
+  border-radius: 7px;
+  padding: 15px;
+  height: 13vh;
+  color: black;
+  resize: none;
+}
+/* ---------------------------------------PROFILE--------------------------------------------------- */
+
+.profile-edit {
+  margin: 7.5vh 7.4%;
+  padding-bottom: 5vh;
+  border-bottom: 4px solid #1B384C;
+}
+
+.profile-edit #register-form {
+  margin: 0 10vw 0 0;
+}
+
+.profile-edit h2,
+#specialh2 {
+  font-size: 2em;
+  margin-bottom: 2vh;
+}
+
+#specialh2 {
+  margin: 7.5vh 7.4% 0 7.4%;
+}
+
+.submitbutton {
+  background-color: #53917e;
+  color: whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+  cursor: pointer;
+}
+
+#inscription-card-remove {
+  background-color: #d32854;
+  color: whitesmoke;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5vw 1vh;
+  margin-right: 10vw;
+  float: right;
+}
+/* ---------------------------------------FOOTER--------------------------------------------------- */
+
+footer {
+  background-color: whitesmoke;
+  padding: 3vh;
+}
+
+.footer2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.footer2 p {
+  font-size: 16px;
+}
+
+.footer2 a {
+  width: 15%;
+}
+
+#logojek2 {
+  width: 100%;
+}
+/*_______________responsividade_______________*/
+
+@media (max-width:1070px) {
+  .internship-id {
+    width: 60%;
+  }
+  /*ESTAGIOS*/
+  .open {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  .open p {
+    max-width: 100%;
+    padding-bottom: 3vh;
+  }
+  .openb {
+    width: 100%;
+  }
+  .details-internship li {
+    min-width: 35%;
+  }
+  .internship-detail {
+    justify-content: flex-start;
+  }
+  .details-internship {
+    flex-wrap: wrap;
+    justify-content: inherit;
+  }
+  .internship-line {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width:920px) {
+  .loginForm {
+    width: 36%;
+  }
+}
+/*-----------------------------------------------------*/
+
+@media (max-width:768px) {
+  #Dots img {
+    width: 100vw;
+    height: auto;
+  }
+  .loginForm {
+    width: 46%;
+  }
+  .loginForm .button1 {
+    width: 42%;
+  }
+  .in2,
+  .in3,
+  .topright .button1 {
+    width: 15vw;
+  }
+  /*ESTAGIOS*/
+  .internship-id {
+    width: 70%;
+  }
+  .ft2 button {
+    width: 70px;
+    height: 70px;
+  }
+  #internships .filtrocat {
+    height: 5vw;
+    width: 75vw;
+    position: inherit;
+    margin-top: 55px;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #internships .filtrocat li {
+    width: 10vw;
+  }
+}
+/*-----------------------------------------------------*/
+
+@media (max-width:590px) {
+  /*------inscription------*/
+  .inscription #content-internship {
+    font-size: 1.2em;
+  }
+  .inscription #content-internship textarea {
+    font-size: 0.9em;
+    padding: 8px 10px;
+  }
+  .inscription #content-internship {
+    width: 70vw;
+    padding: 0;
+    margin-left: 10vw;
+  }
+  #inscbuttondiv {
+    width: 105%;
+  }
+}
+/*-----------------------------------------------------*/
+
+@media (max-width:395px) {
+  #parceiros img {
+    width:75vw;
+  }
+
+  .in {
+    padding: 1.5vw 1vh;
+  }
+  .button1,
+  .button2,
+  #register,
+  #inscbutton,
+  .submitbutton,
+  #inscription-card-remove {
+    padding: 0.7vh 1.7vw;
+  }
+  .loginForm {
+    margin-top: 1.5vh;
+  }
+  .loginForm {
+    width: 60%;
+  }
+  #loginbuttons {
+    width: 102%;
+  }
+  header {
+    margin: 7vh 10vw;
+  }
+  header h2 {
+    margin-left: 5vw;
+    font-size: 0.85em;
+  }
+  #register-form {
+    display: inherit;
+  }
+  .in2,
+  .in3 {
+    width: 65vw;
+  }
+  #register {
+    margin: 0 22vw 5vh 0;
+  }
+  #form-error {
+    font-size: 1em;
+  }
+  /*------nav------*/
+  nav a,
+  .dropunit {
+    padding: 0 5vw;
+  }
+  nav ul {
+    font-size: 1.2em;
+  }
+  .logo {
+    width: 30px;
+  }
+  .dropdown {
+    padding-right: 4.5%;
+  }
+  /*------estagios------*/
+  .internship-id {
+    font-size: 1em;
+    padding: 15px 20px;
+  }
+  .internship-logo {
+    width: 40px;
+  }
+  #internships .filtrocat li a img {
+    width: 60px;
+  }
+  #internships .filtrocat li a {
+    font-size: 0.8em;
+  }
+  /*-----------------------------------------------------*/
+  #internships .filtrocat {
+    margin-right: 3%;
+  }
+  .name-internship {
+    font-size: 1.2em;
+    padding-bottom: 1.5vh;
+  }
+  #content-internship {
+    width: 70vw;
+    padding: 5vw;
+    margin-left: 7vw;
+  }
+  .internship header {
+    width: 82vw;
+  }
+  .internship .h2internship {
+    font-size: 0.8em;
+  }
+  .open {
+    padding-left: 0;
+  }
+  .internship-data {
+    padding-left: 15px;
+  }
+  /*------footer------*/
+  .footer2 p {
+    font-size: 12px;
+  }
+  .footer2 a {
+    width: 35%;
+  }
+  .in2, .in3, #terms2 {
+    width: 65vw;
+  }
+}
